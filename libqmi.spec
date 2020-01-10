@@ -7,7 +7,7 @@
 Name: libqmi
 Summary: Support library to use the Qualcomm MSM Interface (QMI) protocol
 Version: %{?realversion}
-Release: 3%{snapshot}%{?dist}
+Release: 4%{snapshot}%{?dist}
 Group: Development/Libraries
 License: LGPLv2+
 URL: http://www.freedesktop.org/software/libqmi
@@ -15,6 +15,7 @@ URL: http://www.freedesktop.org/software/libqmi
 # If snapshot is defined, source will be a snapshot of git from the
 # master branch on the given date
 Source: %{name}-%{realversion}%{snapshot}.tar.xz
+Patch1: 0001-rh1031738-avoid-buffer-overflows.patch
 
 BuildRequires: glib2-devel >= %{glib2_version}
 BuildRequires: pkgconfig
@@ -51,6 +52,8 @@ from the command line.
 
 %prep
 %setup -q -n %{name}-%{realversion}
+
+%patch1 -p1 -b .0001-rh1031738-avoid-buffer-overflows.orig
 
 %build
 %configure \
@@ -89,6 +92,9 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 
 %changelog
+* Wed Oct 22 2014 Thomas Haller <thaller@redhat.com> - 1.6.0-4
+- fix potential buffer overflows in parser code (rh #1031738)
+
 * Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.6.0-3
 - Mass rebuild 2014-01-24
 

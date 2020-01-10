@@ -1,0 +1,554 @@
+From a5473655841e82f14683d72531c1dfbfb0ff4727 Mon Sep 17 00:00:00 2001
+From: Aleksander Morgado <aleksander@aleksander.es>
+Date: Tue, 7 Oct 2014 12:28:46 +0200
+Subject: [PATCH 1/5] qmi-codegen: ensure enough buffer available to read
+ string/array size variable
+
+Code generation via emit_size_read() creates the _validate() functions.
+The generated code for strings and arrays used to read the length prefix
+without checking that the provided buffer is large enough.
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1031738
+
+Patch based on a patch from Thomas Haller <thaller@redhat.com>
+
+Reported-by: Florian Weimer <fweimer@redhat.com>
+(cherry picked from commit 471d038fe38f7b99383f9654dcc8f6662d96e6f8)
+---
+ build-aux/qmi-codegen/Field.py          |  5 ++++-
+ build-aux/qmi-codegen/VariableArray.py  |  9 ++++++++-
+ build-aux/qmi-codegen/VariableString.py | 18 ++++++++++++++++--
+ libqmi-glib/test/test-message.c         | 28 ++++++++++++++++++++++++++++
+ 4 files changed, 56 insertions(+), 4 deletions(-)
+
+diff --git a/build-aux/qmi-codegen/Field.py b/build-aux/qmi-codegen/Field.py
+index a3f3a61..ddbcfe1 100644
+--- a/build-aux/qmi-codegen/Field.py
++++ b/build-aux/qmi-codegen/Field.py
+@@ -339,7 +339,10 @@ class Field:
+             '\n')
+         f.write(string.Template(template).substitute(translations))
+ 
+-        # Now, read the size of the expected TLV
++        # Now, read the size of the expected TLV.
++        #
++        # Note: the emit_size_read() implementation is allowed to return FALSE
++        # to indicate an error at any time.
+         self.variable.emit_size_read(f, '    ', 'expected_len', 'buffer', 'buffer_len')
+ 
+         template = (
+diff --git a/build-aux/qmi-codegen/VariableArray.py b/build-aux/qmi-codegen/VariableArray.py
+index c402da1..7f38202 100644
+--- a/build-aux/qmi-codegen/VariableArray.py
++++ b/build-aux/qmi-codegen/VariableArray.py
+@@ -251,7 +251,14 @@ class VariableArray(Variable):
+             template = (
+                 '${lp}    ${array_size_element_format} ${common_var_prefix}_n_items;\n'
+                 '${lp}    const guint8 *${common_var_prefix}_aux_buffer = &${buffer_name}[${variable_name}];\n'
+-                '${lp}    guint16 ${common_var_prefix}_aux_buffer_len = ${buffer_len} - ${variable_name};\n'
++                '${lp}    guint16 ${common_var_prefix}_aux_buffer_len;\n'
++                '\n'
++                '${lp}    ${common_var_prefix}_aux_buffer_len = ((${buffer_len} >= ${variable_name}) ? ${buffer_len} - ${variable_name} : 0);\n'
++                '${lp}    if (${common_var_prefix}_aux_buffer_len < ${array_size_element_size}) {\n'
++                '${lp}        g_warning ("Cannot read the array size: expected \'%u\' bytes, but only got \'%u\' bytes",\n'
++                '${lp}                   ${array_size_element_size}, ${common_var_prefix}_aux_buffer_len);\n'
++                '${lp}        return FALSE;\n'
++                '${lp}    }\n'
+                 '\n'
+                 '${lp}    ${variable_name} += ${array_size_element_size};\n')
+ 
+diff --git a/build-aux/qmi-codegen/VariableString.py b/build-aux/qmi-codegen/VariableString.py
+index faa2085..0ea3bd3 100644
+--- a/build-aux/qmi-codegen/VariableString.py
++++ b/build-aux/qmi-codegen/VariableString.py
+@@ -122,7 +122,14 @@ class VariableString(Variable):
+                 '${lp}{\n'
+                 '${lp}    guint8 size8;\n'
+                 '${lp}    const guint8 *aux_buffer = &${buffer_name}[${variable_name}];\n'
+-                '${lp}    guint16 aux_buffer_len = ${buffer_len} - ${variable_name};\n'
++                '${lp}    guint16 aux_buffer_len;\n'
++                '\n'
++                '${lp}    aux_buffer_len = ((${buffer_len} >= ${variable_name}) ? ${buffer_len} - ${variable_name} : 0);\n'
++                '${lp}    if (aux_buffer_len < 1) {\n'
++                '${lp}        g_warning ("Cannot read the string size: expected \'1\' bytes, but only got \'%u\' bytes",\n'
++                '${lp}                   aux_buffer_len);\n'
++                '${lp}        return FALSE;\n'
++                '${lp}    }\n'
+                 '\n'
+                 '${lp}    qmi_utils_read_guint8_from_buffer (&aux_buffer, &aux_buffer_len, &size8);\n'
+                 '${lp}    ${variable_name} += (1 + size8);\n'
+@@ -132,7 +139,14 @@ class VariableString(Variable):
+                 '${lp}{\n'
+                 '${lp}    guint16 size16;\n'
+                 '${lp}    const guint8 *aux_buffer = &${buffer_name}[${variable_name}];\n'
+-                '${lp}    guint16 aux_buffer_len = ${buffer_len} - ${variable_name};\n'
++                '${lp}    guint16 aux_buffer_len;\n'
++                '\n'
++                '${lp}    aux_buffer_len = ((${buffer_len} >= ${variable_name}) ? ${buffer_len} - ${variable_name} : 0);\n'
++                '${lp}    if (aux_buffer_len < 2) {\n'
++                '${lp}        g_warning ("Cannot read the string size: expected \'2\' bytes, but only got \'%u\' bytes",\n'
++                '${lp}                   aux_buffer_len);\n'
++                '${lp}        return FALSE;\n'
++                '${lp}    }\n'
+                 '\n'
+                 '${lp}    qmi_utils_read_guint16_from_buffer (&aux_buffer, &aux_buffer_len, QMI_ENDIAN_LITTLE, &size16);\n'
+                 '${lp}    ${variable_name} += (2 + size16);\n'
+diff --git a/libqmi-glib/test/test-message.c b/libqmi-glib/test/test-message.c
+index 86fed8a..f78b647 100644
+--- a/libqmi-glib/test/test-message.c
++++ b/libqmi-glib/test/test-message.c
+@@ -131,6 +131,33 @@ test_message_parse_wrong_tlv (void)
+     test_message_parse_common (buffer, sizeof (buffer), 1);
+     g_test_assert_expected_messages ();
+ }
++
++static void
++test_message_parse_missing_size (void)
++{
++    /* PDS Event Report indication: NMEA position */
++    const guint8 buffer[] = {
++        0x01,       /* marker */
++        0x10, 0x00, /* qmux length */
++        0x80,       /* qmux flags */
++        0x06,       /* service: PDS */
++        0x03,       /* client */
++        0x04,       /* service flags: Indication */
++        0x01, 0x00, /* transaction */
++        0x01, 0x00, /* message: Event Report */
++        0x04, 0x00, /* all tlvs length: 4 bytes */
++        /* TLV */
++        0x11,       /* type: Extended NMEA Position (1 guint8 and one 16-bit-sized string) */
++        0x01, 0x00, /* length: 1 byte (WE ONLY GIVE THE GUINT8!!!) */
++        0x01
++    };
++
++    g_test_expect_message ("Qmi",
++                           G_LOG_LEVEL_WARNING,
++                           "Cannot read the string size: expected '*' bytes, but only got '*' bytes");
++    test_message_parse_common (buffer, sizeof (buffer), 1);
++    g_test_assert_expected_messages ();
++}
+ #endif
+ 
+ int main (int argc, char **argv)
+@@ -144,6 +171,7 @@ int main (int argc, char **argv)
+     g_test_add_func ("/libqmi-glib/message/parse/complete-and-complete", test_message_parse_complete_and_complete);
+ #if GLIB_CHECK_VERSION (2,34,0)
+     g_test_add_func ("/libqmi-glib/message/parse/wrong-tlv",             test_message_parse_wrong_tlv);
++    g_test_add_func ("/libqmi-glib/message/parse/missing-size",          test_message_parse_missing_size);
+ #endif
+ 
+     return g_test_run ();
+-- 
+1.9.3
+
+
+From 1e3e0fbfa921fe97113f4dee2387e3cb2c4844d7 Mon Sep 17 00:00:00 2001
+From: Thomas Haller <thaller@redhat.com>
+Date: Mon, 6 Oct 2014 15:15:33 +0200
+Subject: [PATCH 2/5] libqmi,utils: assert input buffer size when writing
+ strings to buffer
+
+Signed-off-by: Thomas Haller <thaller@redhat.com>
+(cherry picked from commit c744b04814098ea3647de8d618bd88e5554e1a26)
+---
+ libqmi-glib/qmi-utils.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git a/libqmi-glib/qmi-utils.c b/libqmi-glib/qmi-utils.c
+index 8482277..01f16e0 100644
+--- a/libqmi-glib/qmi-utils.c
++++ b/libqmi-glib/qmi-utils.c
+@@ -923,7 +923,7 @@ qmi_utils_write_string_to_buffer (guint8      **buffer,
+                                   guint8        length_prefix_size,
+                                   const gchar  *in)
+ {
+-    guint16 len;
++    gsize len;
+     guint8 len_8;
+     guint16 len_16;
+ 
+@@ -934,20 +934,26 @@ qmi_utils_write_string_to_buffer (guint8      **buffer,
+               length_prefix_size == 8 ||
+               length_prefix_size == 16);
+ 
+-    len = (guint16) strlen (in);
++    len = strlen (in);
++
++    g_assert (   len + (length_prefix_size/8) <= *buffer_size
++              || (length_prefix_size==8 && ((int) G_MAXUINT8 + 1) < *buffer_size));
+ 
+     switch (length_prefix_size) {
+     case 0:
+         break;
+     case 8:
+-        g_warn_if_fail (len <= G_MAXUINT8);
++        if (len > G_MAXUINT8) {
++            g_warn_if_reached ();
++            len = G_MAXUINT8;
++        }
+         len_8 = (guint8)len;
+         qmi_utils_write_guint8_to_buffer (buffer,
+                                           buffer_size,
+                                           &len_8);
+         break;
+     case 16:
+-        g_warn_if_fail (len <= G_MAXUINT16);
++        /* already asserted that @len is no larger then @buffer_size */
+         len_16 = (guint16)len;
+         qmi_utils_write_guint16_to_buffer (buffer,
+                                            buffer_size,
+@@ -988,6 +994,7 @@ qmi_utils_write_fixed_size_string_to_buffer (guint8      **buffer,
+     g_assert (buffer != NULL);
+     g_assert (buffer_size != NULL);
+     g_assert (fixed_size > 0);
++    g_assert (fixed_size <= *buffer_size);
+ 
+     memcpy (*buffer, in, fixed_size);
+     *buffer = &((*buffer)[fixed_size]);
+-- 
+1.9.3
+
+
+From 210cb6f27ed6ce9260e040cf5cd6fc4e87956879 Mon Sep 17 00:00:00 2001
+From: Thomas Haller <thaller@redhat.com>
+Date: Mon, 6 Oct 2014 15:15:34 +0200
+Subject: [PATCH 3/5] qmi-codegen: avoid buffer overlow in emit_input_tlv_add()
+
+https://bugzilla.redhat.com/show_bug.cgi?id=1031738
+
+Reported-by: Florian Weimer <fweimer@redhat.com>
+Signed-off-by: Thomas Haller <thaller@redhat.com>
+(cherry picked from commit b439d6d13ec8a8e4ff247b7d042424f10574aa84)
+---
+ build-aux/qmi-codegen/Field.py            | 12 +++++++-
+ build-aux/qmi-codegen/Variable.py         |  2 +-
+ build-aux/qmi-codegen/VariableArray.py    |  8 +++---
+ build-aux/qmi-codegen/VariableInteger.py  | 46 ++++++++++++++++++++++++++-----
+ build-aux/qmi-codegen/VariableSequence.py |  4 +--
+ build-aux/qmi-codegen/VariableString.py   | 29 +++++++++++--------
+ build-aux/qmi-codegen/VariableStruct.py   |  4 +--
+ 7 files changed, 77 insertions(+), 28 deletions(-)
+
+diff --git a/build-aux/qmi-codegen/Field.py b/build-aux/qmi-codegen/Field.py
+index ddbcfe1..8542690 100644
+--- a/build-aux/qmi-codegen/Field.py
++++ b/build-aux/qmi-codegen/Field.py
+@@ -216,9 +216,11 @@ class Field:
+     Emit the code responsible for adding the TLV to the QMI message
+     """
+     def emit_input_tlv_add(self, f, line_prefix):
++        error_label = 'ERR_EMIT_BUFFER_OVERFLOW_' + self.id_enum_name
+         translations = { 'name'          : self.name,
+                          'tlv_id'        : self.id_enum_name,
+                          'variable_name' : self.variable_name,
++                         'error_label'   : error_label,
+                          'lp'            : line_prefix }
+ 
+         template = (
+@@ -229,15 +231,23 @@ class Field:
+         f.write(string.Template(template).substitute(translations))
+ 
+         # Now, write the contents of the variable into the buffer
+-        self.variable.emit_buffer_write(f, line_prefix, 'input->' + self.variable_name, 'buffer_aux', 'buffer_len')
++        self.variable.emit_buffer_write(f, line_prefix, 'input->' + self.variable_name, 'buffer_aux', 'buffer_len', error_label)
+ 
+         template = (
+             '\n'
++            '${lp}if (FALSE) {\n'
++            '${lp}    ${error_label}:\n'
++            '${lp}    g_set_error (error, QMI_CORE_ERROR, QMI_CORE_ERROR_TLV_TOO_LONG, "result larger then 1024 bytes");\n'
++            '${lp}    goto OUT_${error_label};\n'
++            '${lp}}\n'
++            '\n'
++            '${lp}g_assert (buffer_len <= 1024);\n'
+             '${lp}if (!qmi_message_add_raw_tlv (self,\n'
+             '${lp}                              (guint8)${tlv_id},\n'
+             '${lp}                              buffer,\n'
+             '${lp}                              (1024 - buffer_len),\n'
+             '${lp}                              error)) {\n'
++            '${lp}    OUT_${error_label}:\n'
+             '${lp}    g_prefix_error (error, \"Couldn\'t set the ${name} TLV: \");\n'
+             '${lp}    qmi_message_unref (self);\n'
+             '${lp}    return NULL;\n'
+diff --git a/build-aux/qmi-codegen/Variable.py b/build-aux/qmi-codegen/Variable.py
+index c238471..fbc93f5 100644
+--- a/build-aux/qmi-codegen/Variable.py
++++ b/build-aux/qmi-codegen/Variable.py
+@@ -81,7 +81,7 @@ class Variable:
+     Emits the code involved in writing the variable to the raw byte stream
+     from the specific private format.
+     """
+-    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len):
++    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len, error_label):
+         pass
+ 
+ 
+diff --git a/build-aux/qmi-codegen/VariableArray.py b/build-aux/qmi-codegen/VariableArray.py
+index 7f38202..6af3c2d 100644
+--- a/build-aux/qmi-codegen/VariableArray.py
++++ b/build-aux/qmi-codegen/VariableArray.py
+@@ -296,7 +296,7 @@ class VariableArray(Variable):
+     Writing an array to the raw byte buffer is just about providing a loop to
+     write every array element one by one.
+     """
+-    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len):
++    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len, error_label):
+         common_var_prefix = utils.build_underscore_name(self.name)
+         translations = { 'lp'             : line_prefix,
+                          'variable_name'  : variable_name,
+@@ -319,10 +319,10 @@ class VariableArray(Variable):
+                 '${lp}    ${common_var_prefix}_n_items = (${array_size_element_format}) ${variable_name}->len;\n')
+             f.write(string.Template(template).substitute(translations))
+ 
+-            self.array_size_element.emit_buffer_write(f, line_prefix + '    ', common_var_prefix + '_n_items', buffer_name, buffer_len)
++            self.array_size_element.emit_buffer_write(f, line_prefix + '    ', common_var_prefix + '_n_items', buffer_name, buffer_len, error_label)
+ 
+         if self.array_sequence_element != '':
+-            self.array_sequence_element.emit_buffer_write(f, line_prefix + '    ', variable_name + '_sequence', buffer_name, buffer_len)
++            self.array_sequence_element.emit_buffer_write(f, line_prefix + '    ', variable_name + '_sequence', buffer_name, buffer_len, error_label)
+ 
+ 
+         template = (
+@@ -330,7 +330,7 @@ class VariableArray(Variable):
+             '${lp}    for (${common_var_prefix}_i = 0; ${common_var_prefix}_i < ${variable_name}->len; ${common_var_prefix}_i++) {\n')
+         f.write(string.Template(template).substitute(translations))
+ 
+-        self.array_element.emit_buffer_write(f, line_prefix + '        ', 'g_array_index (' + variable_name + ', ' + self.array_element.public_format + ',' + common_var_prefix + '_i)', buffer_name, buffer_len)
++        self.array_element.emit_buffer_write(f, line_prefix + '        ', 'g_array_index (' + variable_name + ', ' + self.array_element.public_format + ',' + common_var_prefix + '_i)', buffer_name, buffer_len, error_label)
+ 
+         template = (
+             '${lp}    }\n'
+diff --git a/build-aux/qmi-codegen/VariableInteger.py b/build-aux/qmi-codegen/VariableInteger.py
+index 4fe58b7..996a08e 100644
+--- a/build-aux/qmi-codegen/VariableInteger.py
++++ b/build-aux/qmi-codegen/VariableInteger.py
+@@ -125,22 +125,47 @@ class VariableInteger(Variable):
+                 '${lp}${variable_name} += 8;\n')
+         f.write(string.Template(template).substitute(translations))
+ 
++    """
++    Return the data type size of fixed c-types
++    """
++    @staticmethod
++    def fixed_type_byte_size(fmt):
++        if fmt == 'guint8':
++            return 1
++        if fmt == 'guint16':
++            return 2
++        if fmt == 'guint32':
++            return 4
++        if fmt == 'guint64':
++            return 8
++        if fmt == 'gint8':
++            return 1
++        if fmt == 'gint16':
++            return 2
++        if fmt == 'gint32':
++            return 4
++        if fmt == 'gint64':
++            return 8
++        raise Exception("Unsupported format %s" % (fmt))
+ 
+     """
+     Write a single integer to the raw byte buffer
+     """
+-    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len):
++    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len, error_label):
+         translations = { 'lp'             : line_prefix,
+                          'private_format' : self.private_format,
+                          'len'            : self.guint_sized_size,
+                          'variable_name'  : variable_name,
+                          'buffer_name'    : buffer_name,
+                          'buffer_len'     : buffer_len,
++                         'error_label'    : error_label,
+                          'endian'         : self.endian }
+ 
+         if self.format == 'guint-sized':
+             template = (
+                 '${lp}/* Write the ${len}-byte long variable to the buffer */\n'
++                '${lp}if (${buffer_len} < ${len})\n'
++                '${lp}    goto ${error_label};\n'
+                 '${lp}qmi_utils_write_sized_guint_to_buffer (\n'
+                 '${lp}    &${buffer_name},\n'
+                 '${lp}    &${buffer_len},\n'
+@@ -148,19 +173,26 @@ class VariableInteger(Variable):
+                 '${lp}    ${endian},\n'
+                 '${lp}    &(${variable_name}));\n')
+         elif self.private_format == self.public_format:
++            translations['byte_size'] = VariableInteger.fixed_type_byte_size(self.private_format)
+             template = (
+                 '${lp}/* Write the ${private_format} variable to the buffer */\n'
+-                '${lp}qmi_utils_write_${private_format}_to_buffer (\n'
+-                '${lp}    &${buffer_name},\n'
+-                '${lp}    &${buffer_len},\n')
++                '${lp}if (${buffer_len} < ${byte_size})\n'
++                '${lp}    goto ${error_label};\n'
++                '${lp}else\n'
++                '${lp}    qmi_utils_write_${private_format}_to_buffer (\n'
++                '${lp}        &${buffer_name},\n'
++                '${lp}        &${buffer_len},\n')
+             if self.private_format != 'guint8' and self.private_format != 'gint8':
+                 template += (
+-                    '${lp}    ${endian},\n')
++                    '${lp}        ${endian},\n')
+             template += (
+-                '${lp}    &(${variable_name}));\n')
++                '${lp}        &(${variable_name}));\n')
+         else:
++            translations['byte_size'] = VariableInteger.fixed_type_byte_size(self.private_format)
+             template = (
+-                '${lp}{\n'
++                '${lp}if (${buffer_len} < ${byte_size})\n'
++                '${lp}    goto ${error_label};\n'
++                '${lp}else {\n'
+                 '${lp}    ${private_format} tmp;\n'
+                 '\n'
+                 '${lp}    tmp = (${private_format})${variable_name};\n'
+diff --git a/build-aux/qmi-codegen/VariableSequence.py b/build-aux/qmi-codegen/VariableSequence.py
+index a20c6b7..97e8eda 100644
+--- a/build-aux/qmi-codegen/VariableSequence.py
++++ b/build-aux/qmi-codegen/VariableSequence.py
+@@ -92,9 +92,9 @@ class VariableSequence(Variable):
+     Writing the contents of a sequence is just about writing each of the sequence
+     fields one by one.
+     """
+-    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len):
++    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len, error_label):
+         for member in self.members:
+-            member['object'].emit_buffer_write(f, line_prefix, variable_name + '_' +  member['name'], buffer_name, buffer_len)
++            member['object'].emit_buffer_write(f, line_prefix, variable_name + '_' +  member['name'], buffer_name, buffer_len, error_label)
+ 
+ 
+     """
+diff --git a/build-aux/qmi-codegen/VariableString.py b/build-aux/qmi-codegen/VariableString.py
+index 0ea3bd3..9678fbd 100644
+--- a/build-aux/qmi-codegen/VariableString.py
++++ b/build-aux/qmi-codegen/VariableString.py
+@@ -157,30 +157,37 @@ class VariableString(Variable):
+     """
+     Write a string to the raw byte buffer.
+     """
+-    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len):
++    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len, error_label):
+         translations = { 'lp'             : line_prefix,
+                          'variable_name'  : variable_name,
+                          'buffer_name'    : buffer_name,
++                         'error_label'    : error_label,
+                          'buffer_len'     : buffer_len }
+ 
+         if self.is_fixed_size:
+             translations['fixed_size'] = self.fixed_size
+             template = (
+                 '${lp}/* Write the fixed-size string variable to the buffer */\n'
+-                '${lp}qmi_utils_write_fixed_size_string_to_buffer (\n'
+-                '${lp}    &${buffer_name},\n'
+-                '${lp}    &${buffer_len},\n'
+-                '${lp}    ${fixed_size},\n'
+-                '${lp}    ${variable_name});\n')
++                '${lp}if (${buffer_len} < ${fixed_size})\n'
++                '${lp}    goto ${error_label};\n'
++                '${lp}else\n'
++                '${lp}    qmi_utils_write_fixed_size_string_to_buffer (\n'
++                '${lp}        &${buffer_name},\n'
++                '${lp}        &${buffer_len},\n'
++                '${lp}        ${fixed_size},\n'
++                '${lp}        ${variable_name});\n')
+         else:
+             translations['length_prefix_size'] = self.length_prefix_size
+             template = (
+                 '${lp}/* Write the string variable to the buffer */\n'
+-                '${lp}qmi_utils_write_string_to_buffer (\n'
+-                '${lp}    &${buffer_name},\n'
+-                '${lp}    &${buffer_len},\n'
+-                '${lp}    ${length_prefix_size},\n'
+-                '${lp}    ${variable_name});\n')
++                '${lp}if (!${variable_name} || ${buffer_len} < ${length_prefix_size} + strlen (${variable_name}))\n'
++                '${lp}    goto ${error_label};\n'
++                '${lp}else\n'
++                '${lp}    qmi_utils_write_string_to_buffer (\n'
++                '${lp}       &${buffer_name},\n'
++                '${lp}       &${buffer_len},\n'
++                '${lp}       ${length_prefix_size},\n'
++                '${lp}       ${variable_name});\n')
+ 
+         f.write(string.Template(template).substitute(translations))
+ 
+diff --git a/build-aux/qmi-codegen/VariableStruct.py b/build-aux/qmi-codegen/VariableStruct.py
+index 522551e..041e6ab 100644
+--- a/build-aux/qmi-codegen/VariableStruct.py
++++ b/build-aux/qmi-codegen/VariableStruct.py
+@@ -121,9 +121,9 @@ class VariableStruct(Variable):
+     Writing the contents of a struct is just about writing each of the struct
+     fields one by one.
+     """
+-    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len):
++    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len, error_label):
+         for member in self.members:
+-            member['object'].emit_buffer_write(f, line_prefix, variable_name + '.' +  member['name'], buffer_name, buffer_len)
++            member['object'].emit_buffer_write(f, line_prefix, variable_name + '.' +  member['name'], buffer_name, buffer_len, error_label)
+ 
+ 
+     """
+-- 
+1.9.3
+
+
+From e68df799819214f7d86f51beac00c5089f720a12 Mon Sep 17 00:00:00 2001
+From: Aleksander Morgado <aleksander@aleksander.es>
+Date: Wed, 8 Oct 2014 11:06:02 +0200
+Subject: [PATCH 4/5] qmi-codegen: error out if invalid array size element in
+ JSON
+
+Suggested by Thomas Haller <thaller@redhat.com>.
+
+(cherry picked from commit 150768f6bba84182e7d3a956c36d5a7d27129759)
+---
+ build-aux/qmi-codegen/VariableArray.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/build-aux/qmi-codegen/VariableArray.py b/build-aux/qmi-codegen/VariableArray.py
+index 6af3c2d..793bbc1 100644
+--- a/build-aux/qmi-codegen/VariableArray.py
++++ b/build-aux/qmi-codegen/VariableArray.py
+@@ -246,7 +246,7 @@ class VariableArray(Variable):
+             elif self.array_size_element.public_format == 'guint32':
+                 translations['array_size_element_size'] = '4'
+             else:
+-                translations['array_size_element_size'] = '0'
++                raise ValueError('Invalid array size element format in %s array' % (self.name))
+ 
+             template = (
+                 '${lp}    ${array_size_element_format} ${common_var_prefix}_n_items;\n'
+-- 
+1.9.3
+
+
+From 276fdee2e9e4d4082db90e36c3fd542f9e0e6960 Mon Sep 17 00:00:00 2001
+From: Aleksander Morgado <aleksander@aleksander.es>
+Date: Wed, 8 Oct 2014 11:13:09 +0200
+Subject: [PATCH 5/5] qmi-codegen: make sure expected len is 4 bytes
+
+Suggested by Thomas Haller <thaller@redhat.com>.
+
+(cherry picked from commit 451d627530686833fd5fffba9d412dfa9fe41fc5)
+---
+ build-aux/qmi-codegen/Field.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/build-aux/qmi-codegen/Field.py b/build-aux/qmi-codegen/Field.py
+index 8542690..784dc64 100644
+--- a/build-aux/qmi-codegen/Field.py
++++ b/build-aux/qmi-codegen/Field.py
+@@ -345,7 +345,7 @@ class Field:
+             '    const guint8 *buffer,\n'
+             '    guint16 buffer_len)\n'
+             '{\n'
+-            '    guint expected_len = 0;\n'
++            '    guint32 expected_len = 0;\n'
+             '\n')
+         f.write(string.Template(template).substitute(translations))
+ 
+-- 
+1.9.3
+
