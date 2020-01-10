@@ -7,7 +7,7 @@
 Name: libqmi
 Summary: Support library to use the Qualcomm MSM Interface (QMI) protocol
 Version: %{?realversion}
-Release: 1%{snapshot}%{?dist}
+Release: 3%{snapshot}%{?dist}
 Group: Development/Libraries
 License: LGPLv2+
 URL: http://www.freedesktop.org/software/libqmi
@@ -89,6 +89,12 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.6.0-3
+- Mass rebuild 2014-01-24
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.6.0-2
+- Mass rebuild 2013-12-27
+
 * Fri Sep  6 2013 Dan Williams <dcbw@redhat.com> - 1.6.0-1
 - Update to 1.6.0 release
 
