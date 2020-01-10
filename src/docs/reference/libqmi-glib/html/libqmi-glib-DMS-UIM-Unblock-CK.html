@@ -8,7 +8,7 @@
 <link rel="up" href="ch02s02.html" title="DMS Requests">
 <link rel="prev" href="libqmi-glib-DMS-UIM-Set-CK-Protection.html" title="DMS UIM Set CK Protection">
 <link rel="next" href="libqmi-glib-DMS-UIM-Get-IMSI.html" title="DMS UIM Get IMSI">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -101,7 +101,7 @@
 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
-<a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#qmi-message-dms-uim-unblock-ck-output-get-result" title="qmi_message_dms_uim_unblock_ck_output_get_result ()">qmi_message_dms_uim_unblock_ck_output_get_result</a> <span class="c_punctuation">()</span>
+<a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#qmi-message-dms-uim-unblock-ck-output-get-unblock-retries-left" title="qmi_message_dms_uim_unblock_ck_output_get_unblock_retries_left ()">qmi_message_dms_uim_unblock_ck_output_get_unblock_retries_left</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -109,7 +109,7 @@
 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
-<a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#qmi-message-dms-uim-unblock-ck-output-get-unblock-retries-left" title="qmi_message_dms_uim_unblock_ck_output_get_unblock_retries_left ()">qmi_message_dms_uim_unblock_ck_output_get_unblock_retries_left</a> <span class="c_punctuation">()</span>
+<a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#qmi-message-dms-uim-unblock-ck-output-get-result" title="qmi_message_dms_uim_unblock_ck_output_get_result ()">qmi_message_dms_uim_unblock_ck_output_get_result</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -172,6 +172,7 @@ qmi_message_dms_uim_unblock_ck_input_new
 <a name="qmi-message-dms-uim-unblock-ck-input-new.returns"></a><h4>Returns</h4>
 <p> the newly created <a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#QmiMessageDmsUimUnblockCkInput"><span class="type">QmiMessageDmsUimUnblockCkInput</span></a>. The returned value should be freed with <a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#qmi-message-dms-uim-unblock-ck-input-unref" title="qmi_message_dms_uim_unblock_ck_input_unref ()"><code class="function">qmi_message_dms_uim_unblock_ck_input_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -201,6 +202,7 @@ qmi_message_dms_uim_unblock_ck_input_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -227,6 +229,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -275,6 +278,7 @@ qmi_message_dms_uim_unblock_ck_input_get_facility
 <a name="qmi-message-dms-uim-unblock-ck-input-get-facility.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -323,6 +327,7 @@ qmi_message_dms_uim_unblock_ck_input_set_facility
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>value</code></em>
 was successfully set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -352,6 +357,7 @@ qmi_message_dms_uim_unblock_ck_output_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -378,42 +384,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="qmi-message-dms-uim-unblock-ck-output-get-result"></a><h3>qmi_message_dms_uim_unblock_ck_output_get_result ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
-qmi_message_dms_uim_unblock_ck_output_get_result
-                               (<em class="parameter"><code><a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#QmiMessageDmsUimUnblockCkOutput"><span class="type">QmiMessageDmsUimUnblockCkOutput</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>Get the result of the QMI operation.</p>
-<div class="refsect3">
-<a name="qmi-message-dms-uim-unblock-ck-output-get-result.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="150px" class="parameters_name">
-<col class="parameters_description">
-<col width="200px" class="parameters_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a QmiMessageDmsUimUnblockCkOutput.</p></td>
-<td class="parameter_annotations"> </td>
-</tr>
-<tr>
-<td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
-<td class="parameter_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<div class="refsect3">
-<a name="qmi-message-dms-uim-unblock-ck-output-get-result.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
-is set.</p>
-</div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -456,6 +427,44 @@ qmi_message_dms_uim_unblock_ck_output_get_unblock_retries_left
 <a name="qmi-message-dms-uim-unblock-ck-output-get-unblock-retries-left.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-message-dms-uim-unblock-ck-output-get-result"></a><h3>qmi_message_dms_uim_unblock_ck_output_get_result ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+qmi_message_dms_uim_unblock_ck_output_get_result
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#QmiMessageDmsUimUnblockCkOutput"><span class="type">QmiMessageDmsUimUnblockCkOutput</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Get the result of the QMI operation.</p>
+<div class="refsect3">
+<a name="qmi-message-dms-uim-unblock-ck-output-get-result.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a QmiMessageDmsUimUnblockCkOutput.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-message-dms-uim-unblock-ck-output-get-result.returns"></a><h4>Returns</h4>
+<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
+is set.</p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -514,6 +523,7 @@ qmi_client_dms_uim_unblock_ck (<em class="parameter"><code><a class="link" href=
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -555,6 +565,7 @@ qmi_client_dms_uim_unblock_ck_finish (<em class="parameter"><code><a class="link
 <p> a <a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#QmiMessageDmsUimUnblockCkOutput"><span class="type">QmiMessageDmsUimUnblockCkOutput</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
 is set. The returned value should be freed with <a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#qmi-message-dms-uim-unblock-ck-output-unref" title="qmi_message_dms_uim_unblock_ck_output_unref ()"><code class="function">qmi_message_dms_uim_unblock_ck_output_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -564,6 +575,7 @@ is set. The returned value should be freed with <a class="link" href="libqmi-gli
 <pre class="programlisting">typedef struct _QmiMessageDmsUimUnblockCkInput QmiMessageDmsUimUnblockCkInput;</pre>
 <p>The <a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#QmiMessageDmsUimUnblockCkInput"><span class="type">QmiMessageDmsUimUnblockCkInput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -571,10 +583,11 @@ using the provided API.</p>
 <pre class="programlisting">typedef struct _QmiMessageDmsUimUnblockCkOutput QmiMessageDmsUimUnblockCkOutput;</pre>
 <p>The <a class="link" href="libqmi-glib-DMS-UIM-Unblock-CK.html#QmiMessageDmsUimUnblockCkOutput"><span class="type">QmiMessageDmsUimUnblockCkOutput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

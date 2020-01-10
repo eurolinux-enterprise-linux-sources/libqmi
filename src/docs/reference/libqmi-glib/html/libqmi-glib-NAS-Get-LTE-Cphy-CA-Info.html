@@ -7,8 +7,8 @@
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
 <link rel="up" href="ch03s02.html" title="NAS Requests">
 <link rel="prev" href="libqmi-glib-NAS-Get-Supported-Messages.html" title="NAS Get Supported Messages">
-<link rel="next" href="ch04.html" title="Wireless Data Service (WDS)">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<link rel="next" href="libqmi-glib-NAS-Get-Operator-Name.html" title="NAS Get Operator Name">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><a accesskey="u" href="ch03s02.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="libqmi-glib-NAS-Get-Supported-Messages.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="ch04.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="libqmi-glib-NAS-Get-Operator-Name.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="libqmi-glib-NAS-Get-LTE-Cphy-CA-Info"></a><div class="titlepage"></div>
@@ -166,6 +166,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -192,6 +193,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -228,6 +230,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_get_result
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
 is set.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -270,6 +273,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_get_dl_bandwidth
 <a name="qmi-message-nas-get-lte-cphy-ca-info-output-get-dl-bandwidth.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -278,7 +282,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_get_dl_bandwidth
 qmi_message_nas_get_lte_cphy_ca_info_output_get_phy_ca_agg_scell_info
                                (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-Get-LTE-Cphy-CA-Info.html#QmiMessageNasGetLteCphyCaInfoOutput"><span class="type">QmiMessageNasGetLteCphyCaInfoOutput</span></a> *self</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *value_phy_ca_agg_scell_info_physical_cell_id</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *value_phy_ca_agg_scell_info_tx_channel</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *value_phy_ca_agg_scell_info_rx_channel</code></em>,
                                 <em class="parameter"><code><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasDLBandwidth" title="enum QmiNasDLBandwidth"><span class="type">QmiNasDLBandwidth</span></a> *value_phy_ca_agg_scell_info_dl_bandwidth</code></em>,
                                 <em class="parameter"><code><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasActiveBand" title="enum QmiNasActiveBand"><span class="type">QmiNasActiveBand</span></a> *value_phy_ca_agg_scell_info_lte_band</code></em>,
                                 <em class="parameter"><code><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasScellState" title="enum QmiNasScellState"><span class="type">QmiNasScellState</span></a> *value_phy_ca_agg_scell_info_state</code></em>,
@@ -305,7 +309,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_get_phy_ca_agg_scell_info
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td class="parameter_name"><p>value_phy_ca_agg_scell_info_tx_channel</p></td>
+<td class="parameter_name"><p>value_phy_ca_agg_scell_info_rx_channel</p></td>
 <td class="parameter_description"><p>a placeholder for the output <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not required.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
@@ -336,6 +340,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_get_phy_ca_agg_scell_info
 <a name="qmi-message-nas-get-lte-cphy-ca-info-output-get-phy-ca-agg-scell-info.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -344,7 +349,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_get_phy_ca_agg_scell_info
 qmi_message_nas_get_lte_cphy_ca_info_output_get_phy_ca_agg_pcell_info
                                (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-Get-LTE-Cphy-CA-Info.html#QmiMessageNasGetLteCphyCaInfoOutput"><span class="type">QmiMessageNasGetLteCphyCaInfoOutput</span></a> *self</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *value_phy_ca_agg_pcell_info_physical_cell_id</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *value_phy_ca_agg_pcell_info_tx_channel</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *value_phy_ca_agg_pcell_info_rx_channel</code></em>,
                                 <em class="parameter"><code><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasDLBandwidth" title="enum QmiNasDLBandwidth"><span class="type">QmiNasDLBandwidth</span></a> *value_phy_ca_agg_pcell_info_dl_bandwidth</code></em>,
                                 <em class="parameter"><code><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasActiveBand" title="enum QmiNasActiveBand"><span class="type">QmiNasActiveBand</span></a> *value_phy_ca_agg_pcell_info_lte_band</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
@@ -370,7 +375,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_get_phy_ca_agg_pcell_info
 <td class="parameter_annotations"> </td>
 </tr>
 <tr>
-<td class="parameter_name"><p>value_phy_ca_agg_pcell_info_tx_channel</p></td>
+<td class="parameter_name"><p>value_phy_ca_agg_pcell_info_rx_channel</p></td>
 <td class="parameter_description"><p>a placeholder for the output <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not required.</p></td>
 <td class="parameter_annotations"> </td>
 </tr>
@@ -396,6 +401,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_get_phy_ca_agg_pcell_info
 <a name="qmi-message-nas-get-lte-cphy-ca-info-output-get-phy-ca-agg-pcell-info.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -438,6 +444,7 @@ qmi_message_nas_get_lte_cphy_ca_info_output_get_scell_index
 <a name="qmi-message-nas-get-lte-cphy-ca-info-output-get-scell-index.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -496,6 +503,7 @@ qmi_client_nas_get_lte_cphy_ca_info (<em class="parameter"><code><a class="link"
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -538,6 +546,7 @@ qmi_client_nas_get_lte_cphy_ca_info_finish
 <p> a <a class="link" href="libqmi-glib-NAS-Get-LTE-Cphy-CA-Info.html#QmiMessageNasGetLteCphyCaInfoOutput"><span class="type">QmiMessageNasGetLteCphyCaInfoOutput</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
 is set. The returned value should be freed with <a class="link" href="libqmi-glib-NAS-Get-LTE-Cphy-CA-Info.html#qmi-message-nas-get-lte-cphy-ca-info-output-unref" title="qmi_message_nas_get_lte_cphy_ca_info_output_unref ()"><code class="function">qmi_message_nas_get_lte_cphy_ca_info_output_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -547,10 +556,11 @@ is set. The returned value should be freed with <a class="link" href="libqmi-gli
 <pre class="programlisting">typedef struct _QmiMessageNasGetLteCphyCaInfoOutput QmiMessageNasGetLteCphyCaInfoOutput;</pre>
 <p>The <a class="link" href="libqmi-glib-NAS-Get-LTE-Cphy-CA-Info.html#QmiMessageNasGetLteCphyCaInfoOutput"><span class="type">QmiMessageNasGetLteCphyCaInfoOutput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

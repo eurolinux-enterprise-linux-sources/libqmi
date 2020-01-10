@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Copyright (C) 2015 Velocloud Inc.
- * Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>
+ * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #include "config.h"
@@ -34,6 +34,9 @@
 
 #include "qmicli.h"
 #include "qmicli-helpers.h"
+
+#define QMI_WDS_MUX_ID_UNDEFINED 0xFF
+#define QMI_WDS_ENDPOINT_INTERFACE_NUMBER_UNDEFINED -1
 
 /* Context */
 typedef struct {
@@ -57,6 +60,10 @@ static gboolean get_packet_service_status_flag;
 static gboolean get_packet_statistics_flag;
 static gboolean get_data_bearer_technology_flag;
 static gboolean get_current_data_bearer_technology_flag;
+static gboolean get_current_data_bearer_technology_flag;
+static gboolean go_dormant_flag;
+static gboolean go_active_flag;
+static gboolean get_dormancy_status_flag;
 static gchar *get_profile_list_str;
 static gchar *get_default_settings_str;
 static gboolean get_autoconnect_settings_flag;
@@ -64,10 +71,11 @@ static gchar *set_autoconnect_settings_str;
 static gboolean get_supported_messages_flag;
 static gboolean reset_flag;
 static gboolean noop_flag;
+static gchar *bind_mux_str;
 
 static GOptionEntry entries[] = {
     { "wds-start-network", 0, 0, G_OPTION_ARG_STRING, &start_network_str,
-      "Start network (allowed keys: apn, 3gpp-profile, 3gpp2-profile, auth (PAP|CHAP|BOTH), username, password, autoconnect=yes)",
+      "Start network (allowed keys: apn, 3gpp-profile, 3gpp2-profile, auth (PAP|CHAP|BOTH), username, password, autoconnect=yes, ip-type (4|6))",
       "[\"key=value,...\"]"
     },
     { "wds-follow-network", 0, 0, G_OPTION_ARG_NONE, &follow_network_flag,
@@ -98,6 +106,18 @@ static GOptionEntry entries[] = {
       "Get current data bearer technology",
       NULL
     },
+    { "wds-go-dormant", 0, 0, G_OPTION_ARG_NONE, &go_dormant_flag,
+      "Make the active data connection go dormant",
+      NULL
+    },
+    { "wds-go-active", 0, 0, G_OPTION_ARG_NONE, &go_active_flag,
+      "Make the active data connection go active",
+      NULL
+    },
+    { "wds-get-dormancy-status", 0, 0, G_OPTION_ARG_NONE, &get_dormancy_status_flag,
+      "Get the dormancy status of the active data connection",
+      NULL
+    },
     { "wds-get-profile-list", 0, 0, G_OPTION_ARG_STRING, &get_profile_list_str,
       "Get profile list",
       "[3gpp|3gpp2]"
@@ -121,6 +141,10 @@ static GOptionEntry entries[] = {
     { "wds-reset", 0, 0, G_OPTION_ARG_NONE, &reset_flag,
       "Reset the service state",
       NULL
+    },
+    { "wds-bind-mux-data-port", 0, 0, G_OPTION_ARG_STRING, &bind_mux_str,
+      "Bind qmux data port to controller device (allowed keys: mux-id, ep-iface-number) to be used with `--client-no-release-cid'",
+      "[\"key=value,...\"]"
     },
     { "wds-noop", 0, 0, G_OPTION_ARG_NONE, &noop_flag,
       "Just allocate or release a WDS client. Use with `--client-no-release-cid' and/or `--client-cid'",
@@ -155,11 +179,15 @@ qmicli_wds_options_enabled (void)
 
     n_actions = (!!start_network_str +
                  !!stop_network_str +
+                 !!bind_mux_str +
                  get_current_settings_flag +
                  get_packet_service_status_flag +
                  get_packet_statistics_flag +
                  get_data_bearer_technology_flag +
                  get_current_data_bearer_technology_flag +
+                 go_dormant_flag +
+                 go_active_flag +
+                 get_dormancy_status_flag +
                  !!get_profile_list_str +
                  !!get_default_settings_str +
                  get_autoconnect_settings_flag +
@@ -203,7 +231,7 @@ operation_shutdown (gboolean operation_status)
 {
     /* Cleanup context and finish async operation */
     context_free (ctx);
-    qmicli_async_operation_done (operation_status);
+    qmicli_async_operation_done (operation_status, FALSE);
 }
 
 static void
@@ -336,6 +364,7 @@ typedef struct {
     guint8                profile_index_3gpp2;
     QmiWdsAuthentication  auth;
     gboolean              auth_set;
+    QmiWdsIpFamily        ip_type;
     gchar                *username;
     gchar                *password;
     gboolean              autoconnect;
@@ -410,6 +439,25 @@ start_network_properties_handle (const gchar  *key,
         return TRUE;
     }
 
+    if (g_ascii_strcasecmp (key, "ip-type") == 0 && props->ip_type == QMI_WDS_IP_FAMILY_UNSPECIFIED) {
+        switch (atoi (value)) {
+        case 4:
+            props->ip_type = QMI_WDS_IP_FAMILY_IPV4;
+            break;
+        case 6:
+            props->ip_type = QMI_WDS_IP_FAMILY_IPV6;
+            break;
+        default:
+            g_set_error (error,
+                         QMI_CORE_ERROR,
+                         QMI_CORE_ERROR_FAILED,
+                         "unknown IP type '%s' (not 4 or 6)",
+                         value);
+            return FALSE;
+        }
+        return TRUE;
+    }
+
     g_set_error (error,
                  QMI_CORE_ERROR,
                  QMI_CORE_ERROR_FAILED,
@@ -422,16 +470,12 @@ static QmiMessageWdsStartNetworkInput *
 start_network_input_create (const gchar *str)
 {
     gchar *aux_auth_str = NULL;
+    gchar *ip_type_str = NULL;
     gchar **split = NULL;
     QmiMessageWdsStartNetworkInput *input = NULL;
     StartNetworkProperties props = {
-        .apn                 = NULL,
-        .profile_index_3gpp  = 0,
-        .profile_index_3gpp2 = 0,
-        .auth                = QMI_WDS_AUTHENTICATION_NONE,
-        .auth_set            = FALSE,
-        .username            = NULL,
-        .password            = NULL,
+        .auth    = QMI_WDS_AUTHENTICATION_NONE,
+        .ip_type = QMI_WDS_IP_FAMILY_UNSPECIFIED,
     };
 
     /* An empty string is totally valid (i.e. no TLVs) */
@@ -487,6 +531,15 @@ start_network_input_create (const gchar *str)
     if (props.profile_index_3gpp2 > 0)
         qmi_message_wds_start_network_input_set_profile_index_3gpp2 (input, props.profile_index_3gpp2, NULL);
 
+    /* Set IP Type */
+    if (props.ip_type != 0) {
+        qmi_message_wds_start_network_input_set_ip_family_preference (input, props.ip_type, NULL);
+        if (props.ip_type == QMI_WDS_IP_FAMILY_IPV4)
+            ip_type_str = "4";
+        else if (props.ip_type == QMI_WDS_IP_FAMILY_IPV6)
+            ip_type_str = "6";
+    }
+
     /* Set authentication method */
     if (props.auth_set) {
         aux_auth_str = qmi_wds_authentication_build_string_from_mask (props.auth);
@@ -505,11 +558,12 @@ start_network_input_create (const gchar *str)
     if (props.autoconnect_set)
         qmi_message_wds_start_network_input_set_enable_autoconnect (input, props.autoconnect, NULL);
 
-    g_debug ("Network start parameters set (apn: '%s', 3gpp_profile: '%u', 3gpp2_profile: '%u', auth: '%s', username: '%s', password: '%s', autoconnect: '%s')",
+    g_debug ("Network start parameters set (apn: '%s', 3gpp_profile: '%u', 3gpp2_profile: '%u', auth: '%s', ip-type: '%s', username: '%s', password: '%s', autoconnect: '%s')",
              props.apn                             ? props.apn                          : "unspecified",
              props.profile_index_3gpp,
              props.profile_index_3gpp2,
              aux_auth_str                          ? aux_auth_str                       : "unspecified",
+             ip_type_str                           ? ip_type_str                        : "unspecified",
              (props.username && props.username[0]) ? props.username                     : "unspecified",
              (props.password && props.password[0]) ? props.password                     : "unspecified",
              props.autoconnect_set                 ? (props.autoconnect ? "yes" : "no") : "unspecified");
@@ -994,6 +1048,100 @@ get_current_data_bearer_technology_ready (QmiClientWds *client,
     operation_shutdown (TRUE);
 }
 
+static void
+go_dormant_ready (QmiClientWds *client,
+                  GAsyncResult *res)
+{
+    GError *error = NULL;
+    QmiMessageWdsGoDormantOutput *output;
+
+    output = qmi_client_wds_go_dormant_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n",
+                    error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_wds_go_dormant_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't go dormant: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_wds_go_dormant_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    qmi_message_wds_go_dormant_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+static void
+go_active_ready (QmiClientWds *client,
+                 GAsyncResult *res)
+{
+    GError *error = NULL;
+    QmiMessageWdsGoActiveOutput *output;
+
+    output = qmi_client_wds_go_active_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n",
+                    error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_wds_go_active_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't go active: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_wds_go_active_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    qmi_message_wds_go_active_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+static void
+get_dormancy_status_ready (QmiClientWds *client,
+                           GAsyncResult *res)
+{
+    GError *error = NULL;
+    QmiMessageWdsGetDormancyStatusOutput *output;
+    QmiWdsDormancyStatus status;
+
+    output = qmi_client_wds_get_dormancy_status_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n",
+                    error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_wds_get_dormancy_status_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't get dormancy status: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_wds_get_dormancy_status_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (qmi_message_wds_get_dormancy_status_output_get_dormancy_status (
+            output,
+            &status,
+            NULL)) {
+        g_print ("[%s] Dormancy Status: '%s'\n",
+                 qmi_device_get_path_display (ctx->device),
+                 qmi_wds_dormancy_status_get_string (status));
+    }
+
+    qmi_message_wds_get_dormancy_status_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
 typedef struct {
     guint i;
     GArray *profile_list;
@@ -1408,6 +1556,137 @@ noop_cb (gpointer unused)
     return FALSE;
 }
 
+typedef struct {
+    guint32 mux_id;
+    guint8 ep_type;
+    guint32 ep_iface_number;
+    guint32 client_type;
+} BindMuxDataPortProperties;
+
+static gboolean
+bind_mux_data_port_properties_handle (const gchar *key,
+                                      const gchar *value,
+                                      GError     **error,
+                                      gpointer     user_data)
+{
+    BindMuxDataPortProperties *props = user_data;
+
+    if (!value || !value[0]) {
+        g_set_error (error,
+                     QMI_CORE_ERROR,
+                     QMI_CORE_ERROR_FAILED,
+                     "key '%s' requires a value",
+                     key);
+        return FALSE;
+    }
+
+    if (g_ascii_strcasecmp (key, "mux-id") == 0) {
+        props->mux_id = atoi(value);
+        return TRUE;
+    }
+
+    if (g_ascii_strcasecmp (key, "ep-iface-number") == 0) {
+        props->ep_iface_number = atoi(value);
+        return TRUE;
+    }
+
+    g_set_error (error,
+                 QMI_CORE_ERROR,
+                 QMI_CORE_ERROR_FAILED,
+                 "Unrecognized option '%s'",
+                 key);
+
+    return FALSE;
+}
+
+static QmiMessageWdsBindMuxDataPortInput *
+bind_mux_data_port_input_create (const gchar *str)
+{
+    QmiMessageWdsBindMuxDataPortInput *input = NULL;
+    GError *error = NULL;
+    BindMuxDataPortProperties props = {
+        .mux_id = QMI_WDS_MUX_ID_UNDEFINED,
+        .ep_type = QMI_DATA_ENDPOINT_TYPE_HSUSB,
+        .ep_iface_number = QMI_WDS_ENDPOINT_INTERFACE_NUMBER_UNDEFINED,
+        .client_type = QMI_WDS_CLIENT_TYPE_TETHERED,
+    };
+
+    if (!str[0])
+        return NULL;
+
+    if (strchr (str, '=')) {
+        if (!qmicli_parse_key_value_string (str,
+                                            &error,
+                                            bind_mux_data_port_properties_handle,
+                                            &props)) {
+            g_printerr ("error: could not parse input string '%s'\n", error->message);
+            g_error_free (error);
+            return NULL;
+        }
+    } else {
+        g_printerr ("error: malformed input string, key=value format expected.\n");
+        goto error_out;
+    }
+
+
+    if ((props.mux_id == QMI_WDS_MUX_ID_UNDEFINED) ||
+        (props.ep_iface_number == QMI_WDS_ENDPOINT_INTERFACE_NUMBER_UNDEFINED)) {
+        g_printerr ("error: Mux ID and Endpoint Iface Number are both needed\n");
+        return NULL;
+    }
+
+    input = qmi_message_wds_bind_mux_data_port_input_new ();
+
+    if (!qmi_message_wds_bind_mux_data_port_input_set_endpoint_info (input, props.ep_type, props.ep_iface_number, &error)) {
+        g_printerr ("error: couldn't set endpoint info: '%s'\n", error->message);
+        goto error_out;
+    }
+
+    if (!qmi_message_wds_bind_mux_data_port_input_set_mux_id (input, props.mux_id, &error)) {
+        g_printerr ("error: couldn't set mux ID %d: '%s'\n", props.mux_id, error->message);
+        goto error_out;
+    }
+
+    if (!qmi_message_wds_bind_mux_data_port_input_set_client_type (input, props.client_type , &error)) {
+        g_printerr ("error: couldn't set client type: '%s'\n", error->message);
+        goto error_out;
+    }
+
+    return input;
+
+error_out:
+    if (error)
+        g_error_free (error);
+    qmi_message_wds_bind_mux_data_port_input_unref (input);
+    return NULL;
+}
+
+static void
+bind_mux_data_port_ready (QmiClientWds *client,
+                          GAsyncResult *res) {
+    QmiMessageWdsBindMuxDataPortOutput *output;
+    GError *error = NULL;
+
+    output = qmi_client_wds_bind_mux_data_port_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_wds_bind_mux_data_port_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't bind mux data port: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_wds_bind_mux_data_port_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    qmi_message_wds_bind_mux_data_port_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
 void
 qmicli_wds_run (QmiDevice *device,
                 QmiClientWds *client,
@@ -1463,6 +1742,23 @@ qmicli_wds_run (QmiDevice *device,
 
         g_debug ("Asynchronously stopping network (%lu)...", packet_data_handle);
         internal_stop_network (ctx->cancellable, (guint32)packet_data_handle, disable_autoconnect);
+        return;
+    }
+
+    /* Request to bind mux port? */
+    if (bind_mux_str) {
+        QmiMessageWdsBindMuxDataPortInput *input;
+        g_print ("Bind mux data port");
+
+        input = bind_mux_data_port_input_create (bind_mux_str);
+
+        qmi_client_wds_bind_mux_data_port (client,
+                                           input,
+                                           10,
+                                           ctx->cancellable,
+                                           (GAsyncReadyCallback) bind_mux_data_port_ready,
+                                           NULL);
+        qmi_message_wds_bind_mux_data_port_input_unref (input);
         return;
     }
 
@@ -1556,6 +1852,42 @@ qmicli_wds_run (QmiDevice *device,
                                                            ctx->cancellable,
                                                            (GAsyncReadyCallback)get_current_data_bearer_technology_ready,
                                                            NULL);
+        return;
+    }
+
+    /* Request to go dormant? */
+    if (go_dormant_flag) {
+        g_debug ("Asynchronously going dormant...");
+        qmi_client_wds_go_dormant (ctx->client,
+                                   NULL,
+                                   10,
+                                   ctx->cancellable,
+                                   (GAsyncReadyCallback)go_dormant_ready,
+                                   NULL);
+        return;
+    }
+
+    /* Request to go active? */
+    if (go_active_flag) {
+        g_debug ("Asynchronously going active...");
+        qmi_client_wds_go_active (ctx->client,
+                                   NULL,
+                                   10,
+                                   ctx->cancellable,
+                                   (GAsyncReadyCallback)go_active_ready,
+                                   NULL);
+        return;
+    }
+
+    /* Request to get dormancy status? */
+    if (get_dormancy_status_flag) {
+        g_debug ("Asynchronously getting dormancy status...");
+        qmi_client_wds_get_dormancy_status (ctx->client,
+                                            NULL,
+                                            10,
+                                            ctx->cancellable,
+                                            (GAsyncReadyCallback)get_dormancy_status_ready,
+                                            NULL);
         return;
     }
 

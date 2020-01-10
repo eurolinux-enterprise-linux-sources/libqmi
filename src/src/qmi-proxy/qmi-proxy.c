@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (C) 2013 Aleksander Morgado <aleksander@gnu.org>
+ * Copyright (C) 2013-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #include "config.h"
@@ -173,8 +173,6 @@ int main (int argc, char **argv)
     GOptionContext *context;
 
     setlocale (LC_ALL, "");
-
-    g_type_init ();
 
     /* Setup option context, process it and destroy it */
     context = g_option_context_new ("- Proxy for QMI devices");

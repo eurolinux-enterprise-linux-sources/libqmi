@@ -6,9 +6,9 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
 <link rel="up" href="ch02s02.html" title="DMS Requests">
-<link rel="prev" href="libqmi-glib-DMS-UIM-Get-ICCID.html" title="DMS UIM Get ICCID">
+<link rel="prev" href="libqmi-glib-DMS-Set-Firmware-ID.html" title="DMS Set Firmware ID">
 <link rel="next" href="libqmi-glib-DMS-UIM-Set-CK-Protection.html" title="DMS UIM Set CK Protection">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -20,7 +20,7 @@
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><a accesskey="u" href="ch02s02.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
-<td><a accesskey="p" href="libqmi-glib-DMS-UIM-Get-ICCID.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
+<td><a accesskey="p" href="libqmi-glib-DMS-Set-Firmware-ID.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
 <td><a accesskey="n" href="libqmi-glib-DMS-UIM-Set-CK-Protection.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
@@ -180,6 +180,7 @@ qmi_message_dms_uim_get_ck_status_input_new
 <a name="qmi-message-dms-uim-get-ck-status-input-new.returns"></a><h4>Returns</h4>
 <p> the newly created <a class="link" href="libqmi-glib-DMS-UIM-Get-CK-Status.html#QmiMessageDmsUimGetCkStatusInput"><span class="type">QmiMessageDmsUimGetCkStatusInput</span></a>. The returned value should be freed with <a class="link" href="libqmi-glib-DMS-UIM-Get-CK-Status.html#qmi-message-dms-uim-get-ck-status-input-unref" title="qmi_message_dms_uim_get_ck_status_input_unref ()"><code class="function">qmi_message_dms_uim_get_ck_status_input_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -209,6 +210,7 @@ qmi_message_dms_uim_get_ck_status_input_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -235,6 +237,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -277,6 +280,7 @@ qmi_message_dms_uim_get_ck_status_input_get_facility
 <a name="qmi-message-dms-uim-get-ck-status-input-get-facility.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -319,6 +323,7 @@ qmi_message_dms_uim_get_ck_status_input_set_facility
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>value</code></em>
 was successfully set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -348,6 +353,7 @@ qmi_message_dms_uim_get_ck_status_output_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -374,6 +380,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -410,6 +417,7 @@ qmi_message_dms_uim_get_ck_status_output_get_result
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
 is set.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -464,6 +472,7 @@ qmi_message_dms_uim_get_ck_status_output_get_ck_status
 <a name="qmi-message-dms-uim-get-ck-status-output-get-ck-status.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -506,6 +515,7 @@ qmi_message_dms_uim_get_ck_status_output_get_operation_blocking_facility
 <a name="qmi-message-dms-uim-get-ck-status-output-get-operation-blocking-facility.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -564,6 +574,7 @@ qmi_client_dms_uim_get_ck_status (<em class="parameter"><code><a class="link" hr
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -606,6 +617,7 @@ qmi_client_dms_uim_get_ck_status_finish
 <p> a <a class="link" href="libqmi-glib-DMS-UIM-Get-CK-Status.html#QmiMessageDmsUimGetCkStatusOutput"><span class="type">QmiMessageDmsUimGetCkStatusOutput</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
 is set. The returned value should be freed with <a class="link" href="libqmi-glib-DMS-UIM-Get-CK-Status.html#qmi-message-dms-uim-get-ck-status-output-unref" title="qmi_message_dms_uim_get_ck_status_output_unref ()"><code class="function">qmi_message_dms_uim_get_ck_status_output_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -615,6 +627,7 @@ is set. The returned value should be freed with <a class="link" href="libqmi-gli
 <pre class="programlisting">typedef struct _QmiMessageDmsUimGetCkStatusInput QmiMessageDmsUimGetCkStatusInput;</pre>
 <p>The <a class="link" href="libqmi-glib-DMS-UIM-Get-CK-Status.html#QmiMessageDmsUimGetCkStatusInput"><span class="type">QmiMessageDmsUimGetCkStatusInput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -622,10 +635,11 @@ using the provided API.</p>
 <pre class="programlisting">typedef struct _QmiMessageDmsUimGetCkStatusOutput QmiMessageDmsUimGetCkStatusOutput;</pre>
 <p>The <a class="link" href="libqmi-glib-DMS-UIM-Get-CK-Status.html#QmiMessageDmsUimGetCkStatusOutput"><span class="type">QmiMessageDmsUimGetCkStatusOutput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

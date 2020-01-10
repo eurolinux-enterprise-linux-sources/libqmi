@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>
+ * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #include "config.h"
@@ -28,8 +28,13 @@
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <gio/gio.h>
+#include <glib-unix.h>
 
 #include <libqmi-glib.h>
+
+#if defined MBIM_QMUX_ENABLED
+#include <libmbim-glib.h>
+#endif
 
 #include "qmicli.h"
 #include "qmicli-helpers.h"
@@ -56,7 +61,9 @@ static gboolean device_open_version_info_flag;
 static gboolean device_open_sync_flag;
 static gchar *device_open_net_str;
 static gboolean device_open_proxy_flag;
+static gboolean device_open_qmi_flag;
 static gboolean device_open_mbim_flag;
+static gboolean device_open_auto_flag;
 static gchar *client_cid_str;
 static gboolean client_no_release_cid_flag;
 static gboolean verbose_flag;
@@ -100,8 +107,16 @@ static GOptionEntry main_entries[] = {
       "Request to use the 'qmi-proxy' proxy",
       NULL
     },
+    { "device-open-qmi", 0, 0, G_OPTION_ARG_NONE, &device_open_qmi_flag,
+      "Open a cdc-wdm device explicitly in QMI mode",
+      NULL
+    },
     { "device-open-mbim", 0, 0, G_OPTION_ARG_NONE, &device_open_mbim_flag,
-      "Open an MBIM device with EXT_QMUX support",
+      "Open a cdc-wdm device explicitly in MBIM mode",
+      NULL
+    },
+    { "device-open-auto", 0, 0, G_OPTION_ARG_NONE, &device_open_auto_flag,
+      "Open a cdc-wdm device in either QMI or MBIM mode (default)",
       NULL
     },
     { "device-open-net", 0, 0, G_OPTION_ARG_STRING, &device_open_net_str,
@@ -131,25 +146,25 @@ static GOptionEntry main_entries[] = {
     { NULL }
 };
 
-static void
-signals_handler (int signum)
+static gboolean
+signals_handler (void)
 {
     if (cancellable) {
         /* Ignore consecutive requests of cancellation */
         if (!g_cancellable_is_cancelled (cancellable)) {
-            g_printerr ("%s\n",
-                        "cancelling the operation...\n");
+            g_printerr ("cancelling the operation...\n");
             g_cancellable_cancel (cancellable);
+            /* Re-set the signal handler to allow main loop cancellation on
+             * second signal */
+            return G_SOURCE_CONTINUE;
         }
-        return;
     }
 
-    if (loop &&
-        g_main_loop_is_running (loop)) {
-        g_printerr ("%s\n",
-                    "cancelling the main loop...\n");
-        g_main_loop_quit (loop);
+    if (loop && g_main_loop_is_running (loop)) {
+        g_printerr ("cancelling the main loop...\n");
+        g_idle_add ((GSourceFunc) g_main_loop_quit, loop);
     }
+    return G_SOURCE_REMOVE;
 }
 
 static void
@@ -210,7 +225,7 @@ print_version_and_exit (void)
 {
     g_print ("\n"
              PROGRAM_NAME " " PROGRAM_VERSION "\n"
-             "Copyright (C) 2015 Aleksander Morgado\n"
+             "Copyright (C) 2012-2017 Aleksander Morgado\n"
              "License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>\n"
              "This is free software: you are free to change and redistribute it.\n"
              "There is NO WARRANTY, to the extent permitted by law.\n"
@@ -246,32 +261,46 @@ generic_options_enabled (void)
 /* Running asynchronously */
 
 static void
+close_ready (QmiDevice    *dev,
+             GAsyncResult *res)
+{
+    GError *error = NULL;
+
+    if (!qmi_device_close_finish (dev, res, &error)) {
+        g_printerr ("error: couldn't close: %s\n", error->message);
+        g_error_free (error);
+    } else
+        g_debug ("Closed");
+
+    g_main_loop_quit (loop);
+}
+
+static void
 release_client_ready (QmiDevice *dev,
                       GAsyncResult *res)
 {
     GError *error = NULL;
 
     if (!qmi_device_release_client_finish (dev, res, &error)) {
-        g_printerr ("error: couldn't release client: %s", error->message);
+        g_printerr ("error: couldn't release client: %s\n", error->message);
         g_error_free (error);
     } else
         g_debug ("Client released");
 
-    g_main_loop_quit (loop);
+    qmi_device_close_async (dev, 10, NULL, (GAsyncReadyCallback) close_ready, NULL);
 }
 
 void
-qmicli_async_operation_done (gboolean reported_operation_status)
+qmicli_async_operation_done (gboolean reported_operation_status,
+                             gboolean skip_cid_release)
 {
     QmiDeviceReleaseClientFlags flags = QMI_DEVICE_RELEASE_CLIENT_FLAGS_NONE;
 
     /* Keep the result of the operation */
     operation_status = reported_operation_status;
 
-    if (cancellable) {
-        g_object_unref (cancellable);
-        cancellable = NULL;
-    }
+    /* Cleanup cancellation */
+    g_clear_object (&cancellable);
 
     /* If no client was allocated (e.g. generic action), just quit */
     if (!client) {
@@ -279,7 +308,9 @@ qmicli_async_operation_done (gboolean reported_operation_status)
         return;
     }
 
-    if (!client_no_release_cid_flag)
+    if (skip_cid_release)
+        g_debug ("Skipped CID release");
+    else if (!client_no_release_cid_flag)
         flags |= QMI_DEVICE_RELEASE_CLIENT_FLAGS_RELEASE_CID;
     else
         g_print ("[%s] Client ID not released:\n"
@@ -325,6 +356,9 @@ allocate_client_ready (QmiDevice *dev,
         return;
     case QMI_SERVICE_PBM:
         qmicli_pbm_run (dev, QMI_CLIENT_PBM (client), cancellable);
+        return;
+    case QMI_SERVICE_PDC:
+        qmicli_pdc_run (dev, QMI_CLIENT_PDC (client), cancellable);
         return;
     case QMI_SERVICE_UIM:
         qmicli_uim_run (dev, QMI_CLIENT_UIM (client), cancellable);
@@ -392,7 +426,7 @@ set_instance_id_ready (QmiDevice *dev,
              link_id);
 
     /* We're done now */
-    qmicli_async_operation_done (TRUE);
+    qmicli_async_operation_done (TRUE, FALSE);
 }
 
 static void
@@ -461,7 +495,7 @@ get_service_version_info_ready (QmiDevice *dev,
     g_array_unref (services);
 
     /* We're done now */
-    qmicli_async_operation_done (TRUE);
+    qmicli_async_operation_done (TRUE, FALSE);
 }
 
 static void
@@ -493,7 +527,7 @@ device_set_expected_data_format_cb (QmiDevice *dev)
                  qmi_device_expected_data_format_get_string (expected));
 
     /* We're done now */
-    qmicli_async_operation_done (!error);
+    qmicli_async_operation_done (!error, FALSE);
 
     g_object_unref (dev);
     return FALSE;
@@ -520,7 +554,7 @@ device_get_expected_data_format_cb (QmiDevice *dev)
         g_print ("%s\n", qmi_device_expected_data_format_get_string (expected));
 
     /* We're done now */
-    qmicli_async_operation_done (!error);
+    qmicli_async_operation_done (!error, FALSE);
 
     g_object_unref (dev);
     return FALSE;
@@ -545,7 +579,7 @@ device_get_wwan_iface_cb (QmiDevice *dev)
         g_print ("%s\n", wwan_iface);
 
     /* We're done now */
-    qmicli_async_operation_done (!!wwan_iface);
+    qmicli_async_operation_done (!!wwan_iface, FALSE);
 
     g_object_unref (dev);
     return FALSE;
@@ -601,6 +635,11 @@ device_new_ready (GObject *unused,
         exit (EXIT_FAILURE);
     }
 
+    if (device_open_mbim_flag + device_open_qmi_flag + device_open_auto_flag > 1) {
+        g_printerr ("error: cannot specify multiple mode flags to open device\n");
+        exit (EXIT_FAILURE);
+    }
+
     /* Setup device open flags */
     if (device_open_version_info_flag)
         open_flags |= QMI_DEVICE_OPEN_FLAGS_VERSION_INFO;
@@ -610,6 +649,8 @@ device_new_ready (GObject *unused,
         open_flags |= QMI_DEVICE_OPEN_FLAGS_PROXY;
     if (device_open_mbim_flag)
         open_flags |= QMI_DEVICE_OPEN_FLAGS_MBIM;
+    if (device_open_auto_flag || (!device_open_qmi_flag && !device_open_mbim_flag))
+        open_flags |= QMI_DEVICE_OPEN_FLAGS_AUTO;
     if (device_open_net_str)
         if (!qmicli_read_net_open_flags_from_string (device_open_net_str, &open_flags))
             exit (EXIT_FAILURE);
@@ -660,6 +701,12 @@ parse_actions (void)
         actions_enabled++;
     }
 
+    /* PDC options? */
+    if (qmicli_pdc_options_enabled ()) {
+        service = QMI_SERVICE_PDC;
+        actions_enabled++;
+    }
+
     /* UIM options? */
     if (qmicli_uim_options_enabled ()) {
         service = QMI_SERVICE_UIM;
@@ -707,8 +754,6 @@ int main (int argc, char **argv)
 
     setlocale (LC_ALL, "");
 
-    g_type_init ();
-
     /* Setup option context, process it and destroy it */
     context = g_option_context_new ("- Control QMI devices");
     g_option_context_add_group (context,
@@ -719,6 +764,8 @@ int main (int argc, char **argv)
                                 qmicli_wds_get_option_group ());
     g_option_context_add_group (context,
                                 qmicli_pbm_get_option_group ());
+    g_option_context_add_group (context,
+                                qmicli_pdc_get_option_group ());
     g_option_context_add_group (context,
                                 qmicli_uim_get_option_group ());
     g_option_context_add_group (context,
@@ -743,6 +790,13 @@ int main (int argc, char **argv)
     if (verbose_flag)
         qmi_utils_set_traces_enabled (TRUE);
 
+#if defined MBIM_QMUX_ENABLED
+    /* libmbim logging */
+    g_log_set_handler ("Mbim", G_LOG_LEVEL_MASK, log_handler, NULL);
+    if (verbose_flag)
+        mbim_utils_set_traces_enabled (TRUE);
+#endif
+
     /* No device path given? */
     if (!device_str) {
         g_printerr ("error: no device path specified\n");
@@ -752,16 +806,16 @@ int main (int argc, char **argv)
     /* Build new GFile from the commandline arg */
     file = g_file_new_for_commandline_arg (device_str);
 
-    /* Setup signals */
-    signal (SIGINT, signals_handler);
-    signal (SIGHUP, signals_handler);
-    signal (SIGTERM, signals_handler);
-
     parse_actions ();
 
     /* Create requirements for async options */
     cancellable = g_cancellable_new ();
     loop = g_main_loop_new (NULL, FALSE);
+
+    /* Setup signals */
+    g_unix_signal_add (SIGINT,  (GSourceFunc) signals_handler, NULL);
+    g_unix_signal_add (SIGHUP,  (GSourceFunc) signals_handler, NULL);
+    g_unix_signal_add (SIGTERM, (GSourceFunc) signals_handler, NULL);
 
     /* Launch QmiDevice creation */
     qmi_device_new (file,

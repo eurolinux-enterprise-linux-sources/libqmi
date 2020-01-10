@@ -5,10 +5,10 @@
 <title>UIM Read Record: libqmi-glib Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
-<link rel="up" href="ch08.html#id-1.9.4" title="UIM Requests">
+<link rel="up" href="ch09.html#id-1.10.4" title="UIM Requests">
 <link rel="prev" href="libqmi-glib-UIM-Read-Transparent.html" title="UIM Read Transparent">
 <link rel="next" href="libqmi-glib-UIM-Get-File-Attributes.html" title="UIM Get File Attributes">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -19,7 +19,7 @@
                   <a href="#libqmi-glib-UIM-Read-Record.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
-<td><a accesskey="u" href="ch08.html#id-1.9.4"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="ch09.html#id-1.10.4"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="libqmi-glib-UIM-Read-Transparent.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
 <td><a accesskey="n" href="libqmi-glib-UIM-Get-File-Attributes.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
@@ -165,7 +165,7 @@
 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
-<a class="link" href="libqmi-glib-UIM-Read-Record.html#qmi-message-uim-read-record-output-get-result" title="qmi_message_uim_read_record_output_get_result ()">qmi_message_uim_read_record_output_get_result</a> <span class="c_punctuation">()</span>
+<a class="link" href="libqmi-glib-UIM-Read-Record.html#qmi-message-uim-read-record-output-get-card-result" title="qmi_message_uim_read_record_output_get_card_result ()">qmi_message_uim_read_record_output_get_card_result</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -173,7 +173,7 @@
 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
-<a class="link" href="libqmi-glib-UIM-Read-Record.html#qmi-message-uim-read-record-output-get-card-result" title="qmi_message_uim_read_record_output_get_card_result ()">qmi_message_uim_read_record_output_get_card_result</a> <span class="c_punctuation">()</span>
+<a class="link" href="libqmi-glib-UIM-Read-Record.html#qmi-message-uim-read-record-output-get-result" title="qmi_message_uim_read_record_output_get_result ()">qmi_message_uim_read_record_output_get_result</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -259,6 +259,7 @@ qmi_message_uim_read_record_input_new (<em class="parameter"><code><span class="
 <a name="qmi-message-uim-read-record-input-new.returns"></a><h4>Returns</h4>
 <p> the newly created <a class="link" href="libqmi-glib-UIM-Read-Record.html#QmiMessageUimReadRecordInput"><span class="type">QmiMessageUimReadRecordInput</span></a>. The returned value should be freed with <a class="link" href="libqmi-glib-UIM-Read-Record.html#qmi-message-uim-read-record-input-unref" title="qmi_message_uim_read_record_input_unref ()"><code class="function">qmi_message_uim_read_record_input_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -287,6 +288,7 @@ qmi_message_uim_read_record_input_ref (<em class="parameter"><code><a class="lin
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -313,6 +315,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -355,6 +358,7 @@ qmi_message_uim_read_record_input_get_response_in_indication_token
 <a name="qmi-message-uim-read-record-input-get-response-in-indication-token.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -397,6 +401,7 @@ qmi_message_uim_read_record_input_set_response_in_indication_token
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>value</code></em>
 was successfully set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -439,6 +444,7 @@ qmi_message_uim_read_record_input_get_last_record
 <a name="qmi-message-uim-read-record-input-get-last-record.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -481,6 +487,7 @@ qmi_message_uim_read_record_input_set_last_record
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>value</code></em>
 was successfully set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -529,6 +536,7 @@ qmi_message_uim_read_record_input_get_record
 <a name="qmi-message-uim-read-record-input-get-record.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -577,6 +585,7 @@ qmi_message_uim_read_record_input_set_record
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>value</code></em>
 was successfully set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -626,6 +635,7 @@ qmi_message_uim_read_record_input_get_file
 <a name="qmi-message-uim-read-record-input-get-file.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -675,6 +685,7 @@ will be taken.</p></td>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>value</code></em>
 was successfully set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -723,6 +734,7 @@ qmi_message_uim_read_record_input_get_session_information
 <a name="qmi-message-uim-read-record-input-get-session-information.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -771,6 +783,7 @@ qmi_message_uim_read_record_input_set_session_information
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>value</code></em>
 was successfully set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -800,6 +813,7 @@ qmi_message_uim_read_record_output_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -826,42 +840,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="qmi-message-uim-read-record-output-get-result"></a><h3>qmi_message_uim_read_record_output_get_result ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
-qmi_message_uim_read_record_output_get_result
-                               (<em class="parameter"><code><a class="link" href="libqmi-glib-UIM-Read-Record.html#QmiMessageUimReadRecordOutput"><span class="type">QmiMessageUimReadRecordOutput</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>Get the result of the QMI operation.</p>
-<div class="refsect3">
-<a name="qmi-message-uim-read-record-output-get-result.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="150px" class="parameters_name">
-<col class="parameters_description">
-<col width="200px" class="parameters_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a QmiMessageUimReadRecordOutput.</p></td>
-<td class="parameter_annotations"> </td>
-</tr>
-<tr>
-<td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
-<td class="parameter_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<div class="refsect3">
-<a name="qmi-message-uim-read-record-output-get-result.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
-is set.</p>
-</div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -910,6 +889,44 @@ qmi_message_uim_read_record_output_get_card_result
 <a name="qmi-message-uim-read-record-output-get-card-result.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-message-uim-read-record-output-get-result"></a><h3>qmi_message_uim_read_record_output_get_result ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+qmi_message_uim_read_record_output_get_result
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-UIM-Read-Record.html#QmiMessageUimReadRecordOutput"><span class="type">QmiMessageUimReadRecordOutput</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Get the result of the QMI operation.</p>
+<div class="refsect3">
+<a name="qmi-message-uim-read-record-output-get-result.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a QmiMessageUimReadRecordOutput.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-message-uim-read-record-output-get-result.returns"></a><h4>Returns</h4>
+<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
+is set.</p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -953,6 +970,7 @@ qmi_message_uim_read_record_output_get_read_result
 <a name="qmi-message-uim-read-record-output-get-read-result.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -996,6 +1014,7 @@ qmi_message_uim_read_record_output_get_additional_read_result
 <a name="qmi-message-uim-read-record-output-get-additional-read-result.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1038,6 +1057,7 @@ qmi_message_uim_read_record_output_get_response_in_indication_token
 <a name="qmi-message-uim-read-record-output-get-response-in-indication-token.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1096,6 +1116,7 @@ qmi_client_uim_read_record (<em class="parameter"><code><a class="link" href="Qm
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1137,6 +1158,7 @@ qmi_client_uim_read_record_finish (<em class="parameter"><code><a class="link" h
 <p> a <a class="link" href="libqmi-glib-UIM-Read-Record.html#QmiMessageUimReadRecordOutput"><span class="type">QmiMessageUimReadRecordOutput</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
 is set. The returned value should be freed with <a class="link" href="libqmi-glib-UIM-Read-Record.html#qmi-message-uim-read-record-output-unref" title="qmi_message_uim_read_record_output_unref ()"><code class="function">qmi_message_uim_read_record_output_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -1146,6 +1168,7 @@ is set. The returned value should be freed with <a class="link" href="libqmi-gli
 <pre class="programlisting">typedef struct _QmiMessageUimReadRecordInput QmiMessageUimReadRecordInput;</pre>
 <p>The <a class="link" href="libqmi-glib-UIM-Read-Record.html#QmiMessageUimReadRecordInput"><span class="type">QmiMessageUimReadRecordInput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1153,10 +1176,11 @@ using the provided API.</p>
 <pre class="programlisting">typedef struct _QmiMessageUimReadRecordOutput QmiMessageUimReadRecordOutput;</pre>
 <p>The <a class="link" href="libqmi-glib-UIM-Read-Record.html#QmiMessageUimReadRecordOutput"><span class="type">QmiMessageUimReadRecordOutput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

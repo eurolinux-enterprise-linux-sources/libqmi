@@ -5,10 +5,10 @@
 <title>VOICE Get Supported Messages: libqmi-glib Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
-<link rel="up" href="ch11s02.html" title="Voice Requests">
+<link rel="up" href="ch12s02.html" title="Voice Requests">
 <link rel="prev" href="libqmi-glib-VOICE-Get-Config.html" title="VOICE Get Config">
-<link rel="next" href="ch12.html" title="Compatibility with older versions">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<link rel="next" href="ch13.html" title="Compatibility with older versions">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -19,9 +19,9 @@
                   <a href="#libqmi-glib-VOICE-Get-Supported-Messages.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
-<td><a accesskey="u" href="ch11s02.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="ch12s02.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="libqmi-glib-VOICE-Get-Config.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="ch12.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="ch13.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="libqmi-glib-VOICE-Get-Supported-Messages"></a><div class="titlepage"></div>
@@ -142,6 +142,7 @@ qmi_message_voice_get_supported_messages_output_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -168,6 +169,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -204,6 +206,7 @@ qmi_message_voice_get_supported_messages_output_get_result
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
 is set.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -247,6 +250,7 @@ qmi_message_voice_get_supported_messages_output_get_list
 <a name="qmi-message-voice-get-supported-messages-output-get-list.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -306,6 +310,7 @@ qmi_client_voice_get_supported_messages
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -348,6 +353,7 @@ qmi_client_voice_get_supported_messages_finish
 <p> a <a class="link" href="libqmi-glib-VOICE-Get-Supported-Messages.html#QmiMessageVoiceGetSupportedMessagesOutput"><span class="type">QmiMessageVoiceGetSupportedMessagesOutput</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
 is set. The returned value should be freed with <a class="link" href="libqmi-glib-VOICE-Get-Supported-Messages.html#qmi-message-voice-get-supported-messages-output-unref" title="qmi_message_voice_get_supported_messages_output_unref ()"><code class="function">qmi_message_voice_get_supported_messages_output_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -357,10 +363,11 @@ is set. The returned value should be freed with <a class="link" href="libqmi-gli
 <pre class="programlisting">typedef struct _QmiMessageVoiceGetSupportedMessagesOutput QmiMessageVoiceGetSupportedMessagesOutput;</pre>
 <p>The <a class="link" href="libqmi-glib-VOICE-Get-Supported-Messages.html#QmiMessageVoiceGetSupportedMessagesOutput"><span class="type">QmiMessageVoiceGetSupportedMessagesOutput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

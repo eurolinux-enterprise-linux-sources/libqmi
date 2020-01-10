@@ -1,13 +1,16 @@
+%global _hardened_build 1
+
 Name: libqmi
 Summary: Support library to use the Qualcomm MSM Interface (QMI) protocol
-Version: 1.16.0
-Release: 1%{?dist}
+Version: 1.18.0
+Release: 2%{?dist}
 Group: Development/Libraries
 License: LGPLv2+
 URL: http://freedesktop.org/software/libqmi
 Source: http://freedesktop.org/software/libqmi/%{name}-%{version}.tar.xz
 
 BuildRequires: glib2-devel >= 2.32.0
+BuildRequires: pkgconfig(gudev-1.0) >= 147
 BuildRequires: python >= 2.7
 BuildRequires: gtk-doc
 BuildRequires: libmbim-devel >= 1.14.0
@@ -42,7 +45,7 @@ from the command line.
 %setup -q
 
 %build
-%configure --disable-static --enable-gtk-doc --enable-mbim-qmux --enable-more-warnings=yes
+%configure --disable-static --enable-gtk-doc --enable-mbim-qmux
 
 # Uses private copy of libtool:
 # http://fedoraproject.org/wiki/Packaging:Guidelines#Beware_of_Rpath
@@ -87,11 +90,18 @@ ln -sf libqmi-glib.so.1.0.0 %{buildroot}%{_libdir}/libqmi-glib.so.1
 %files utils
 %{_bindir}/qmicli
 %{_bindir}/qmi-network
+%exclude %{_bindir}/qmi-firmware-update
 %{_mandir}/man1/*
 %{_libexecdir}/qmi-proxy
 
 
 %changelog
+* Tue Oct 24 2017 Lubomir Rintel <lrintel@redhat.com> - 1.18.0-2
+- Remove qmi-firmware-update
+
+* Tue Aug 29 2017 Lubomir Rintel <lrintel@redhat.com> - 1.18.0-1
+- Update to 1.18.0 (rh #1483051)
+
 * Fri Jul 08 2016 Lubomir Rintel <lkundrak@v3.sk> - 1.16.0-1
 - Update to 1.16.0
 

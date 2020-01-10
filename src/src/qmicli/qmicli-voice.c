@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (C) 2014-2015 Aleksander Morgado <aleksander@aleksander.es>
+ * Copyright (C) 2014-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #include "config.h"
@@ -117,7 +117,7 @@ operation_shutdown (gboolean operation_status)
 {
     /* Cleanup context and finish async operation */
     context_free (ctx);
-    qmicli_async_operation_done (operation_status);
+    qmicli_async_operation_done (operation_status, FALSE);
 }
 
 static void

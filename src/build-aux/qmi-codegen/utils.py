@@ -16,6 +16,7 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
+# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -46,7 +47,7 @@ def add_copyright(f):
         " * Boston, MA 02110-1301 USA.\n"
         " *\n"
         " * Copyright (C) 2012 Lanedo GmbH\n"
-        " * Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>\n"
+        " * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>\n"
         " */\n"
         "\n");
 
@@ -162,7 +163,8 @@ e.g.: "ThisIsAMessage" --> "this_is_a_message"
 """
 def build_underscore_name_from_camelcase(camelcase):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', camelcase)
-    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
+    s2 = re.sub('(.)([0-9][a-z]+)', r'\1_\2', s1)
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s2).lower()
 
 
 """

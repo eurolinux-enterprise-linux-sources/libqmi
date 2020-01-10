@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Core">
 <link rel="prev" href="libqmi-glib-Errors.html" title="Errors">
 <link rel="next" href="ch02.html" title="Device Management Service (DMS)">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -271,6 +271,7 @@ qmi_utils_get_traces_enabled (<em class="parameter"><code><span class="type">voi
 <a name="qmi-utils-get-traces-enabled.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if traces are enabled, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -293,6 +294,7 @@ qmi_utils_set_traces_enabled (<em class="parameter"><code><a href="https://devel
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -301,7 +303,10 @@ qmi_utils_set_traces_enabled (<em class="parameter"><code><a href="https://devel
 qmi_utils_read_guint8_from_buffer (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> **buffer</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_guint8_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_guint8_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-guint8" title="qmi_message_tlv_read_guint8 ()"><code class="function">qmi_message_tlv_read_guint8()</code></a> instead.</p>
+</div>
 <p>Reads an unsigned byte from the buffer.</p>
 <p>The user needs to make sure that at least 1 byte is available
 in the buffer.</p>
@@ -337,6 +342,7 @@ read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -345,7 +351,10 @@ read.</p>
 qmi_utils_read_gint8_from_buffer (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> **buffer</code></em>,
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint8"><span class="type">gint8</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_gint8_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_gint8_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-gint8" title="qmi_message_tlv_read_gint8 ()"><code class="function">qmi_message_tlv_read_gint8()</code></a> instead.</p>
+</div>
 <p>Reads a signed byte from the buffer.</p>
 <p>The user needs to make sure that at least 1 byte is available
 in the buffer.</p>
@@ -381,6 +390,7 @@ read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -390,7 +400,10 @@ qmi_utils_read_guint16_from_buffer (<em class="parameter"><code>const <a href="h
                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                     <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_guint16_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_guint16_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-guint16" title="qmi_message_tlv_read_guint16 ()"><code class="function">qmi_message_tlv_read_guint16()</code></a> instead.</p>
+</div>
 <p>Reads an unsigned 16-bit integer from the buffer. The number in the buffer is
 expected to be given in the byte order specificed by <em class="parameter"><code>endian</code></em>
 , and this method
@@ -434,6 +447,7 @@ read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -443,7 +457,10 @@ qmi_utils_read_gint16_from_buffer (<em class="parameter"><code>const <a href="ht
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                    <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint16"><span class="type">gint16</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_gint16_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_gint16_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-gint16" title="qmi_message_tlv_read_gint16 ()"><code class="function">qmi_message_tlv_read_gint16()</code></a> instead.</p>
+</div>
 <p>Reads a signed 16-bit integer from the buffer. The number in the buffer is
 expected to be given in the byte order specified by <em class="parameter"><code>endian</code></em>
 , and this method
@@ -487,6 +504,7 @@ read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -496,7 +514,10 @@ qmi_utils_read_guint32_from_buffer (<em class="parameter"><code>const <a href="h
                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                     <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint32"><span class="type">guint32</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_guint32_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_guint32_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-guint32" title="qmi_message_tlv_read_guint32 ()"><code class="function">qmi_message_tlv_read_guint32()</code></a> instead.</p>
+</div>
 <p>Reads an unsigned 32-bit integer from the buffer. The number in the buffer is
 expected to be given in the byte order specified by <em class="parameter"><code>endian</code></em>
 , and this method
@@ -540,6 +561,7 @@ read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -549,7 +571,10 @@ qmi_utils_read_gint32_from_buffer (<em class="parameter"><code>const <a href="ht
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                    <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint32"><span class="type">gint32</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_gint32_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_gint32_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-gint32" title="qmi_message_tlv_read_gint32 ()"><code class="function">qmi_message_tlv_read_gint32()</code></a> instead.</p>
+</div>
 <p>Reads a signed 32-bit integer from the buffer. The number in the buffer is
 expected to be given in the byte order specified by <em class="parameter"><code>endian</code></em>
 , and this method
@@ -593,6 +618,7 @@ read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -602,7 +628,10 @@ qmi_utils_read_guint64_from_buffer (<em class="parameter"><code>const <a href="h
                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                     <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_guint64_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_guint64_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-guint64" title="qmi_message_tlv_read_guint64 ()"><code class="function">qmi_message_tlv_read_guint64()</code></a> instead.</p>
+</div>
 <p>Reads an unsigned 64-bit integer from the buffer. The number in the buffer is
 expected to be given in the byte order specified by <em class="parameter"><code>endian</code></em>
 , and this method
@@ -646,6 +675,7 @@ read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -655,7 +685,10 @@ qmi_utils_read_gint64_from_buffer (<em class="parameter"><code>const <a href="ht
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                    <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_gint64_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_gint64_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-gint64" title="qmi_message_tlv_read_gint64 ()"><code class="function">qmi_message_tlv_read_gint64()</code></a> instead.</p>
+</div>
 <p>Reads a signed 64-bit integer from the buffer. The number in the buffer is
 expected to be given in the byte order specified by <em class="parameter"><code>endian</code></em>
 , and this method
@@ -699,6 +732,7 @@ read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -710,7 +744,10 @@ qmi_utils_read_sized_guint_from_buffer
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> n_bytes</code></em>,
                                 <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_sized_guint_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_sized_guint_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-sized-guint" title="qmi_message_tlv_read_sized_guint ()"><code class="function">qmi_message_tlv_read_sized_guint()</code></a> instead.</p>
+</div>
 <p>Reads a <em class="parameter"><code>n_bytes</code></em>
 -sized unsigned integer from the buffer. The number in the
 buffer is expected to be given in the byte order specified by <em class="parameter"><code>endian</code></em>
@@ -763,6 +800,7 @@ bytes read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -771,7 +809,10 @@ bytes read.</p>
 qmi_utils_read_gfloat_from_buffer (<em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> **buffer</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gfloat"><span class="type">gfloat</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_gfloat_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_gfloat_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-gfloat" title="qmi_message_tlv_read_gfloat ()"><code class="function">qmi_message_tlv_read_gfloat()</code></a> instead.</p>
+</div>
 <p>Reads a 32-bit floating-point number from the buffer.</p>
 <p>The user needs to make sure that at least 4 bytes are available
 in the buffer.</p>
@@ -807,6 +848,7 @@ read.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-10.html#api-index-1.10">1.10</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -817,7 +859,10 @@ qmi_utils_read_string_from_buffer (<em class="parameter"><code>const <a href="ht
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> length_prefix_size</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> max_size</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> **out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_string_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_string_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-string" title="qmi_message_tlv_read_string ()"><code class="function">qmi_message_tlv_read_string()</code></a> instead.</p>
+</div>
 <p>Reads a string from the buffer.</p>
 <p>If <em class="parameter"><code>length_prefix_size</code></em>
  is greater than 0, only the amount of bytes given
@@ -864,6 +909,7 @@ there will be read. Otherwise, up to <em class="parameter"><code>buffer_size</co
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -874,7 +920,10 @@ qmi_utils_read_fixed_size_string_from_buffer
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> fixed_size</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *out</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_read_fixed_size_string_from_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_read_fixed_size_string_from_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-read-fixed-size-string" title="qmi_message_tlv_read_fixed_size_string ()"><code class="function">qmi_message_tlv_read_fixed_size_string()</code></a> instead.</p>
+</div>
 <p>Reads a <em class="parameter"><code>fixed_size</code></em>
 -sized string from the buffer into the <em class="parameter"><code>out</code></em>
  buffer.</p>
@@ -917,6 +966,7 @@ bytes.</p></td>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -925,7 +975,10 @@ bytes.</p></td>
 qmi_utils_write_guint8_to_buffer (<em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> **buffer</code></em>,
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_guint8_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_guint8_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-guint8" title="qmi_message_tlv_write_guint8 ()"><code class="function">qmi_message_tlv_write_guint8()</code></a> instead.</p>
+</div>
 <p>Writes an unsigned byte into the buffer.</p>
 <p>The user needs to make sure that the buffer is at least 1 byte long.</p>
 <p>Also note that both <em class="parameter"><code>buffer</code></em>
@@ -960,6 +1013,7 @@ write.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -968,7 +1022,10 @@ write.</p>
 qmi_utils_write_gint8_to_buffer (<em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> **buffer</code></em>,
                                  <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                  <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint8"><span class="type">gint8</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_gint8_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_gint8_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-gint8" title="qmi_message_tlv_write_gint8 ()"><code class="function">qmi_message_tlv_write_gint8()</code></a> instead.</p>
+</div>
 <p>Writes a signed byte into the buffer.</p>
 <p>The user needs to make sure that the buffer is at least 1 byte long.</p>
 <p>Also note that both <em class="parameter"><code>buffer</code></em>
@@ -1003,6 +1060,7 @@ write.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1012,7 +1070,10 @@ qmi_utils_write_guint16_to_buffer (<em class="parameter"><code><a href="https://
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                    <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_guint16_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_guint16_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-guint16" title="qmi_message_tlv_write_guint16 ()"><code class="function">qmi_message_tlv_write_guint16()</code></a> instead.</p>
+</div>
 <p>Writes an unsigned 16-bit integer into the buffer. The number to be written
 is expected to be given in host endianness, and this method takes care of
 converting the value written to the byte order specified by <em class="parameter"><code>endian</code></em>
@@ -1055,6 +1116,7 @@ write.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1064,7 +1126,10 @@ qmi_utils_write_gint16_to_buffer (<em class="parameter"><code><a href="https://d
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                   <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint16"><span class="type">gint16</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_gint16_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_gint16_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-gint16" title="qmi_message_tlv_write_gint16 ()"><code class="function">qmi_message_tlv_write_gint16()</code></a> instead.</p>
+</div>
 <p>Writes a signed 16-bit integer into the buffer. The number to be written
 is expected to be given in host endianness, and this method takes care of
 converting the value written to the byte order specified by <em class="parameter"><code>endian</code></em>
@@ -1107,6 +1172,7 @@ write.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1116,7 +1182,10 @@ qmi_utils_write_guint32_to_buffer (<em class="parameter"><code><a href="https://
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                    <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint32"><span class="type">guint32</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_guint32_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_guint32_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-guint32" title="qmi_message_tlv_write_guint32 ()"><code class="function">qmi_message_tlv_write_guint32()</code></a> instead.</p>
+</div>
 <p>Writes an unsigned 32-bit integer into the buffer. The number to be written
 is expected to be given in host endianness, and this method takes care of
 converting the value written to the byte order specified by <em class="parameter"><code>endian</code></em>
@@ -1159,6 +1228,7 @@ write.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1168,7 +1238,10 @@ qmi_utils_write_gint32_to_buffer (<em class="parameter"><code><a href="https://d
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                   <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint32"><span class="type">gint32</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_gint32_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_gint32_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-gint32" title="qmi_message_tlv_write_gint32 ()"><code class="function">qmi_message_tlv_write_gint32()</code></a> instead.</p>
+</div>
 <p>Writes a signed 32-bit integer into the buffer. The number to be written
 is expected to be given in host endianness, and this method takes care of
 converting the value written to the byte order specified by <em class="parameter"><code>endian</code></em>
@@ -1211,6 +1284,7 @@ write.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1220,7 +1294,10 @@ qmi_utils_write_guint64_to_buffer (<em class="parameter"><code><a href="https://
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                    <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                    <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_guint64_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_guint64_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-guint64" title="qmi_message_tlv_write_guint64 ()"><code class="function">qmi_message_tlv_write_guint64()</code></a> instead.</p>
+</div>
 <p>Writes an unsigned 64-bit integer into the buffer. The number to be written
 is expected to be given in host endianness, and this method takes care of
 converting the value written to the byte order specified by <em class="parameter"><code>endian</code></em>
@@ -1263,6 +1340,7 @@ write.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1272,7 +1350,10 @@ qmi_utils_write_gint64_to_buffer (<em class="parameter"><code><a href="https://d
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                   <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint64"><span class="type">gint64</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_gint64_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_gint64_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-gint64" title="qmi_message_tlv_write_gint64 ()"><code class="function">qmi_message_tlv_write_gint64()</code></a> instead.</p>
+</div>
 <p>Writes a signed 64-bit integer into the buffer. The number to be written
 is expected to be given in host endianness, and this method takes care of
 converting the value written to the byte order specified by <em class="parameter"><code>endian</code></em>
@@ -1315,6 +1396,7 @@ write.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1325,7 +1407,10 @@ qmi_utils_write_sized_guint_to_buffer (<em class="parameter"><code><a href="http
                                        <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> n_bytes</code></em>,
                                        <em class="parameter"><code><a class="link" href="libqmi-glib-Common-utilities.html#QmiEndian" title="enum QmiEndian"><span class="type">QmiEndian</span></a> endian</code></em>,
                                        <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint64"><span class="type">guint64</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_sized_guint_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_sized_guint_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-sized-guint" title="qmi_message_tlv_write_sized_guint ()"><code class="function">qmi_message_tlv_write_sized_guint()</code></a> instead.</p>
+</div>
 <p>Writes a <em class="parameter"><code>n_bytes</code></em>
 -sized unsigned integer into the buffer. The number to be
 written is expected to be given in host endianness, and this method takes
@@ -1376,6 +1461,7 @@ bytes write.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1385,7 +1471,10 @@ qmi_utils_write_string_to_buffer (<em class="parameter"><code><a href="https://d
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                   <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> length_prefix_size</code></em>,
                                   <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_string_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_string_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-string" title="qmi_message_tlv_write_string ()"><code class="function">qmi_message_tlv_write_string()</code></a> instead.</p>
+</div>
 <p>Writes a string to the buffer.</p>
 <p>If <em class="parameter"><code>length_prefix_size</code></em>
  is greater than 0, a length prefix integer will be
@@ -1428,6 +1517,7 @@ whole string and the length prefix.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1438,7 +1528,10 @@ qmi_utils_write_fixed_size_string_to_buffer
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> *buffer_size</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint16"><span class="type">guint16</span></a> fixed_size</code></em>,
                                 <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *in</code></em>);</pre>
-<div class="warning"><p><code class="literal">qmi_utils_write_fixed_size_string_to_buffer</code> is deprecated and should not be used in newly-written code.</p></div>
+<div class="warning">
+<p><code class="literal">qmi_utils_write_fixed_size_string_to_buffer</code> has been deprecated since version 1.12 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-tlv-write-string" title="qmi_message_tlv_write_string ()"><code class="function">qmi_message_tlv_write_string()</code></a> instead.</p>
+</div>
 <p>Writes a <em class="parameter"><code>fixed_size</code></em>
 -sized string to the buffer, without any length prefix.</p>
 <p>The user needs to make sure that the buffer is at least <em class="parameter"><code>fixed_size</code></em>
@@ -1482,6 +1575,7 @@ long.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -1515,10 +1609,11 @@ long.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

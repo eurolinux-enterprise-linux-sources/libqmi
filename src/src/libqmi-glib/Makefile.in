@@ -138,8 +138,10 @@ libqmi_glib_la_DEPENDENCIES = ${top_builddir}/src/libqmi-glib/generated/libqmi-g
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 am_libqmi_glib_la_OBJECTS = libqmi_glib_la-qmi-enums-wds.lo \
 	libqmi_glib_la-qmi-utils.lo libqmi_glib_la-qmi-compat.lo \
-	libqmi_glib_la-qmi-message.lo libqmi_glib_la-qmi-device.lo \
-	libqmi_glib_la-qmi-client.lo libqmi_glib_la-qmi-proxy.lo
+	libqmi_glib_la-qmi-message.lo \
+	libqmi_glib_la-qmi-message-context.lo \
+	libqmi_glib_la-qmi-device.lo libqmi_glib_la-qmi-client.lo \
+	libqmi_glib_la-qmi-proxy.lo
 libqmi_glib_la_OBJECTS = $(am_libqmi_glib_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -290,6 +292,8 @@ GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
+GUDEV_CFLAGS = @GUDEV_CFLAGS@
+GUDEV_LIBS = @GUDEV_LIBS@
 HELP2MAN = @HELP2MAN@
 HTML_DIR = @HTML_DIR@
 INSTALL = @INSTALL@
@@ -421,6 +425,7 @@ libqmi_glib_la_SOURCES = \
 	qmi-enums-nas.h qmi-flags64-nas.h\
 	qmi-enums-wms.h \
 	qmi-enums-pds.h \
+	qmi-enums-pdc.h \
 	qmi-enums-pbm.h \
 	qmi-enums-uim.h \
 	qmi-enums-oma.h \
@@ -430,6 +435,7 @@ libqmi_glib_la_SOURCES = \
 	qmi-utils.h qmi-utils.c \
 	qmi-compat.h qmi-compat.c \
 	qmi-message.h qmi-message.c \
+	qmi-message-context.h qmi-message-context.c \
 	qmi-device.h qmi-device.c \
 	qmi-client.h qmi-client.c \
 	qmi-proxy.h qmi-proxy.c
@@ -454,6 +460,7 @@ include_HEADERS = \
 	qmi-enums-nas.h qmi-flags64-nas.h \
 	qmi-enums-wms.h \
 	qmi-enums-pds.h \
+	qmi-enums-pdc.h \
 	qmi-enums-pbm.h \
 	qmi-enums-uim.h \
 	qmi-enums-oma.h \
@@ -461,6 +468,7 @@ include_HEADERS = \
 	qmi-enums-voice.h \
 	qmi-utils.h \
 	qmi-message.h \
+	qmi-message-context.h \
 	qmi-device.h \
 	qmi-client.h \
 	qmi-proxy.h
@@ -552,6 +560,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libqmi_glib_la-qmi-compat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libqmi_glib_la-qmi-device.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libqmi_glib_la-qmi-enums-wds.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libqmi_glib_la-qmi-message-context.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libqmi_glib_la-qmi-message.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libqmi_glib_la-qmi-proxy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libqmi_glib_la-qmi-utils.Plo@am__quote@
@@ -604,6 +613,13 @@ libqmi_glib_la-qmi-message.lo: qmi-message.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='qmi-message.c' object='libqmi_glib_la-qmi-message.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libqmi_glib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libqmi_glib_la-qmi-message.lo `test -f 'qmi-message.c' || echo '$(srcdir)/'`qmi-message.c
+
+libqmi_glib_la-qmi-message-context.lo: qmi-message-context.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libqmi_glib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libqmi_glib_la-qmi-message-context.lo -MD -MP -MF $(DEPDIR)/libqmi_glib_la-qmi-message-context.Tpo -c -o libqmi_glib_la-qmi-message-context.lo `test -f 'qmi-message-context.c' || echo '$(srcdir)/'`qmi-message-context.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/libqmi_glib_la-qmi-message-context.Tpo $(DEPDIR)/libqmi_glib_la-qmi-message-context.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='qmi-message-context.c' object='libqmi_glib_la-qmi-message-context.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libqmi_glib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libqmi_glib_la-qmi-message-context.lo `test -f 'qmi-message-context.c' || echo '$(srcdir)/'`qmi-message-context.c
 
 libqmi_glib_la-qmi-device.lo: qmi-device.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libqmi_glib_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libqmi_glib_la-qmi-device.lo -MD -MP -MF $(DEPDIR)/libqmi_glib_la-qmi-device.Tpo -c -o libqmi_glib_la-qmi-device.lo `test -f 'qmi-device.c' || echo '$(srcdir)/'`qmi-device.c

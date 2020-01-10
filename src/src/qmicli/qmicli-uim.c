@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>
+ * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #include "config.h"
@@ -48,6 +48,8 @@ static gchar *verify_pin_str;
 static gchar *unblock_pin_str;
 static gchar *change_pin_str;
 static gchar *get_file_attributes_str;
+static gchar *sim_power_on_str;
+static gchar *sim_power_off_str;
 static gboolean get_card_status_flag;
 static gboolean get_supported_messages_flag;
 static gboolean reset_flag;
@@ -85,6 +87,14 @@ static GOptionEntry entries[] = {
     { "uim-get-supported-messages", 0, 0, G_OPTION_ARG_NONE, &get_supported_messages_flag,
       "Get supported messages",
       NULL
+    },
+    { "uim-sim-power-on", 0, 0, G_OPTION_ARG_STRING, &sim_power_on_str,
+      "Power on SIM card",
+      "[(slot number)]"
+    },
+    { "uim-sim-power-off", 0, 0, G_OPTION_ARG_STRING, &sim_power_off_str,
+      "Power off SIM card",
+      "[(slot number)]"
     },
     { "uim-reset", 0, 0, G_OPTION_ARG_NONE, &reset_flag,
       "Reset the service state",
@@ -127,6 +137,8 @@ qmicli_uim_options_enabled (void)
                  !!change_pin_str +
                  !!read_transparent_str +
                  !!get_file_attributes_str +
+                 !!sim_power_on_str +
+                 !!sim_power_off_str +
                  get_card_status_flag +
                  get_supported_messages_flag +
                  reset_flag +
@@ -159,7 +171,7 @@ operation_shutdown (gboolean operation_status)
 {
     /* Cleanup context and finish async operation */
     context_free (ctx);
-    qmicli_async_operation_done (operation_status);
+    qmicli_async_operation_done (operation_status, FALSE);
 }
 
 static QmiMessageUimSetPinProtectionInput *
@@ -554,6 +566,114 @@ get_supported_messages_ready (QmiClientUim *client,
     g_free (str);
 
     qmi_message_uim_get_supported_messages_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+static QmiMessageUimPowerOnSimInput *
+power_on_sim_input_create (const gchar *slot_str)
+{
+    QmiMessageUimPowerOnSimInput *input;
+    guint                         slot;
+    GError                       *error = NULL;
+
+    input = qmi_message_uim_power_on_sim_input_new ();
+
+    if (!qmicli_read_uint_from_string (sim_power_on_str, &slot) || (slot > G_MAXUINT8)) {
+        g_printerr ("error: invalid slot number\n");
+        return NULL;
+    }
+
+    if (!qmi_message_uim_power_on_sim_input_set_slot (input, slot, &error)) {
+        g_printerr ("error: could not create SIM power on input: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_uim_power_on_sim_input_unref (input);
+        input = NULL;
+    }
+
+    return input;
+}
+
+static void
+power_on_sim_ready (QmiClientUim *client,
+                    GAsyncResult *res)
+{
+    QmiMessageUimPowerOnSimOutput *output;
+    GError *error = NULL;
+
+    output = qmi_client_uim_power_on_sim_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_uim_power_on_sim_output_get_result (output, &error)) {
+        g_printerr ("error: could not power on SIM: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_uim_power_on_sim_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    g_print ("[%s] Successfully performed SIM power on\n",
+             qmi_device_get_path_display (ctx->device));
+
+    qmi_message_uim_power_on_sim_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+static QmiMessageUimPowerOffSimInput *
+power_off_sim_input_create (const gchar *slot_str)
+{
+    QmiMessageUimPowerOffSimInput *input;
+    guint                         slot;
+    GError                       *error = NULL;
+
+    input = qmi_message_uim_power_off_sim_input_new ();
+
+    if (!qmicli_read_uint_from_string (sim_power_off_str, &slot) || (slot > G_MAXUINT8)) {
+        g_printerr ("error: invalid slot number\n");
+        return NULL;
+    }
+
+    if (!qmi_message_uim_power_off_sim_input_set_slot (input, slot, &error)) {
+        g_printerr ("error: could not create SIM power off input: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_uim_power_off_sim_input_unref (input);
+        input = NULL;
+    }
+
+    return input;
+}
+
+static void
+power_off_sim_ready (QmiClientUim *client,
+                     GAsyncResult *res)
+{
+    QmiMessageUimPowerOffSimOutput *output;
+    GError *error = NULL;
+
+    output = qmi_client_uim_power_off_sim_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_uim_power_off_sim_output_get_result (output, &error)) {
+        g_printerr ("error: could not power off SIM: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_uim_power_off_sim_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    g_print ("[%s] Successfully performed SIM power off\n",
+             qmi_device_get_path_display (ctx->device));
+
+    qmi_message_uim_power_off_sim_output_unref (output);
     operation_shutdown (TRUE);
 }
 
@@ -1216,6 +1336,46 @@ qmicli_uim_run (QmiDevice *device,
                                                ctx->cancellable,
                                                (GAsyncReadyCallback)get_supported_messages_ready,
                                                NULL);
+        return;
+    }
+
+    /* Request to power on SIM card? */
+    if (sim_power_on_str) {
+        QmiMessageUimPowerOnSimInput *input;
+
+        g_debug ("Asynchronously power on SIM card");
+        input = power_on_sim_input_create (sim_power_on_str);
+        if (!input) {
+            operation_shutdown (FALSE);
+            return;
+        }
+
+        qmi_client_uim_power_on_sim (ctx->client,
+                                     input,
+                                     10,
+                                     ctx->cancellable,
+                                     (GAsyncReadyCallback)power_on_sim_ready,
+                                     NULL);
+        return;
+    }
+
+    /* Request to power off SIM card? */
+    if (sim_power_off_str) {
+        QmiMessageUimPowerOffSimInput *input;
+
+        g_debug ("Asynchronously power off SIM card");
+        input = power_off_sim_input_create (sim_power_off_str);
+        if (!input) {
+            operation_shutdown (FALSE);
+            return;
+        }
+
+        qmi_client_uim_power_off_sim (ctx->client,
+                                      input,
+                                      10,
+                                      ctx->cancellable,
+                                      (GAsyncReadyCallback)power_off_sim_ready,
+                                      NULL);
         return;
     }
 

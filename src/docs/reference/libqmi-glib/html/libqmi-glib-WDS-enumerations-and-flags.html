@@ -7,8 +7,8 @@
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
 <link rel="up" href="ch04.html" title="Wireless Data Service (WDS)">
 <link rel="prev" href="QmiClientWds.html" title="QmiClientWds">
-<link rel="next" href="libqmi-glib-WDS-Packet-Service-Status.html" title="WDS Packet Service Status">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<link rel="next" href="libqmi-glib-WDS-Event-Report.html" title="WDS Event Report">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -21,7 +21,7 @@
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><a accesskey="u" href="ch04.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="QmiClientWds.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="libqmi-glib-WDS-Packet-Service-Status.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="libqmi-glib-WDS-Event-Report.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="libqmi-glib-WDS-enumerations-and-flags"></a><div class="titlepage"></div>
@@ -217,6 +217,27 @@
 <td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-pdp-header-compression-type-get-string" title="qmi_wds_pdp_header_compression_type_get_string ()">qmi_wds_pdp_header_compression_type_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-pdp-data-compression-type-get-string" title="qmi_wds_pdp_data_compression_type_get_string ()">qmi_wds_pdp_data_compression_type_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-qos-class-identifier-get-string" title="qmi_wds_qos_class_identifier_get_string ()">qmi_wds_qos_class_identifier_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
 <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-traffic-class-get-string" title="qmi_wds_traffic_class_get_string ()">qmi_wds_traffic_class_get_string</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
@@ -290,6 +311,90 @@
 </td>
 <td class="function_name">
 <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-autoconnect-setting-roaming-get-string" title="qmi_wds_autoconnect_setting_roaming_get_string ()">qmi_wds_autoconnect_setting_roaming_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-data-call-status-get-string" title="qmi_wds_data_call_status_get_string ()">qmi_wds_data_call_status_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-data-call-type-get-string" title="qmi_wds_data_call_type_get_string ()">qmi_wds_data_call_type_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-data-system-get-string" title="qmi_wds_data_system_get_string ()">qmi_wds_data_system_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-dormancy-status-get-string" title="qmi_wds_dormancy_status_get_string ()">qmi_wds_dormancy_status_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-extended-data-bearer-technology-3gpp2-get-string" title="qmi_wds_extended_data_bearer_technology_3gpp2_get_string ()">qmi_wds_extended_data_bearer_technology_3gpp2_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-extended-data-bearer-technology-3gpp-get-string" title="qmi_wds_extended_data_bearer_technology_3gpp_get_string ()">qmi_wds_extended_data_bearer_technology_3gpp_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-radio-access-technology-get-string" title="qmi_wds_radio_access_technology_get_string ()">qmi_wds_radio_access_technology_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-set-event-report-transfer-statistics-get-string" title="qmi_wds_set_event_report_transfer_statistics_get_string ()">qmi_wds_set_event_report_transfer_statistics_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-so-evdo-rev0-get-string" title="qmi_wds_so_evdo_rev0_get_string ()">qmi_wds_so_evdo_rev0_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-so-evdo-revb-get-string" title="qmi_wds_so_evdo_revb_get_string ()">qmi_wds_so_evdo_revb_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-tethered-call-type-get-string" title="qmi_wds_tethered_call_type_get_string ()">qmi_wds_tethered_call_type_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#qmi-wds-client-type-get-string" title="qmi_wds_client_type_get_string ()">qmi_wds_client_type_get_string</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 </tbody>
@@ -397,6 +502,18 @@
 </tr>
 <tr>
 <td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsPdpHeaderCompressionType" title="enum QmiWdsPdpHeaderCompressionType">QmiWdsPdpHeaderCompressionType</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsPdpDataCompressionType" title="enum QmiWdsPdpDataCompressionType">QmiWdsPdpDataCompressionType</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsQosClassIdentifier" title="enum QmiWdsQosClassIdentifier">QmiWdsQosClassIdentifier</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
 <td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsTrafficClass" title="enum QmiWdsTrafficClass">QmiWdsTrafficClass</a></td>
 </tr>
 <tr>
@@ -439,6 +556,54 @@
 <td class="datatype_keyword">enum</td>
 <td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsAutoconnectSettingRoaming" title="enum QmiWdsAutoconnectSettingRoaming">QmiWdsAutoconnectSettingRoaming</a></td>
 </tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDataCallStatus" title="enum QmiWdsDataCallStatus">QmiWdsDataCallStatus</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDataCallType" title="enum QmiWdsDataCallType">QmiWdsDataCallType</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDataSystem" title="enum QmiWdsDataSystem">QmiWdsDataSystem</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDormancyStatus" title="enum QmiWdsDormancyStatus">QmiWdsDormancyStatus</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsExtendedDataBearerTechnology3gpp" title="enum QmiWdsExtendedDataBearerTechnology3gpp">QmiWdsExtendedDataBearerTechnology3gpp</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsExtendedDataBearerTechnology3gpp2" title="enum QmiWdsExtendedDataBearerTechnology3gpp2">QmiWdsExtendedDataBearerTechnology3gpp2</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsRadioAccessTechnology" title="enum QmiWdsRadioAccessTechnology">QmiWdsRadioAccessTechnology</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsSetEventReportTransferStatistics" title="enum QmiWdsSetEventReportTransferStatistics">QmiWdsSetEventReportTransferStatistics</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsSoEvdoRev0" title="enum QmiWdsSoEvdoRev0">QmiWdsSoEvdoRev0</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsSoEvdoRevB" title="enum QmiWdsSoEvdoRevB">QmiWdsSoEvdoRevB</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsTetheredCallType" title="enum QmiWdsTetheredCallType">QmiWdsTetheredCallType</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsClientType" title="enum QmiWdsClientType">QmiWdsClientType</a></td>
+</tr>
 </tbody>
 </table></div>
 </div>
@@ -449,19 +614,29 @@
     <span class="lineart">├──</span> QmiWdsAutoconnectSettingRoaming
     <span class="lineart">├──</span> QmiWdsCallEndReason
     <span class="lineart">├──</span> QmiWdsCallType
+    <span class="lineart">├──</span> QmiWdsClientType
     <span class="lineart">├──</span> QmiWdsConnectionStatus
     <span class="lineart">├──</span> QmiWdsDataBearerTechnology
+    <span class="lineart">├──</span> QmiWdsDataCallStatus
+    <span class="lineart">├──</span> QmiWdsDataCallType
+    <span class="lineart">├──</span> QmiWdsDataSystem
     <span class="lineart">├──</span> QmiWdsDataSystemNetworkType
     <span class="lineart">├──</span> QmiWdsDeliveryOrder
+    <span class="lineart">├──</span> QmiWdsDormancyStatus
     <span class="lineart">├──</span> QmiWdsDsProfileError
     <span class="lineart">├──</span> QmiWdsExtendedTechnologyPreference
     <span class="lineart">├──</span> QmiWdsIpFamily
     <span class="lineart">├──</span> QmiWdsNetworkType
+    <span class="lineart">├──</span> QmiWdsPdpDataCompressionType
+    <span class="lineart">├──</span> QmiWdsPdpHeaderCompressionType
     <span class="lineart">├──</span> QmiWdsPdpType
     <span class="lineart">├──</span> QmiWdsProfileType
+    <span class="lineart">├──</span> QmiWdsQosClassIdentifier
+    <span class="lineart">├──</span> QmiWdsRadioAccessTechnology
     <span class="lineart">├──</span> QmiWdsSduErroneousDelivery
     <span class="lineart">├──</span> QmiWdsSduErrorRatio
     <span class="lineart">├──</span> QmiWdsSduResidualBitErrorRatio
+    <span class="lineart">├──</span> QmiWdsTetheredCallType
     <span class="lineart">├──</span> QmiWdsTrafficClass
     <span class="lineart">├──</span> QmiWdsVerboseCallEndReason3gpp
     <span class="lineart">├──</span> QmiWdsVerboseCallEndReasonCm
@@ -473,12 +648,17 @@
     <span class="lineart">╰──</span> QmiWdsVerboseCallEndReasonType
     <a href="https://developer.gnome.org/gobject/unstable/gobject-Enumeration-and-Flag-Types.html">GFlags</a>
     <span class="lineart">├──</span> QmiWdsAuthentication
+    <span class="lineart">├──</span> QmiWdsExtendedDataBearerTechnology3gpp
+    <span class="lineart">├──</span> QmiWdsExtendedDataBearerTechnology3gpp2
     <span class="lineart">├──</span> QmiWdsGetCurrentSettingsRequestedSettings
     <span class="lineart">├──</span> QmiWdsPacketStatisticsMaskFlag
     <span class="lineart">├──</span> QmiWdsRat3gpp
     <span class="lineart">├──</span> QmiWdsRat3gpp2
+    <span class="lineart">├──</span> QmiWdsSetEventReportTransferStatistics
     <span class="lineart">├──</span> QmiWdsSoCdma1x
+    <span class="lineart">├──</span> QmiWdsSoEvdoRev0
     <span class="lineart">├──</span> QmiWdsSoEvdoRevA
+    <span class="lineart">├──</span> QmiWdsSoEvdoRevB
     <span class="lineart">╰──</span> QmiWdsTechnologyPreference
 </pre>
 </div>
@@ -515,6 +695,7 @@ qmi_wds_ip_family_get_string (<em class="parameter"><code><a class="link" href="
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -574,6 +755,7 @@ qmi_wds_extended_technology_preference_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -602,6 +784,7 @@ qmi_wds_call_type_get_string (<em class="parameter"><code><a class="link" href="
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -630,6 +813,7 @@ qmi_wds_call_end_reason_get_string (<em class="parameter"><code><a class="link" 
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -638,6 +822,35 @@ qmi_wds_call_end_reason_get_string (<em class="parameter"><code><a class="link" 
 qmi_wds_verbose_call_end_reason_get_string
                                (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsVerboseCallEndReasonType" title="enum QmiWdsVerboseCallEndReasonType"><span class="type">QmiWdsVerboseCallEndReasonType</span></a> type</code></em>,
                                 <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gint16"><span class="type">gint16</span></a> reason</code></em>);</pre>
+<p>Get verbose call end reason based on the reason type.</p>
+<div class="refsect3">
+<a name="qmi-wds-verbose-call-end-reason-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>type</p></td>
+<td class="parameter_description"><p>a <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsVerboseCallEndReasonType" title="enum QmiWdsVerboseCallEndReasonType"><span class="type">QmiWdsVerboseCallEndReasonType</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>reason</p></td>
+<td class="parameter_description"><p>the reason id.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-verbose-call-end-reason-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the reason, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -667,6 +880,7 @@ qmi_wds_verbose_call_end_reason_type_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -696,6 +910,7 @@ qmi_wds_verbose_call_end_reason_mip_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -725,6 +940,7 @@ qmi_wds_verbose_call_end_reason_internal_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -754,6 +970,7 @@ qmi_wds_verbose_call_end_reason_cm_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -783,6 +1000,7 @@ qmi_wds_verbose_call_end_reason_3gpp_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -812,6 +1030,7 @@ qmi_wds_verbose_call_end_reason_ppp_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -841,6 +1060,7 @@ qmi_wds_verbose_call_end_reason_ehrpd_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -870,6 +1090,7 @@ qmi_wds_verbose_call_end_reason_ipv6_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -898,6 +1119,7 @@ qmi_wds_connection_status_get_string (<em class="parameter"><code><a class="link
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -927,6 +1149,7 @@ qmi_wds_data_bearer_technology_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -955,6 +1178,7 @@ qmi_wds_network_type_get_string (<em class="parameter"><code><a class="link" hre
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -984,6 +1208,7 @@ qmi_wds_data_system_network_type_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1133,6 +1358,7 @@ qmi_wds_get_current_settings_requested_settings_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1161,6 +1387,97 @@ qmi_wds_pdp_type_get_string (<em class="parameter"><code><a class="link" href="l
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-pdp-header-compression-type-get-string"></a><h3>qmi_wds_pdp_header_compression_type_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_pdp_header_compression_type_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsPdpHeaderCompressionType" title="enum QmiWdsPdpHeaderCompressionType"><span class="type">QmiWdsPdpHeaderCompressionType</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsPdpHeaderCompressionType" title="enum QmiWdsPdpHeaderCompressionType"><span class="type">QmiWdsPdpHeaderCompressionType</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-pdp-header-compression-type-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsPdpHeaderCompressionType.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-pdp-header-compression-type-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-pdp-data-compression-type-get-string"></a><h3>qmi_wds_pdp_data_compression_type_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_pdp_data_compression_type_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsPdpDataCompressionType" title="enum QmiWdsPdpDataCompressionType"><span class="type">QmiWdsPdpDataCompressionType</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsPdpDataCompressionType" title="enum QmiWdsPdpDataCompressionType"><span class="type">QmiWdsPdpDataCompressionType</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-pdp-data-compression-type-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsPdpDataCompressionType.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-pdp-data-compression-type-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-qos-class-identifier-get-string"></a><h3>qmi_wds_qos_class_identifier_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_qos_class_identifier_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsQosClassIdentifier" title="enum QmiWdsQosClassIdentifier"><span class="type">QmiWdsQosClassIdentifier</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsQosClassIdentifier" title="enum QmiWdsQosClassIdentifier"><span class="type">QmiWdsQosClassIdentifier</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-qos-class-identifier-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsQosClassIdentifier.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-qos-class-identifier-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1189,6 +1506,7 @@ qmi_wds_traffic_class_get_string (<em class="parameter"><code><a class="link" hr
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1219,6 +1537,7 @@ each <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsAut
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1247,6 +1566,7 @@ qmi_wds_profile_type_get_string (<em class="parameter"><code><a class="link" hre
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1275,6 +1595,7 @@ qmi_wds_delivery_order_get_string (<em class="parameter"><code><a class="link" h
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1303,6 +1624,7 @@ qmi_wds_sdu_error_ratio_get_string (<em class="parameter"><code><a class="link" 
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1332,6 +1654,7 @@ qmi_wds_sdu_residual_bit_error_ratio_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1361,6 +1684,7 @@ qmi_wds_sdu_erroneous_delivery_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1391,6 +1715,7 @@ each <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsPac
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1419,6 +1744,7 @@ qmi_wds_ds_profile_error_get_string (<em class="parameter"><code><a class="link"
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-8.html#api-index-1.8">1.8</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1448,6 +1774,7 @@ qmi_wds_autoconnect_setting_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1477,13 +1804,364 @@ qmi_wds_autoconnect_setting_roaming_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-data-call-status-get-string"></a><h3>qmi_wds_data_call_status_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_data_call_status_get_string (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDataCallStatus" title="enum QmiWdsDataCallStatus"><span class="type">QmiWdsDataCallStatus</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDataCallStatus" title="enum QmiWdsDataCallStatus"><span class="type">QmiWdsDataCallStatus</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-data-call-status-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsDataCallStatus.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-data-call-status-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-data-call-type-get-string"></a><h3>qmi_wds_data_call_type_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_data_call_type_get_string (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDataCallType" title="enum QmiWdsDataCallType"><span class="type">QmiWdsDataCallType</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDataCallType" title="enum QmiWdsDataCallType"><span class="type">QmiWdsDataCallType</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-data-call-type-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsDataCallType.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-data-call-type-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-data-system-get-string"></a><h3>qmi_wds_data_system_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_data_system_get_string (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDataSystem" title="enum QmiWdsDataSystem"><span class="type">QmiWdsDataSystem</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDataSystem" title="enum QmiWdsDataSystem"><span class="type">QmiWdsDataSystem</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-data-system-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsDataSystem.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-data-system-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-dormancy-status-get-string"></a><h3>qmi_wds_dormancy_status_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_dormancy_status_get_string (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDormancyStatus" title="enum QmiWdsDormancyStatus"><span class="type">QmiWdsDormancyStatus</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsDormancyStatus" title="enum QmiWdsDormancyStatus"><span class="type">QmiWdsDormancyStatus</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-dormancy-status-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsDormancyStatus.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-dormancy-status-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-extended-data-bearer-technology-3gpp2-get-string"></a><h3>qmi_wds_extended_data_bearer_technology_3gpp2_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_extended_data_bearer_technology_3gpp2_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsExtendedDataBearerTechnology3gpp2" title="enum QmiWdsExtendedDataBearerTechnology3gpp2"><span class="type">QmiWdsExtendedDataBearerTechnology3gpp2</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsExtendedDataBearerTechnology3gpp2" title="enum QmiWdsExtendedDataBearerTechnology3gpp2"><span class="type">QmiWdsExtendedDataBearerTechnology3gpp2</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-extended-data-bearer-technology-3gpp2-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsExtendedDataBearerTechnology3gpp2.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-extended-data-bearer-technology-3gpp2-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-extended-data-bearer-technology-3gpp-get-string"></a><h3>qmi_wds_extended_data_bearer_technology_3gpp_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_extended_data_bearer_technology_3gpp_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsExtendedDataBearerTechnology3gpp" title="enum QmiWdsExtendedDataBearerTechnology3gpp"><span class="type">QmiWdsExtendedDataBearerTechnology3gpp</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsExtendedDataBearerTechnology3gpp" title="enum QmiWdsExtendedDataBearerTechnology3gpp"><span class="type">QmiWdsExtendedDataBearerTechnology3gpp</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-extended-data-bearer-technology-3gpp-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsExtendedDataBearerTechnology3gpp.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-extended-data-bearer-technology-3gpp-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-radio-access-technology-get-string"></a><h3>qmi_wds_radio_access_technology_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_radio_access_technology_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsRadioAccessTechnology" title="enum QmiWdsRadioAccessTechnology"><span class="type">QmiWdsRadioAccessTechnology</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsRadioAccessTechnology" title="enum QmiWdsRadioAccessTechnology"><span class="type">QmiWdsRadioAccessTechnology</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-radio-access-technology-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsRadioAccessTechnology.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-radio-access-technology-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-set-event-report-transfer-statistics-get-string"></a><h3>qmi_wds_set_event_report_transfer_statistics_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_set_event_report_transfer_statistics_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsSetEventReportTransferStatistics" title="enum QmiWdsSetEventReportTransferStatistics"><span class="type">QmiWdsSetEventReportTransferStatistics</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsSetEventReportTransferStatistics" title="enum QmiWdsSetEventReportTransferStatistics"><span class="type">QmiWdsSetEventReportTransferStatistics</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-set-event-report-transfer-statistics-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsSetEventReportTransferStatistics.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-set-event-report-transfer-statistics-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-so-evdo-rev0-get-string"></a><h3>qmi_wds_so_evdo_rev0_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_so_evdo_rev0_get_string (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsSoEvdoRev0" title="enum QmiWdsSoEvdoRev0"><span class="type">QmiWdsSoEvdoRev0</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsSoEvdoRev0" title="enum QmiWdsSoEvdoRev0"><span class="type">QmiWdsSoEvdoRev0</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-so-evdo-rev0-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsSoEvdoRev0.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-so-evdo-rev0-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-so-evdo-revb-get-string"></a><h3>qmi_wds_so_evdo_revb_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_so_evdo_revb_get_string (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsSoEvdoRevB" title="enum QmiWdsSoEvdoRevB"><span class="type">QmiWdsSoEvdoRevB</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsSoEvdoRevB" title="enum QmiWdsSoEvdoRevB"><span class="type">QmiWdsSoEvdoRevB</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-so-evdo-revb-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsSoEvdoRevB.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-so-evdo-revb-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-tethered-call-type-get-string"></a><h3>qmi_wds_tethered_call_type_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_tethered_call_type_get_string (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsTetheredCallType" title="enum QmiWdsTetheredCallType"><span class="type">QmiWdsTetheredCallType</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsTetheredCallType" title="enum QmiWdsTetheredCallType"><span class="type">QmiWdsTetheredCallType</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-tethered-call-type-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsTetheredCallType.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-tethered-call-type-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-wds-client-type-get-string"></a><h3>qmi_wds_client_type_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_wds_client_type_get_string (<em class="parameter"><code><a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsClientType" title="enum QmiWdsClientType"><span class="type">QmiWdsClientType</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-WDS-enumerations-and-flags.html#QmiWdsClientType" title="enum QmiWdsClientType"><span class="type">QmiWdsClientType</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-wds-client-type-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiWdsClientType.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-wds-client-type-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
 </div>
 </div>
 <div class="refsect1">
 <a name="libqmi-glib-WDS-enumerations-and-flags.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="QmiWdsIpFamily"></a><h3>enum QmiWdsIpFamily</h3>
-<p>Type of IP family preference.</p>
+<p>Type of IP family.</p>
 <div class="refsect3">
 <a name="QmiWdsIpFamily.members"></a><h4>Members</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -1493,6 +2171,13 @@ qmi_wds_autoconnect_setting_roaming_get_string
 <col width="200px" class="enum_members_annotations">
 </colgroup>
 <tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-IP-FAMILY-UNKNOWN:CAPS"></a>QMI_WDS_IP_FAMILY_UNKNOWN</p></td>
+<td class="enum_member_description">
+<p>unknown. Since: 1.18.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-IP-FAMILY-IPV4:CAPS"></a>QMI_WDS_IP_FAMILY_IPV4</p></td>
 <td class="enum_member_description">
@@ -1517,6 +2202,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1548,6 +2234,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1600,6 +2287,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1631,6 +2319,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2152,6 +2841,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2218,6 +2908,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2453,6 +3144,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2520,118 +3212,119 @@ qmi_wds_autoconnect_setting_roaming_get_string
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-PDN-IPV4-CALL-DISALLOWED:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_PDN_IPV4_CALL_DISALLOWED</p></td>
 <td class="enum_member_description">
-<p>PDN IPv4 call disallowed.</p>
+<p>PDN IPv4 call disallowed. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-PDN-IPV4-CALL-THROTTLED:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_PDN_IPV4_CALL_THROTTLED</p></td>
 <td class="enum_member_description">
-<p>PDN IPv4 call throttled.</p>
+<p>PDN IPv4 call throttled. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-PDN-IPV6-CALL-DISALLOWED:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_PDN_IPV6_CALL_DISALLOWED</p></td>
 <td class="enum_member_description">
-<p>PDN IPv6 call disallowed.</p>
+<p>PDN IPv6 call disallowed. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-PDN-IPV6-CALL-THROTTLED:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_PDN_IPV6_CALL_THROTTLED</p></td>
 <td class="enum_member_description">
-<p>PDN IPv6 call throttled.</p>
+<p>PDN IPv6 call throttled. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-MODEM-RESTART:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_MODEM_RESTART</p></td>
 <td class="enum_member_description">
-<p>Modem restart.</p>
+<p>Modem restart. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-PDP-PPP-NOT-SUPPORTED:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_PDP_PPP_NOT_SUPPORTED</p></td>
 <td class="enum_member_description">
-<p>PDP PPP not supported.</p>
+<p>PDP PPP not supported. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-UNPREFERRED-RAT:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_UNPREFERRED_RAT</p></td>
 <td class="enum_member_description">
-<p>Unpreferred RAT.</p>
+<p>Unpreferred RAT. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-PHYSICAL-LINK-CLOSE-IN-PROGRESS:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_PHYSICAL_LINK_CLOSE_IN_PROGRESS</p></td>
 <td class="enum_member_description">
-<p>Physical link close in progress.</p>
+<p>Physical link close in progress. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-APN-PENDING-HANDOVER:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_APN_PENDING_HANDOVER</p></td>
 <td class="enum_member_description">
-<p>APN pending handover.</p>
+<p>APN pending handover. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-PROFILE-BEARER-INCOMPATIBLE:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_PROFILE_BEARER_INCOMPATIBLE</p></td>
 <td class="enum_member_description">
-<p>Profile bearer incompatible.</p>
+<p>Profile bearer incompatible. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-MMGDSI-CARD-EVENT:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_MMGDSI_CARD_EVENT</p></td>
 <td class="enum_member_description">
-<p>MMGDSI Card event.</p>
+<p>MMGDSI Card event. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-LPM-OR-POWER-DOWN:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_LPM_OR_POWER_DOWN</p></td>
 <td class="enum_member_description">
-<p>LPM or power down.</p>
+<p>LPM or power down. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-APN-DISABLED:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_APN_DISABLED</p></td>
 <td class="enum_member_description">
-<p>APN disabled.</p>
+<p>APN disabled. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-MPIT-EXPIRED:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_MPIT_EXPIRED</p></td>
 <td class="enum_member_description">
-<p>MPIT expired.</p>
+<p>MPIT expired. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-IPV6-ADDRESS-TRANSFER-FAILED:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_IPV6_ADDRESS_TRANSFER_FAILED</p></td>
 <td class="enum_member_description">
-<p>IPv6 address transfer failed.</p>
+<p>IPv6 address transfer failed. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-VERBOSE-CALL-END-REASON-INTERNAL-TRAT-SWAP-FAILED:CAPS"></a>QMI_WDS_VERBOSE_CALL_END_REASON_INTERNAL_TRAT_SWAP_FAILED</p></td>
 <td class="enum_member_description">
-<p>TRAT swap failed.</p>
+<p>TRAT swap failed. Since: 1.14.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3007,6 +3700,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3298,6 +3992,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3358,6 +4053,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3488,6 +4184,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3520,6 +4217,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3572,6 +4270,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3698,9 +4397,45 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-BEARER-TECHNOLOGY-HSDPAPLUS-PLUS-64QAM:CAPS"></a>QMI_WDS_DATA_BEARER_TECHNOLOGY_HSDPAPLUS_PLUS_64QAM</p></td>
+<td class="enum_member_description">
+<p>HSDPA+ with 64QAM. Since: 1.18.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-BEARER-TECHNOLOGY-HSDPAPLUS-PLUS-64QAM-HSUPA:CAPS"></a>QMI_WDS_DATA_BEARER_TECHNOLOGY_HSDPAPLUS_PLUS_64QAM_HSUPA</p></td>
+<td class="enum_member_description">
+<p>HSDPA+ with 64QAM and HSUPA. Since: 1.18.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-BEARER-TECHNOLOGY-TDSCDMA:CAPS"></a>QMI_WDS_DATA_BEARER_TECHNOLOGY_TDSCDMA</p></td>
+<td class="enum_member_description">
+<p>TD-SCDMA. Since: 1.18.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-BEARER-TECHNOLOGY-TDSCDMA-HSDPA:CAPS"></a>QMI_WDS_DATA_BEARER_TECHNOLOGY_TDSCDMA_HSDPA</p></td>
+<td class="enum_member_description">
+<p>TD-SCDMA and HSDPA. Since: 1.18.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-BEARER-TECHNOLOGY-TDSCDMA-HSUPA:CAPS"></a>QMI_WDS_DATA_BEARER_TECHNOLOGY_TDSCDMA_HSUPA</p></td>
+<td class="enum_member_description">
+<p>TD-SCDMA and HSUPA. Since: 1.18.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3739,6 +4474,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3770,6 +4506,7 @@ qmi_wds_autoconnect_setting_roaming_get_string
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3822,6 +4559,20 @@ bearer network type is <em class="parameter"><code>QMI_WDS_NETWORK_TYPE_3GPP2</c
 <td class="enum_member_annotations"> </td>
 </tr>
 <tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RAT-3GPP2-EHRPD:CAPS"></a>QMI_WDS_RAT_3GPP2_EHRPD</p></td>
+<td class="enum_member_description">
+<p>eHRPD. Since: 1.18.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RAT-3GPP2-FMC:CAPS"></a>QMI_WDS_RAT_3GPP2_FMC</p></td>
+<td class="enum_member_description">
+<p>FMC. Since: 1.18.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-RAT-3GPP2-NULL-BEARER:CAPS"></a>QMI_WDS_RAT_3GPP2_NULL_BEARER</p></td>
 <td class="enum_member_description">
 <p>No bearer.</p>
@@ -3831,6 +4582,7 @@ bearer network type is <em class="parameter"><code>QMI_WDS_NETWORK_TYPE_3GPP2</c
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3906,7 +4658,21 @@ bearer network type is <em class="parameter"><code>QMI_WDS_NETWORK_TYPE_3GPP</co
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-RAT-3GPP-DCHSDPAPLUS:CAPS"></a>QMI_WDS_RAT_3GPP_DCHSDPAPLUS</p></td>
 <td class="enum_member_description">
-<p>DC-HSDPA+</p>
+<p>DC-HSDPA+.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RAT-3GPP-64QAM:CAPS"></a>QMI_WDS_RAT_3GPP_64QAM</p></td>
+<td class="enum_member_description">
+<p>64QAM. Since: 1.18.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RAT-3GPP-TDSCDMA:CAPS"></a>QMI_WDS_RAT_3GPP_TDSCDMA</p></td>
+<td class="enum_member_description">
+<p>TD-SCDMA. Since: 1.18.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
@@ -3920,6 +4686,7 @@ bearer network type is <em class="parameter"><code>QMI_WDS_NETWORK_TYPE_3GPP</co
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3969,6 +4736,7 @@ contains <em class="parameter"><code>QMI_WDS_RAT_3GPP2_CDMA1X</code></em>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4018,13 +4786,14 @@ contains <em class="parameter"><code>QMI_WDS_RAT_3GPP2_EVDO_REVA</code></em>
 <tr>
 <td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REVA-EMPA-EHRPD:CAPS"></a>QMI_WDS_SO_EVDO_REVA_EMPA_EHRPD</p></td>
 <td class="enum_member_description">
-<p>EMPA EHRPD.</p>
+<p>EMPA eHRPD.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4176,6 +4945,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4221,6 +4991,187 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsPdpHeaderCompressionType"></a><h3>enum QmiWdsPdpHeaderCompressionType</h3>
+<p>PDP header compression types.</p>
+<div class="refsect3">
+<a name="QmiWdsPdpHeaderCompressionType.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-PDP-HEADER-COMPRESSION-TYPE-OFF:CAPS"></a>QMI_WDS_PDP_HEADER_COMPRESSION_TYPE_OFF</p></td>
+<td class="enum_member_description">
+<p>no header compression</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-PDP-HEADER-COMPRESSION-TYPE-MANUFACTURER-PREFERRED:CAPS"></a>QMI_WDS_PDP_HEADER_COMPRESSION_TYPE_MANUFACTURER_PREFERRED</p></td>
+<td class="enum_member_description">
+<p>manufacturer preferred</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-PDP-HEADER-COMPRESSION-TYPE-RFC1144:CAPS"></a>QMI_WDS_PDP_HEADER_COMPRESSION_TYPE_RFC1144</p></td>
+<td class="enum_member_description">
+<p>RFC1144</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-PDP-HEADER-COMPRESSION-TYPE-RFC2507:CAPS"></a>QMI_WDS_PDP_HEADER_COMPRESSION_TYPE_RFC2507</p></td>
+<td class="enum_member_description">
+<p>RFC2507</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-PDP-HEADER-COMPRESSION-TYPE-RFC3095:CAPS"></a>QMI_WDS_PDP_HEADER_COMPRESSION_TYPE_RFC3095</p></td>
+<td class="enum_member_description">
+<p>RFC3095</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsPdpDataCompressionType"></a><h3>enum QmiWdsPdpDataCompressionType</h3>
+<p>PDP data compression types.</p>
+<div class="refsect3">
+<a name="QmiWdsPdpDataCompressionType.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-PDP-DATA-COMPRESSION-TYPE-OFF:CAPS"></a>QMI_WDS_PDP_DATA_COMPRESSION_TYPE_OFF</p></td>
+<td class="enum_member_description">
+<p>no data compression</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-PDP-DATA-COMPRESSION-TYPE-MANUFACTURER-PREFERRED:CAPS"></a>QMI_WDS_PDP_DATA_COMPRESSION_TYPE_MANUFACTURER_PREFERRED</p></td>
+<td class="enum_member_description">
+<p>manufacturer preferred</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-PDP-DATA-COMPRESSION-TYPE-V42BIS:CAPS"></a>QMI_WDS_PDP_DATA_COMPRESSION_TYPE_V42BIS</p></td>
+<td class="enum_member_description">
+<p>V42bis</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-PDP-DATA-COMPRESSION-TYPE-V44:CAPS"></a>QMI_WDS_PDP_DATA_COMPRESSION_TYPE_V44</p></td>
+<td class="enum_member_description">
+<p>V44</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsQosClassIdentifier"></a><h3>enum QmiWdsQosClassIdentifier</h3>
+<p>QoS Class Identifier.</p>
+<div class="refsect3">
+<a name="QmiWdsQosClassIdentifier.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-QOS-CLASS-IDENTIFIER-NETWORK-ASSIGN:CAPS"></a>QMI_WDS_QOS_CLASS_IDENTIFIER_NETWORK_ASSIGN</p></td>
+<td class="enum_member_description">
+<p>network assigned</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-QOS-CLASS-IDENTIFIER-GUARANTEED-BITRATE1:CAPS"></a>QMI_WDS_QOS_CLASS_IDENTIFIER_GUARANTEED_BITRATE1</p></td>
+<td class="enum_member_description">
+<p>guaranteed bitrate 1</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-QOS-CLASS-IDENTIFIER-GUARANTEED-BITRATE2:CAPS"></a>QMI_WDS_QOS_CLASS_IDENTIFIER_GUARANTEED_BITRATE2</p></td>
+<td class="enum_member_description">
+<p>guaranteed bitrate 2</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-QOS-CLASS-IDENTIFIER-GUARANTEED-BITRATE3:CAPS"></a>QMI_WDS_QOS_CLASS_IDENTIFIER_GUARANTEED_BITRATE3</p></td>
+<td class="enum_member_description">
+<p>guaranteed bitrate 3</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-QOS-CLASS-IDENTIFIER-GUARANTEED-BITRATE4:CAPS"></a>QMI_WDS_QOS_CLASS_IDENTIFIER_GUARANTEED_BITRATE4</p></td>
+<td class="enum_member_description">
+<p>guaranteed bitrate 4</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-QOS-CLASS-IDENTIFIER-NON-GUARANTEED-BITRATE5:CAPS"></a>QMI_WDS_QOS_CLASS_IDENTIFIER_NON_GUARANTEED_BITRATE5</p></td>
+<td class="enum_member_description">
+<p>non-guaranteed bitrate 5</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-QOS-CLASS-IDENTIFIER-NON-GUARANTEED-BITRATE6:CAPS"></a>QMI_WDS_QOS_CLASS_IDENTIFIER_NON_GUARANTEED_BITRATE6</p></td>
+<td class="enum_member_description">
+<p>non-guaranteed bitrate 6</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-QOS-CLASS-IDENTIFIER-NON-GUARANTEED-BITRATE7:CAPS"></a>QMI_WDS_QOS_CLASS_IDENTIFIER_NON_GUARANTEED_BITRATE7</p></td>
+<td class="enum_member_description">
+<p>non-guaranteed bitrate 7</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-QOS-CLASS-IDENTIFIER-NON-GUARANTEED-BITRATE8:CAPS"></a>QMI_WDS_QOS_CLASS_IDENTIFIER_NON_GUARANTEED_BITRATE8</p></td>
+<td class="enum_member_description">
+<p>non-guaranteed bitrate 8</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4273,6 +5224,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4311,6 +5263,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4342,6 +5295,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4380,6 +5334,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4453,6 +5408,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4540,6 +5496,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4585,6 +5542,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4672,6 +5630,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4829,6 +5788,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-8.html#api-index-1.8">1.8</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4867,6 +5827,7 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4898,10 +5859,810 @@ current WDS bearer settings.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-14.html#api-index-1.14">1.14</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsDataCallStatus"></a><h3>enum QmiWdsDataCallStatus</h3>
+<p>Data call status.</p>
+<div class="refsect3">
+<a name="QmiWdsDataCallStatus.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-CALL-STATUS-UNKNOWN:CAPS"></a>QMI_WDS_DATA_CALL_STATUS_UNKNOWN</p></td>
+<td class="enum_member_description">
+<p>data call status unknown.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-CALL-STATUS-ACTIVATED:CAPS"></a>QMI_WDS_DATA_CALL_STATUS_ACTIVATED</p></td>
+<td class="enum_member_description">
+<p>data call status activated.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-CALL-STATUS-TERMINATED:CAPS"></a>QMI_WDS_DATA_CALL_STATUS_TERMINATED</p></td>
+<td class="enum_member_description">
+<p>data call status terminated.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsDataCallType"></a><h3>enum QmiWdsDataCallType</h3>
+<p>Data call type.</p>
+<div class="refsect3">
+<a name="QmiWdsDataCallType.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-CALL-TYPE-UNKNOWN:CAPS"></a>QMI_WDS_DATA_CALL_TYPE_UNKNOWN</p></td>
+<td class="enum_member_description">
+<p>data call type unknown.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-CALL-TYPE-EMBEDDED:CAPS"></a>QMI_WDS_DATA_CALL_TYPE_EMBEDDED</p></td>
+<td class="enum_member_description">
+<p>embedded data call.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-CALL-TYPE-TETHERED:CAPS"></a>QMI_WDS_DATA_CALL_TYPE_TETHERED</p></td>
+<td class="enum_member_description">
+<p>tethered data call.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-CALL-TYPE-MODEM-EMBEDDED:CAPS"></a>QMI_WDS_DATA_CALL_TYPE_MODEM_EMBEDDED</p></td>
+<td class="enum_member_description">
+<p>modem embedded data call.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsDataSystem"></a><h3>enum QmiWdsDataSystem</h3>
+<p>Data system type.</p>
+<div class="refsect3">
+<a name="QmiWdsDataSystem.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-SYSTEM-UNKNOWN:CAPS"></a>QMI_WDS_DATA_SYSTEM_UNKNOWN</p></td>
+<td class="enum_member_description">
+<p>unknown</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-SYSTEM-CDMA1X:CAPS"></a>QMI_WDS_DATA_SYSTEM_CDMA1X</p></td>
+<td class="enum_member_description">
+<p>CDMA 1x</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-SYSTEM-CDMA1X-EVDO:CAPS"></a>QMI_WDS_DATA_SYSTEM_CDMA1X_EVDO</p></td>
+<td class="enum_member_description">
+<p>CDMA 1x EVDO</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-SYSTEM-GPRS:CAPS"></a>QMI_WDS_DATA_SYSTEM_GPRS</p></td>
+<td class="enum_member_description">
+<p>GPRS</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-SYSTEM-WCDMA:CAPS"></a>QMI_WDS_DATA_SYSTEM_WCDMA</p></td>
+<td class="enum_member_description">
+<p>WCDMA</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-SYSTEM-LTE:CAPS"></a>QMI_WDS_DATA_SYSTEM_LTE</p></td>
+<td class="enum_member_description">
+<p>LTE</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DATA-SYSTEM-TDSCDMA:CAPS"></a>QMI_WDS_DATA_SYSTEM_TDSCDMA</p></td>
+<td class="enum_member_description">
+<p>TD-SCDMA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsDormancyStatus"></a><h3>enum QmiWdsDormancyStatus</h3>
+<p>Dormancy status.</p>
+<div class="refsect3">
+<a name="QmiWdsDormancyStatus.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DORMANCY-STATUS-UNKNOWN:CAPS"></a>QMI_WDS_DORMANCY_STATUS_UNKNOWN</p></td>
+<td class="enum_member_description">
+<p>dormancy status unknown.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DORMANCY-STATUS-TRAFFIC-CHANNEL-DORMANT:CAPS"></a>QMI_WDS_DORMANCY_STATUS_TRAFFIC_CHANNEL_DORMANT</p></td>
+<td class="enum_member_description">
+<p>traffic channel is dormant.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-DORMANCY-STATUS-TRAFFIC-CHANNEL-ACTIVE:CAPS"></a>QMI_WDS_DORMANCY_STATUS_TRAFFIC_CHANNEL_ACTIVE</p></td>
+<td class="enum_member_description">
+<p>traffic channel is active.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsExtendedDataBearerTechnology3gpp"></a><h3>enum QmiWdsExtendedDataBearerTechnology3gpp</h3>
+<p>3GPP extended data bearer technologies.</p>
+<div class="refsect3">
+<a name="QmiWdsExtendedDataBearerTechnology3gpp.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-UNKNOWN:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_UNKNOWN</p></td>
+<td class="enum_member_description">
+<p>unknown.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-WCDMA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_WCDMA</p></td>
+<td class="enum_member_description">
+<p>WCDMA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-HSDPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_HSDPA</p></td>
+<td class="enum_member_description">
+<p>HSDPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-HSUPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_HSUPA</p></td>
+<td class="enum_member_description">
+<p>HSUPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-HSDPA-PLUS:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_HSDPA_PLUS</p></td>
+<td class="enum_member_description">
+<p>HSDPA+.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-DC-HSDPA-PLUS:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_DC_HSDPA_PLUS</p></td>
+<td class="enum_member_description">
+<p>Dual-cell HSDPA+.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-64QAM:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_64QAM</p></td>
+<td class="enum_member_description">
+<p>64-QAM.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-HSPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_HSPA</p></td>
+<td class="enum_member_description">
+<p>HSPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-GPRS:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_GPRS</p></td>
+<td class="enum_member_description">
+<p>GPRS.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-EDGE:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_EDGE</p></td>
+<td class="enum_member_description">
+<p>EDGE.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-GSM:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_GSM</p></td>
+<td class="enum_member_description">
+<p>GSM.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-S2B:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_S2B</p></td>
+<td class="enum_member_description">
+<p>S2B.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-LTE-LIMITED-SERVICE:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_LTE_LIMITED_SERVICE</p></td>
+<td class="enum_member_description">
+<p>LTE limited service.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-LTE-FDD:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_LTE_FDD</p></td>
+<td class="enum_member_description">
+<p>LTE FDD.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP-LTE-TDD:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP_LTE_TDD</p></td>
+<td class="enum_member_description">
+<p>LTE TDD.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsExtendedDataBearerTechnology3gpp2"></a><h3>enum QmiWdsExtendedDataBearerTechnology3gpp2</h3>
+<p>3GPP2 extended data bearer technologies.</p>
+<div class="refsect3">
+<a name="QmiWdsExtendedDataBearerTechnology3gpp2.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-UNKNOWN:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_UNKNOWN</p></td>
+<td class="enum_member_description">
+<p>unknown.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-RESERVED:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_RESERVED</p></td>
+<td class="enum_member_description">
+<p>reserved.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-CDMA1X-IS95:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_CDMA1X_IS95</p></td>
+<td class="enum_member_description">
+<p>CDMA1x IS-95.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-CDMA1X-IS2000:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_CDMA1X_IS2000</p></td>
+<td class="enum_member_description">
+<p>CDMA1x IS-2000.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-CDMA1X-IS2000-REL-A:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_CDMA1X_IS2000_REL_A</p></td>
+<td class="enum_member_description">
+<p>CDMA1x IS-2000 Release A.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-HDR-REV-0-DPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_HDR_REV_0_DPA</p></td>
+<td class="enum_member_description">
+<p>HDR (EVDO) Rev 0 DPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-HDR-REV-A-DPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_HDR_REV_A_DPA</p></td>
+<td class="enum_member_description">
+<p>HDR (EVDO) Rev A DPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-HDR-REV-B-DPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_HDR_REV_B_DPA</p></td>
+<td class="enum_member_description">
+<p>HDR (EVDO) Rev B DPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-HDR-REV-A-MPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_HDR_REV_A_MPA</p></td>
+<td class="enum_member_description">
+<p>HDR (EVDO) Rev A MPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-HDR-REV-B-MPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_HDR_REV_B_MPA</p></td>
+<td class="enum_member_description">
+<p>HDR (EVDO) Rev B MPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-HDR-REV-A-EMPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_HDR_REV_A_EMPA</p></td>
+<td class="enum_member_description">
+<p>HDR (EVDO) Rev A EMPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-HDR-REV-B-EMPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_HDR_REV_B_EMPA</p></td>
+<td class="enum_member_description">
+<p>HDR (EVDO) Rev B EMPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-HDR-REV-B-MMPA:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_HDR_REV_B_MMPA</p></td>
+<td class="enum_member_description">
+<p>HDR (EVDO) Rev B MMPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-EXTENDED-DATA-BEARER-TECHNOLOGY-3GPP2-HDR-EVDO-FMC:CAPS"></a>QMI_WDS_EXTENDED_DATA_BEARER_TECHNOLOGY_3GPP2_HDR_EVDO_FMC</p></td>
+<td class="enum_member_description">
+<p>HDR EVDO FMC.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsRadioAccessTechnology"></a><h3>enum QmiWdsRadioAccessTechnology</h3>
+<p>Radio access technology.</p>
+<div class="refsect3">
+<a name="QmiWdsRadioAccessTechnology.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-NULL-BEARER:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_NULL_BEARER</p></td>
+<td class="enum_member_description">
+<p>null bearer</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP-WCDMA:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP_WCDMA</p></td>
+<td class="enum_member_description">
+<p>WCDMA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP-GERAN:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP_GERAN</p></td>
+<td class="enum_member_description">
+<p>GERAN.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP-LTE:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP_LTE</p></td>
+<td class="enum_member_description">
+<p>LTE.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP-TDSCDMA:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP_TDSCDMA</p></td>
+<td class="enum_member_description">
+<p>TD-SDCMA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP-WLAN:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP_WLAN</p></td>
+<td class="enum_member_description">
+<p>3GPP WLAN.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP-MAXIMUM:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP_MAXIMUM</p></td>
+<td class="enum_member_description">
+<p>3GPP maximum.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP2-1X:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP2_1X</p></td>
+<td class="enum_member_description">
+<p>CDMA 1x.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP2-HRPD:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP2_HRPD</p></td>
+<td class="enum_member_description">
+<p>CDMA EVDO (HRPD).</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP2-EHRPD:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP2_EHRPD</p></td>
+<td class="enum_member_description">
+<p>CDMA EVDO with eHRPD.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP2-WLAN:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP2_WLAN</p></td>
+<td class="enum_member_description">
+<p>3GPP2 WLAN.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-RADIO-ACCESS-TECHNOLOGY-3GPP2-MAXIMUM:CAPS"></a>QMI_WDS_RADIO_ACCESS_TECHNOLOGY_3GPP2_MAXIMUM</p></td>
+<td class="enum_member_description">
+<p>3GPP2 maximum.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsSetEventReportTransferStatistics"></a><h3>enum QmiWdsSetEventReportTransferStatistics</h3>
+<p>Flags indicating which WDS Set Event Report Transfer Statistics indicators
+should be emitted.</p>
+<div class="refsect3">
+<a name="QmiWdsSetEventReportTransferStatistics.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-TX-PACKETS-OK:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_TX_PACKETS_OK</p></td>
+<td class="enum_member_description">
+<p>report TX packet successes.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-RX-PACKETS-OK:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_RX_PACKETS_OK</p></td>
+<td class="enum_member_description">
+<p>report RX packet successes.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-TX-PACKETS-ERROR:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_TX_PACKETS_ERROR</p></td>
+<td class="enum_member_description">
+<p>report TX packet errors.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-RX-PACKETS-ERROR:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_RX_PACKETS_ERROR</p></td>
+<td class="enum_member_description">
+<p>report RX packet errors.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-TX-OVERFLOWS:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_TX_OVERFLOWS</p></td>
+<td class="enum_member_description">
+<p>report TX overflows.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-RX-OVERFLOWS:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_RX_OVERFLOWS</p></td>
+<td class="enum_member_description">
+<p>report RX overflows.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-TX-BYTES-OK:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_TX_BYTES_OK</p></td>
+<td class="enum_member_description">
+<p>report TX byte total.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-RX-BYTES-OK:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_RX_BYTES_OK</p></td>
+<td class="enum_member_description">
+<p>report RX byte total.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-TX-PACKETS-DROPPED:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_TX_PACKETS_DROPPED</p></td>
+<td class="enum_member_description">
+<p>report TX packets dropped.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SET-EVENT-REPORT-TRANSFER-STATISTICS-REPORT-RX-PACKETS-DROPPED:CAPS"></a>QMI_WDS_SET_EVENT_REPORT_TRANSFER_STATISTICS_REPORT_RX_PACKETS_DROPPED</p></td>
+<td class="enum_member_description">
+<p>report RX packets dropped.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsSoEvdoRev0"></a><h3>enum QmiWdsSoEvdoRev0</h3>
+<p>Flags specifying the Service Option when the bearer network type is
+<em class="parameter"><code>QMI_WDS_NETWORK_TYPE_3GPP2</code></em>
+ and when the Radio Access Technology mask
+contains <em class="parameter"><code>QMI_WDS_RAT_3GPP2_EVDO_REV0</code></em>
+.</p>
+<div class="refsect3">
+<a name="QmiWdsSoEvdoRev0.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REV0-NONE:CAPS"></a>QMI_WDS_SO_EVDO_REV0_NONE</p></td>
+<td class="enum_member_description">
+<p>Unknown, to be ignored.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REV0-DPA:CAPS"></a>QMI_WDS_SO_EVDO_REV0_DPA</p></td>
+<td class="enum_member_description">
+<p>DPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsSoEvdoRevB"></a><h3>enum QmiWdsSoEvdoRevB</h3>
+<p>Flags specifying the Service Option when the bearer network type is
+<em class="parameter"><code>QMI_WDS_NETWORK_TYPE_3GPP2</code></em>
+ and when the Radio Access Technology mask
+contains <em class="parameter"><code>QMI_WDS_RAT_3GPP2_EVDO_REVB</code></em>
+.</p>
+<div class="refsect3">
+<a name="QmiWdsSoEvdoRevB.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REVB-NONE:CAPS"></a>QMI_WDS_SO_EVDO_REVB_NONE</p></td>
+<td class="enum_member_description">
+<p>Unknown, to be ignored.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REVB-DPA:CAPS"></a>QMI_WDS_SO_EVDO_REVB_DPA</p></td>
+<td class="enum_member_description">
+<p>DPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REVB-MFPA:CAPS"></a>QMI_WDS_SO_EVDO_REVB_MFPA</p></td>
+<td class="enum_member_description">
+<p>MFPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REVB-EMPA:CAPS"></a>QMI_WDS_SO_EVDO_REVB_EMPA</p></td>
+<td class="enum_member_description">
+<p>EMPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REVB-EMPA-EHRPD:CAPS"></a>QMI_WDS_SO_EVDO_REVB_EMPA_EHRPD</p></td>
+<td class="enum_member_description">
+<p>EMPA eHRPD.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REVB-MMPA:CAPS"></a>QMI_WDS_SO_EVDO_REVB_MMPA</p></td>
+<td class="enum_member_description">
+<p>MMPA.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-SO-EVDO-REVB-MMPA-EHRPD:CAPS"></a>QMI_WDS_SO_EVDO_REVB_MMPA_EHRPD</p></td>
+<td class="enum_member_description">
+<p>MMPA eHRPD.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsTetheredCallType"></a><h3>enum QmiWdsTetheredCallType</h3>
+<p>Tethered call type.</p>
+<div class="refsect3">
+<a name="QmiWdsTetheredCallType.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-TETHERED-CALL-TYPE-NON-TETHERED:CAPS"></a>QMI_WDS_TETHERED_CALL_TYPE_NON_TETHERED</p></td>
+<td class="enum_member_description">
+<p>non-tethered.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-TETHERED-CALL-TYPE-RMNET:CAPS"></a>QMI_WDS_TETHERED_CALL_TYPE_RMNET</p></td>
+<td class="enum_member_description">
+<p>RmNet.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-TETHERED-CALL-TYPE-DUN:CAPS"></a>QMI_WDS_TETHERED_CALL_TYPE_DUN</p></td>
+<td class="enum_member_description">
+<p>DUN.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiWdsClientType"></a><h3>enum QmiWdsClientType</h3>
+<p>Client Type</p>
+<div class="refsect3">
+<a name="QmiWdsClientType.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-CLIENT-TYPE-TETHERED:CAPS"></a>QMI_WDS_CLIENT_TYPE_TETHERED</p></td>
+<td class="enum_member_description">
+<p>client type tethered</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-WDS-CLIENT-TYPE-UNDEFINED:CAPS"></a>QMI_WDS_CLIENT_TYPE_UNDEFINED</p></td>
+<td class="enum_member_description">
+<p>no client type defined</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

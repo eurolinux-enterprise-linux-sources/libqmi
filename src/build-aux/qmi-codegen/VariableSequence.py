@@ -16,6 +16,7 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
+# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -56,10 +57,10 @@ class VariableSequence(Variable):
     """
     Emit all types for the members of the sequence
     """
-    def emit_types(self, f):
+    def emit_types(self, f, since):
         # Emit types for each member
         for member in self.members:
-            member['object'].emit_types(f)
+            member['object'].emit_types(f, since)
 
 
     """
@@ -132,6 +133,9 @@ class VariableSequence(Variable):
     of the variables in the sequence.
     """
     def build_getter_declaration(self, line_prefix, variable_name):
+        if not self.visible:
+            return ""
+
         built = ''
         for member in self.members:
             built += member['object'].build_getter_declaration(line_prefix, variable_name + '_' + member['name'])
@@ -142,6 +146,9 @@ class VariableSequence(Variable):
     Documentation for the getter
     """
     def build_getter_documentation(self, line_prefix, variable_name):
+        if not self.visible:
+            return ""
+
         built = ''
         for member in self.members:
             built += member['object'].build_getter_documentation(line_prefix, variable_name + '_' + member['name'])
@@ -152,6 +159,9 @@ class VariableSequence(Variable):
     Builds the Struct getter implementation
     """
     def build_getter_implementation(self, line_prefix, variable_name_from, variable_name_to, to_is_reference):
+        if not self.visible:
+            return ""
+
         built = ''
         for member in self.members:
             built += member['object'].build_getter_implementation(line_prefix,
@@ -166,6 +176,9 @@ class VariableSequence(Variable):
     of the variables in the sequence.
     """
     def build_setter_declaration(self, line_prefix, variable_name):
+        if not self.visible:
+            return ""
+
         built = ''
         for member in self.members:
             built += member['object'].build_setter_declaration(line_prefix, variable_name + '_' + member['name'])
@@ -176,6 +189,9 @@ class VariableSequence(Variable):
     Documentation for the setter
     """
     def build_setter_documentation(self, line_prefix, variable_name):
+        if not self.visible:
+            return ""
+
         built = ''
         for member in self.members:
             built += member['object'].build_setter_documentation(line_prefix, variable_name + '_' + member['name'])
@@ -186,6 +202,9 @@ class VariableSequence(Variable):
     Builds the Sequence setter implementation
     """
     def build_setter_implementation(self, line_prefix, variable_name_from, variable_name_to):
+        if not self.visible:
+            return ""
+
         built = ''
         for member in self.members:
             built += member['object'].build_setter_implementation(line_prefix,

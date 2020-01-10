@@ -16,7 +16,7 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>
+# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -62,12 +62,13 @@ class VariableStruct(Variable):
     """
     Emit all types for the members of the struct plus the new struct type itself
     """
-    def emit_types(self, f):
+    def emit_types(self, f, since):
         # Emit types for each member
         for member in self.members:
-            member['object'].emit_types(f)
+            member['object'].emit_types(f, since)
 
-        translations = { 'format' : self.public_format }
+        translations = { 'format' : self.public_format,
+                         'since'  : since }
         template = (
             '\n'
             '/**\n'
@@ -79,6 +80,8 @@ class VariableStruct(Variable):
         template = (
             ' *\n'
             ' * A ${format} struct.\n'
+            ' *\n'
+            ' * Since: ${since}\n'
             ' */\n'
             'typedef struct _${format} {\n')
         f.write(string.Template(template).substitute(translations))
@@ -163,6 +166,9 @@ class VariableStruct(Variable):
     of the variables in the struct.
     """
     def build_getter_declaration(self, line_prefix, variable_name):
+        if not self.visible:
+            return ""
+
         translations = { 'lp'     : line_prefix,
                          'format' : self.public_format,
                          'name'   : variable_name }
@@ -176,6 +182,9 @@ class VariableStruct(Variable):
     Documentation for the getter
     """
     def build_getter_documentation(self, line_prefix, variable_name):
+        if not self.visible:
+            return ""
+
         translations = { 'lp'     : line_prefix,
                          'format' : self.public_format,
                          'name'   : variable_name }
@@ -189,6 +198,9 @@ class VariableStruct(Variable):
     Builds the Struct getter implementation
     """
     def build_getter_implementation(self, line_prefix, variable_name_from, variable_name_to, to_is_reference):
+        if not self.visible:
+            return ""
+
         translations = { 'lp'   : line_prefix,
                          'from' : variable_name_from,
                          'to'   : variable_name_to }
@@ -209,6 +221,9 @@ class VariableStruct(Variable):
     of the variables in the struct.
     """
     def build_setter_declaration(self, line_prefix, variable_name):
+        if not self.visible:
+            return ""
+
         translations = { 'lp'     : line_prefix,
                          'format' : self.public_format,
                          'name'   : variable_name }
@@ -222,6 +237,9 @@ class VariableStruct(Variable):
     Documentation for the setter
     """
     def build_setter_documentation(self, line_prefix, variable_name):
+        if not self.visible:
+            return ""
+
         translations = { 'lp'     : line_prefix,
                          'format' : self.public_format,
                          'name'   : variable_name }
@@ -234,6 +252,9 @@ class VariableStruct(Variable):
     Builds the Struct setter implementation
     """
     def build_setter_implementation(self, line_prefix, variable_name_from, variable_name_to):
+        if not self.visible:
+            return ""
+
         built = ''
         for member in self.members:
             built += member['object'].build_setter_implementation(line_prefix,

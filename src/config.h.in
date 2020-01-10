@@ -36,6 +36,9 @@
 /* Define if MBIM QMUX support enabled */
 #undef MBIM_QMUX_ENABLED
 
+/* Define if you want ModemManager runtime check */
+#undef MM_RUNTIME_CHECK_ENABLED
+
 /* Define to the address where bug reports for this package should be sent. */
 #undef PACKAGE_BUGREPORT
 
@@ -62,3 +65,6 @@
 
 /* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS
+
+/* Define if you want udev support */
+#undef WITH_UDEV

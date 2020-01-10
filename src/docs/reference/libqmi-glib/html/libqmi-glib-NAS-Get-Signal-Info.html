@@ -8,7 +8,7 @@
 <link rel="up" href="ch03s02.html" title="NAS Requests">
 <link rel="prev" href="libqmi-glib-NAS-Get-System-Info.html" title="NAS Get System Info">
 <link rel="next" href="libqmi-glib-NAS-Config-Signal-Info.html" title="NAS Config Signal Info">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -61,14 +61,6 @@
 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
-<a class="link" href="libqmi-glib-NAS-Get-Signal-Info.html#qmi-message-nas-get-signal-info-output-get-result" title="qmi_message_nas_get_signal_info_output_get_result ()">qmi_message_nas_get_signal_info_output_get_result</a> <span class="c_punctuation">()</span>
-</td>
-</tr>
-<tr>
-<td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
-</td>
-<td class="function_name">
 <a class="link" href="libqmi-glib-NAS-Get-Signal-Info.html#qmi-message-nas-get-signal-info-output-get-tdma-signal-strength" title="qmi_message_nas_get_signal_info_output_get_tdma_signal_strength ()">qmi_message_nas_get_signal_info_output_get_tdma_signal_strength</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
@@ -110,6 +102,14 @@
 </td>
 <td class="function_name">
 <a class="link" href="libqmi-glib-NAS-Get-Signal-Info.html#qmi-message-nas-get-signal-info-output-get-cdma-signal-strength" title="qmi_message_nas_get_signal_info_output_get_cdma_signal_strength ()">qmi_message_nas_get_signal_info_output_get_cdma_signal_strength</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-NAS-Get-Signal-Info.html#qmi-message-nas-get-signal-info-output-get-result" title="qmi_message_nas_get_signal_info_output_get_result ()">qmi_message_nas_get_signal_info_output_get_result</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -182,6 +182,7 @@ qmi_message_nas_get_signal_info_output_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -208,42 +209,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="qmi-message-nas-get-signal-info-output-get-result"></a><h3>qmi_message_nas_get_signal_info_output_get_result ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
-qmi_message_nas_get_signal_info_output_get_result
-                               (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-Get-Signal-Info.html#QmiMessageNasGetSignalInfoOutput"><span class="type">QmiMessageNasGetSignalInfoOutput</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>Get the result of the QMI operation.</p>
-<div class="refsect3">
-<a name="qmi-message-nas-get-signal-info-output-get-result.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="150px" class="parameters_name">
-<col class="parameters_description">
-<col width="200px" class="parameters_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a QmiMessageNasGetSignalInfoOutput.</p></td>
-<td class="parameter_annotations"> </td>
-</tr>
-<tr>
-<td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
-<td class="parameter_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<div class="refsect3">
-<a name="qmi-message-nas-get-signal-info-output-get-result.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
-is set.</p>
-</div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -286,6 +252,7 @@ qmi_message_nas_get_signal_info_output_get_tdma_signal_strength
 <a name="qmi-message-nas-get-signal-info-output-get-tdma-signal-strength.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -346,6 +313,7 @@ qmi_message_nas_get_signal_info_output_get_lte_signal_strength
 <a name="qmi-message-nas-get-signal-info-output-get-lte-signal-strength.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -394,6 +362,7 @@ qmi_message_nas_get_signal_info_output_get_wcdma_signal_strength
 <a name="qmi-message-nas-get-signal-info-output-get-wcdma-signal-strength.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -436,6 +405,7 @@ qmi_message_nas_get_signal_info_output_get_gsm_signal_strength
 <a name="qmi-message-nas-get-signal-info-output-get-gsm-signal-strength.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -496,6 +466,7 @@ qmi_message_nas_get_signal_info_output_get_hdr_signal_strength
 <a name="qmi-message-nas-get-signal-info-output-get-hdr-signal-strength.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -544,6 +515,44 @@ qmi_message_nas_get_signal_info_output_get_cdma_signal_strength
 <a name="qmi-message-nas-get-signal-info-output-get-cdma-signal-strength.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-message-nas-get-signal-info-output-get-result"></a><h3>qmi_message_nas_get_signal_info_output_get_result ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+qmi_message_nas_get_signal_info_output_get_result
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-Get-Signal-Info.html#QmiMessageNasGetSignalInfoOutput"><span class="type">QmiMessageNasGetSignalInfoOutput</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Get the result of the QMI operation.</p>
+<div class="refsect3">
+<a name="qmi-message-nas-get-signal-info-output-get-result.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a QmiMessageNasGetSignalInfoOutput.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-message-nas-get-signal-info-output-get-result.returns"></a><h4>Returns</h4>
+<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
+is set.</p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -602,6 +611,7 @@ qmi_client_nas_get_signal_info (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -643,6 +653,7 @@ qmi_client_nas_get_signal_info_finish (<em class="parameter"><code><a class="lin
 <p> a <a class="link" href="libqmi-glib-NAS-Get-Signal-Info.html#QmiMessageNasGetSignalInfoOutput"><span class="type">QmiMessageNasGetSignalInfoOutput</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
 is set. The returned value should be freed with <a class="link" href="libqmi-glib-NAS-Get-Signal-Info.html#qmi-message-nas-get-signal-info-output-unref" title="qmi_message_nas_get_signal_info_output_unref ()"><code class="function">qmi_message_nas_get_signal_info_output_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -652,10 +663,11 @@ is set. The returned value should be freed with <a class="link" href="libqmi-gli
 <pre class="programlisting">typedef struct _QmiMessageNasGetSignalInfoOutput QmiMessageNasGetSignalInfoOutput;</pre>
 <p>The <a class="link" href="libqmi-glib-NAS-Get-Signal-Info.html#QmiMessageNasGetSignalInfoOutput"><span class="type">QmiMessageNasGetSignalInfoOutput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

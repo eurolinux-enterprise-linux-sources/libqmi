@@ -108,12 +108,13 @@ PROGRAMS = $(bin_PROGRAMS)
 am_qmicli_OBJECTS = qmicli-qmicli.$(OBJEXT) \
 	qmicli-qmicli-helpers.$(OBJEXT) qmicli-qmicli-dms.$(OBJEXT) \
 	qmicli-qmicli-wds.$(OBJEXT) qmicli-qmicli-nas.$(OBJEXT) \
-	qmicli-qmicli-pbm.$(OBJEXT) qmicli-qmicli-uim.$(OBJEXT) \
-	qmicli-qmicli-wms.$(OBJEXT) qmicli-qmicli-wda.$(OBJEXT) \
-	qmicli-qmicli-voice.$(OBJEXT)
+	qmicli-qmicli-pbm.$(OBJEXT) qmicli-qmicli-pdc.$(OBJEXT) \
+	qmicli-qmicli-uim.$(OBJEXT) qmicli-qmicli-wms.$(OBJEXT) \
+	qmicli-qmicli-wda.$(OBJEXT) qmicli-qmicli-voice.$(OBJEXT) \
+	qmicli-qmicli-charsets.$(OBJEXT)
 qmicli_OBJECTS = $(am_qmicli_OBJECTS)
 am__DEPENDENCIES_1 =
-qmicli_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+qmicli_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
 	$(top_builddir)/src/libqmi-glib/libqmi-glib.la
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -258,6 +259,8 @@ GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
+GUDEV_CFLAGS = @GUDEV_CFLAGS@
+GUDEV_LIBS = @GUDEV_LIBS@
 HELP2MAN = @HELP2MAN@
 HTML_DIR = @HTML_DIR@
 INSTALL = @INSTALL@
@@ -368,6 +371,7 @@ top_srcdir = @top_srcdir@
 SUBDIRS = . test
 qmicli_CPPFLAGS = \
 	$(GLIB_CFLAGS) \
+	$(MBIM_CFLAGS) \
 	-I$(top_srcdir) \
 	-I$(top_srcdir)/src/libqmi-glib \
 	-I$(top_srcdir)/src/libqmi-glib/generated \
@@ -383,12 +387,16 @@ qmicli_SOURCES = \
 	qmicli-wds.c \
 	qmicli-nas.c \
 	qmicli-pbm.c \
+	qmicli-pdc.c \
 	qmicli-uim.c \
 	qmicli-wms.c \
 	qmicli-wda.c \
-	qmicli-voice.c
+	qmicli-voice.c \
+	qmicli-charsets.c \
+	qmicli-charsets.h
 
 qmicli_LDADD = \
+	$(MBIM_LIBS) \
 	$(GLIB_LIBS) \
 	$(top_builddir)/src/libqmi-glib/libqmi-glib.la
 
@@ -487,10 +495,12 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qmicli-qmicli-charsets.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qmicli-qmicli-dms.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qmicli-qmicli-helpers.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qmicli-qmicli-nas.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qmicli-qmicli-pbm.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qmicli-qmicli-pdc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qmicli-qmicli-uim.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qmicli-qmicli-voice.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/qmicli-qmicli-wda.Po@am__quote@
@@ -603,6 +613,20 @@ qmicli-qmicli-pbm.obj: qmicli-pbm.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o qmicli-qmicli-pbm.obj `if test -f 'qmicli-pbm.c'; then $(CYGPATH_W) 'qmicli-pbm.c'; else $(CYGPATH_W) '$(srcdir)/qmicli-pbm.c'; fi`
 
+qmicli-qmicli-pdc.o: qmicli-pdc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT qmicli-qmicli-pdc.o -MD -MP -MF $(DEPDIR)/qmicli-qmicli-pdc.Tpo -c -o qmicli-qmicli-pdc.o `test -f 'qmicli-pdc.c' || echo '$(srcdir)/'`qmicli-pdc.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/qmicli-qmicli-pdc.Tpo $(DEPDIR)/qmicli-qmicli-pdc.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='qmicli-pdc.c' object='qmicli-qmicli-pdc.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o qmicli-qmicli-pdc.o `test -f 'qmicli-pdc.c' || echo '$(srcdir)/'`qmicli-pdc.c
+
+qmicli-qmicli-pdc.obj: qmicli-pdc.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT qmicli-qmicli-pdc.obj -MD -MP -MF $(DEPDIR)/qmicli-qmicli-pdc.Tpo -c -o qmicli-qmicli-pdc.obj `if test -f 'qmicli-pdc.c'; then $(CYGPATH_W) 'qmicli-pdc.c'; else $(CYGPATH_W) '$(srcdir)/qmicli-pdc.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/qmicli-qmicli-pdc.Tpo $(DEPDIR)/qmicli-qmicli-pdc.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='qmicli-pdc.c' object='qmicli-qmicli-pdc.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o qmicli-qmicli-pdc.obj `if test -f 'qmicli-pdc.c'; then $(CYGPATH_W) 'qmicli-pdc.c'; else $(CYGPATH_W) '$(srcdir)/qmicli-pdc.c'; fi`
+
 qmicli-qmicli-uim.o: qmicli-uim.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT qmicli-qmicli-uim.o -MD -MP -MF $(DEPDIR)/qmicli-qmicli-uim.Tpo -c -o qmicli-qmicli-uim.o `test -f 'qmicli-uim.c' || echo '$(srcdir)/'`qmicli-uim.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/qmicli-qmicli-uim.Tpo $(DEPDIR)/qmicli-qmicli-uim.Po
@@ -658,6 +682,20 @@ qmicli-qmicli-voice.obj: qmicli-voice.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='qmicli-voice.c' object='qmicli-qmicli-voice.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o qmicli-qmicli-voice.obj `if test -f 'qmicli-voice.c'; then $(CYGPATH_W) 'qmicli-voice.c'; else $(CYGPATH_W) '$(srcdir)/qmicli-voice.c'; fi`
+
+qmicli-qmicli-charsets.o: qmicli-charsets.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT qmicli-qmicli-charsets.o -MD -MP -MF $(DEPDIR)/qmicli-qmicli-charsets.Tpo -c -o qmicli-qmicli-charsets.o `test -f 'qmicli-charsets.c' || echo '$(srcdir)/'`qmicli-charsets.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/qmicli-qmicli-charsets.Tpo $(DEPDIR)/qmicli-qmicli-charsets.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='qmicli-charsets.c' object='qmicli-qmicli-charsets.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o qmicli-qmicli-charsets.o `test -f 'qmicli-charsets.c' || echo '$(srcdir)/'`qmicli-charsets.c
+
+qmicli-qmicli-charsets.obj: qmicli-charsets.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT qmicli-qmicli-charsets.obj -MD -MP -MF $(DEPDIR)/qmicli-qmicli-charsets.Tpo -c -o qmicli-qmicli-charsets.obj `if test -f 'qmicli-charsets.c'; then $(CYGPATH_W) 'qmicli-charsets.c'; else $(CYGPATH_W) '$(srcdir)/qmicli-charsets.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/qmicli-qmicli-charsets.Tpo $(DEPDIR)/qmicli-qmicli-charsets.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='qmicli-charsets.c' object='qmicli-qmicli-charsets.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(qmicli_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o qmicli-qmicli-charsets.obj `if test -f 'qmicli-charsets.c'; then $(CYGPATH_W) 'qmicli-charsets.c'; else $(CYGPATH_W) '$(srcdir)/qmicli-charsets.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

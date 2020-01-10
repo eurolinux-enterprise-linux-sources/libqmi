@@ -8,7 +8,7 @@
 <link rel="up" href="ch03.html" title="Network Access Service (NAS)">
 <link rel="prev" href="ch03.html" title="Network Access Service (NAS)">
 <link rel="next" href="libqmi-glib-NAS-enumerations-and-flags.html" title="NAS enumerations and flags">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -50,6 +50,11 @@
 <tr>
 <td class="signal_type"><span class="returnvalue">void</span></td>
 <td class="signal_name"><a class="link" href="QmiClientNas.html#QmiClientNas-network-time" title="The “network-time” signal">network-time</a></td>
+<td class="signal_flags"><a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></td>
+</tr>
+<tr>
+<td class="signal_type"><span class="returnvalue">void</span></td>
+<td class="signal_name"><a class="link" href="QmiClientNas.html#QmiClientNas-operator-name" title="The “operator-name” signal">operator-name</a></td>
 <td class="signal_flags"><a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></td>
 </tr>
 <tr>
@@ -105,6 +110,7 @@
 <pre class="programlisting">struct QmiClientNas;</pre>
 <p>The <a class="link" href="QmiClientNas.html" title="QmiClientNas"><span class="type">QmiClientNas</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -144,6 +150,7 @@ user_function (<a class="link" href="QmiClientNas.html" title="QmiClientNas"><sp
 </table></div>
 </div>
 <p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -181,6 +188,45 @@ user_function (<a class="link" href="QmiClientNas.html" title="QmiClientNas"><sp
 </table></div>
 </div>
 <p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiClientNas-operator-name"></a><h3>The <code class="literal">“operator-name”</code> signal</h3>
+<pre class="programlisting"><span class="returnvalue">void</span>
+user_function (<a class="link" href="QmiClientNas.html" title="QmiClientNas"><span class="type">QmiClientNas</span></a>                       *object,
+               <a class="link" href="libqmi-glib-NAS-Operator-Name.html#QmiIndicationNasOperatorNameOutput"><span class="type">QmiIndicationNasOperatorNameOutput</span></a> *output,
+               <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a>                            user_data)</pre>
+<p>The ::operator-name signal gets emitted when a '<a class="link" href="libqmi-glib-NAS-Operator-Name.html#libqmi-glib-NAS-Operator-Name.top_of_page">Operator Name</a>' indication is received.</p>
+<div class="refsect3">
+<a name="QmiClientNas-operator-name.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>object</p></td>
+<td class="parameter_description"><p>A <a class="link" href="QmiClientNas.html" title="QmiClientNas"><span class="type">QmiClientNas</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>output</p></td>
+<td class="parameter_description"><p>A <a class="link" href="libqmi-glib-NAS-Operator-Name.html#QmiIndicationNasOperatorNameOutput"><span class="type">QmiIndicationNasOperatorNameOutput</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>user_data</p></td>
+<td class="parameter_description"><p>user data set when the signal handler was connected.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -218,6 +264,7 @@ user_function (<a class="link" href="QmiClientNas.html" title="QmiClientNas"><sp
 </table></div>
 </div>
 <p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -255,6 +302,7 @@ user_function (<a class="link" href="QmiClientNas.html" title="QmiClientNas"><sp
 </table></div>
 </div>
 <p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -292,10 +340,11 @@ user_function (<a class="link" href="QmiClientNas.html" title="QmiClientNas"><sp
 </table></div>
 </div>
 <p>Flags: <a href="https://developer.gnome.org/gobject/unstable/gobject-Signals.html#G-SIGNAL-RUN-LAST:CAPS">Run Last</a></p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

@@ -16,7 +16,7 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>
+# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -41,6 +41,11 @@ class Variable:
         self.private_format = None
 
         """
+        Whether the variable is visible in public API or is reserved
+        """
+        self.visible = False if ('visible' in dictionary and dictionary['visible'] == 'no') else True
+
+        """
         Variables that get allocated in heap need to get properly disposed.
         """
         self.needs_dispose = False
@@ -63,7 +68,7 @@ class Variable:
     """
     Emits the code to declare specific new types required by the variable.
     """
-    def emit_types(self, f):
+    def emit_types(self, f, since):
         pass
 
 

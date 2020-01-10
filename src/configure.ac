@@ -3,7 +3,7 @@ AC_PREREQ([2.68])
 
 dnl The QMI version number
 m4_define([qmi_major_version], [1])
-m4_define([qmi_minor_version], [16])
+m4_define([qmi_minor_version], [18])
 m4_define([qmi_micro_version], [0])
 m4_define([qmi_version],
           [qmi_major_version.qmi_minor_version.qmi_micro_version])
@@ -16,9 +16,9 @@ dnl        If the interface has grown (that is, the new library is compatible
 dnl            with old code), increment a.
 dnl        If the interface has changed in an incompatible way (that is,
 dnl            functions have changed or been removed), then zero a.
-m4_define([qmi_glib_lt_current],  [6])
+m4_define([qmi_glib_lt_current],  [7])
 m4_define([qmi_glib_lt_revision], [0])
-m4_define([qmi_glib_lt_age],      [1])
+m4_define([qmi_glib_lt_age],      [2])
 
 
 AC_INIT([libqmi], [qmi_version], [libqmi-devel@lists.freedesktop.org])
@@ -64,9 +64,13 @@ AC_SUBST(QMI_GLIB_LT_CURRENT)
 AC_SUBST(QMI_GLIB_LT_REVISION)
 AC_SUBST(QMI_GLIB_LT_AGE)
 
-dnl Dependencies
+dnl Required dependency versions
+GLIB_VERSION=2.36
+GUDEV_VERSION=147
+
+dnl GLib, GIO...
 PKG_CHECK_MODULES(GLIB,
-                  glib-2.0 >= 2.32
+                  glib-2.0 >= $GLIB_VERSION
                   gobject-2.0
                   gio-2.0
                   gio-unix-2.0)
@@ -75,6 +79,51 @@ AC_SUBST(GLIB_LIBS)
 
 GLIB_MKENUMS=`$PKG_CONFIG --variable=glib_mkenums glib-2.0`
 AC_SUBST(GLIB_MKENUMS)
+
+dnl qmi-firmware-update is optional, enabled by default
+AC_ARG_ENABLE([firmware-update],
+              AS_HELP_STRING([--enable-firmware-update],
+                             [enable compilation of `qmi-firmware-update' [default=yes]]),
+              [build_firmware_update=$enableval],
+              [build_firmware_update=yes])
+AM_CONDITIONAL([BUILD_FIRMWARE_UPDATE], [test "x$build_firmware_update" = "xyes"])
+
+dnl udev support is optional, enabled by default
+AC_ARG_WITH(udev, AS_HELP_STRING([--without-udev], [Build without udev support]), [], [with_udev=yes])
+case $with_udev in
+    yes)
+        if test "x$build_firmware_update" = "xyes"; then
+            PKG_CHECK_MODULES(GUDEV, [gudev-1.0 >= $GUDEV_VERSION], [have_gudev=yes],[have_gudev=no])
+            if test "x$have_gudev" = "xno"; then
+                AC_MSG_ERROR([Couldn't find gudev >= $GUDEV_VERSION. Install it, or otherwise configure using --without-udev to disable udev support.])
+            else
+                AC_DEFINE(WITH_UDEV, 1, [Define if you want udev support])
+                AC_SUBST(GUDEV_CFLAGS)
+                AC_SUBST(GUDEV_LIBS)
+            fi
+        else
+            with_udev="n/a"
+        fi
+        ;;
+    *)
+        with_udev=no
+        ;;
+esac
+
+dnl runtime MM check is optional, enabled by default
+AC_ARG_ENABLE(mm-runtime-check, AS_HELP_STRING([--disable-mm-runtime-check], [Build without ModemManager runtime check]), [], [enable_mm_runtime_check=yes])
+case $enable_mm_runtime_check in
+    yes)
+        if test "x$build_firmware_update" = "xyes"; then
+            AC_DEFINE(MM_RUNTIME_CHECK_ENABLED, 1, [Define if you want ModemManager runtime check])
+        else
+            enable_mm_runtime_check="n/a"
+        fi
+        ;;
+    *)
+        enable_mm_runtime_check=no
+        ;;
+esac
 
 dnl Documentation
 GTK_DOC_CHECK(1.0)
@@ -108,7 +157,7 @@ if test "x$enable_mbim_qmux" = "xauto"; then
 fi
 
 if test "x$enable_mbim_qmux" = "xyes"; then
-    if test "xhave_mbim" = "xno"; then
+    if test "x$have_mbim" = "xno"; then
         AC_MSG_ERROR([Couldn't find `libmbim-glib` >= ${MBIM_GLIB_VERSION}. Install it, or otherwise configure using --disable-mbim-qmux to disable the QMI over MBIM QMUX service.])
     fi
     AC_DEFINE(MBIM_QMUX_ENABLED, 1, [Define if MBIM QMUX support enabled])
@@ -148,6 +197,8 @@ AC_CONFIG_FILES([Makefile
                  src/qmicli/Makefile
                  src/qmicli/test/Makefile
                  src/qmi-proxy/Makefile
+                 src/qmi-firmware-update/Makefile
+                 src/qmi-firmware-update/test/Makefile
                  utils/Makefile
                  docs/Makefile
                  docs/reference/Makefile
@@ -165,11 +216,18 @@ echo "
     libqmi (libqmi-glib, qmicli) $VERSION
     ==============================================
 
-    compiler:             ${CC}
-    cflags:               ${CFLAGS}
-    Maintainer mode:      ${USE_MAINTAINER_MODE}
-    udev base directory:  ${UDEV_BASE_DIR}
-    Documentation:        ${enable_gtk_doc}
-    QMI username:         ${QMI_USERNAME_ENABLED} (${QMI_USERNAME})
-    QMUX over MBIM:       ${enable_mbim_qmux}
+    compiler:              ${CC}
+    cflags:                ${CFLAGS}
+    Maintainer mode:       ${USE_MAINTAINER_MODE}
+    udev base directory:   ${UDEV_BASE_DIR}
+    Documentation:         ${enable_gtk_doc}
+    QMI username:          ${QMI_USERNAME_ENABLED} (${QMI_USERNAME})
+    QMUX over MBIM:        ${enable_mbim_qmux}
+
+    Built items:
+      libqmi-glib:         yes
+      qmicli:              yes
+      qmi-firmware-update: ${build_firmware_update}
+          with udev:             ${with_udev}
+          with MM runtime check: ${enable_mm_runtime_check}
 "

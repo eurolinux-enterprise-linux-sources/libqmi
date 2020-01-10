@@ -218,6 +218,8 @@ GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
+GUDEV_CFLAGS = @GUDEV_CFLAGS@
+GUDEV_LIBS = @GUDEV_LIBS@
 HELP2MAN = @HELP2MAN@
 HTML_DIR = @HTML_DIR@
 INSTALL = @INSTALL@
@@ -333,6 +335,7 @@ EXTRA_DIST = \
 	qmi-service-wds.json \
 	qmi-service-nas.json \
 	qmi-service-wms.json \
+	qmi-service-pdc.json \
 	qmi-service-pds.json \
 	qmi-service-pbm.json \
 	qmi-service-uim.json \

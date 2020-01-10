@@ -8,7 +8,7 @@
 <link rel="up" href="ch01.html" title="Core">
 <link rel="prev" href="QmiDevice.html" title="QmiDevice">
 <link rel="next" href="QmiProxy.html" title="QmiProxy">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -95,14 +95,6 @@
 </td>
 <td class="function_name">
 <a class="link" href="QmiClient.html#qmi-client-get-next-transaction-id" title="qmi_client_get_next_transaction_id ()">qmi_client_get_next_transaction_id</a> <span class="c_punctuation">()</span>
-</td>
-</tr>
-<tr>
-<td class="function_type">
-<span class="returnvalue">void</span>
-</td>
-<td class="function_name">
-<a class="link" href="QmiClient.html#qmi-client-process-indication" title="qmi_client_process_indication ()">qmi_client_process_indication</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 </tbody>
@@ -197,6 +189,7 @@
         <span class="lineart">├──</span> <a class="link" href="QmiClientNas.html" title="QmiClientNas">QmiClientNas</a>
         <span class="lineart">├──</span> <a class="link" href="QmiClientOma.html" title="QmiClientOma">QmiClientOma</a>
         <span class="lineart">├──</span> <a class="link" href="QmiClientPbm.html" title="QmiClientPbm">QmiClientPbm</a>
+        <span class="lineart">├──</span> <a class="link" href="QmiClientPdc.html" title="QmiClientPdc">QmiClientPdc</a>
         <span class="lineart">├──</span> <a class="link" href="QmiClientPds.html" title="QmiClientPds">QmiClientPds</a>
         <span class="lineart">├──</span> <a class="link" href="QmiClientUim.html" title="QmiClientUim">QmiClientUim</a>
         <span class="lineart">├──</span> <a class="link" href="QmiClientVoice.html" title="QmiClientVoice">QmiClientVoice</a>
@@ -239,6 +232,7 @@ qmi_client_get_device (<em class="parameter"><code><a class="link" href="QmiClie
 <a name="qmi-client-get-device.returns"></a><h4>Returns</h4>
 <p> a <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct"><span class="type">GObject</span></a> that must be freed with <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#g-object-unref"><code class="function">g_object_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -267,6 +261,7 @@ on the returned object.</p>
 <p> a <a href="https://developer.gnome.org/gobject/unstable/gobject-The-Base-Object-Type.html#GObject-struct"><span class="type">GObject</span></a>. Do not free the returned object, it is owned by <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -293,6 +288,7 @@ qmi_client_get_service (<em class="parameter"><code><a class="link" href="QmiCli
 <a name="qmi-client-get-service.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="libqmi-glib-Common-enumerations-and-flags.html#QmiService" title="enum QmiService"><span class="type">QmiService</span></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -319,6 +315,7 @@ qmi_client_get_cid (<em class="parameter"><code><a class="link" href="QmiClient.
 <a name="qmi-client-get-cid.returns"></a><h4>Returns</h4>
 <p> the client ID.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -359,6 +356,7 @@ qmi_client_get_version (<em class="parameter"><code><a class="link" href="QmiCli
 <a name="qmi-client-get-version.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the version was properly reported, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -400,6 +398,7 @@ or equal than the given version.</p>
 <a name="qmi-client-check-version.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the version of the service is greater or equal than the one given, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -427,57 +426,65 @@ The internal transaction ID gets incremented.</p>
 <a name="qmi-client-get-next-transaction-id.returns"></a><h4>Returns</h4>
 <p> the next transaction ID.</p>
 </div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="qmi-client-process-indication"></a><h3>qmi_client_process_indication ()</h3>
-<pre class="programlisting"><span class="returnvalue">void</span>
-qmi_client_process_indication (<em class="parameter"><code><a class="link" href="QmiClient.html" title="QmiClient"><span class="type">QmiClient</span></a> *self</code></em>,
-                               <em class="parameter"><code><a class="link" href="libqmi-glib-QmiMessage.html#QmiMessage" title="QmiMessage"><span class="type">QmiMessage</span></a> *message</code></em>);</pre>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
 <a name="QmiClient.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="QMI-CID-NONE:CAPS"></a><h3>QMI_CID_NONE</h3>
-<pre class="programlisting">#define QMI_CID_NONE      0x00
+<pre class="programlisting">#define QMI_CID_NONE 0x00
 </pre>
+<p>A symbol specifying a special CID value that references no CID.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="QMI-CID-BROADCAST:CAPS"></a><h3>QMI_CID_BROADCAST</h3>
 <pre class="programlisting">#define QMI_CID_BROADCAST 0xFF
 </pre>
+<p>A symbol specifying the broadcast CID.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="QMI-CLIENT-DEVICE:CAPS"></a><h3>QMI_CLIENT_DEVICE</h3>
-<pre class="programlisting">#define QMI_CLIENT_DEVICE        "client-device"
+<pre class="programlisting">#define QMI_CLIENT_DEVICE "client-device"
 </pre>
+<p>Symbol defining the <a class="link" href="QmiClient.html#QmiClient--client-device" title="The “client-device” property"><span class="type">“client-device”</span></a> property.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="QMI-CLIENT-SERVICE:CAPS"></a><h3>QMI_CLIENT_SERVICE</h3>
-<pre class="programlisting">#define QMI_CLIENT_SERVICE       "client-service"
+<pre class="programlisting">#define QMI_CLIENT_SERVICE "client-service"
 </pre>
+<p>Symbol defining the <a class="link" href="QmiClient.html#QmiClient--client-service" title="The “client-service” property"><span class="type">“client-service”</span></a> property.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="QMI-CLIENT-CID:CAPS"></a><h3>QMI_CLIENT_CID</h3>
-<pre class="programlisting">#define QMI_CLIENT_CID           "client-cid"
+<pre class="programlisting">#define QMI_CLIENT_CID "client-cid"
 </pre>
+<p>Symbol defining the <a class="link" href="QmiClient.html#QmiClient--client-cid" title="The “client-cid” property"><span class="type">“client-cid”</span></a> property.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="QMI-CLIENT-VERSION-MAJOR:CAPS"></a><h3>QMI_CLIENT_VERSION_MAJOR</h3>
 <pre class="programlisting">#define QMI_CLIENT_VERSION_MAJOR "client-version-major"
 </pre>
+<p>Symbol defining the <a class="link" href="QmiClient.html#QmiClient--client-version-major" title="The “client-version-major” property"><span class="type">“client-version-major”</span></a> property.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="QMI-CLIENT-VERSION-MINOR:CAPS"></a><h3>QMI_CLIENT_VERSION_MINOR</h3>
 <pre class="programlisting">#define QMI_CLIENT_VERSION_MINOR "client-version-minor"
 </pre>
+<p>Symbol defining the <a class="link" href="QmiClient.html#QmiClient--client-version-minor" title="The “client-version-minor” property"><span class="type">“client-version-minor”</span></a> property.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -485,6 +492,7 @@ qmi_client_process_indication (<em class="parameter"><code><a class="link" href=
 <pre class="programlisting">struct QmiClient;</pre>
 <p>The <a class="link" href="QmiClient.html" title="QmiClient"><span class="type">QmiClient</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -496,6 +504,7 @@ using the provided API.</p>
 <p>Flags: Read / Write</p>
 <p>Allowed values: &lt;= 255</p>
 <p>Default value: 0</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -503,6 +512,7 @@ using the provided API.</p>
 <pre class="programlisting">  “client-device”            <a class="link" href="QmiDevice.html" title="QmiDevice"><span class="type">QmiDevice</span></a> *</pre>
 <p>The QMI device.</p>
 <p>Flags: Read / Write</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -511,6 +521,7 @@ using the provided API.</p>
 <p>QMI service this client is using.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: QMI_SERVICE_UNKNOWN</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -519,6 +530,7 @@ using the provided API.</p>
 <p>Major version of the service handled by this client.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -527,10 +539,11 @@ using the provided API.</p>
 <p>Minor version of the service handled by this client.</p>
 <p>Flags: Read / Write</p>
 <p>Default value: 0</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

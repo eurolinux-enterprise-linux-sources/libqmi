@@ -5,10 +5,10 @@
 <title>OMA Send Selection: libqmi-glib Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
-<link rel="up" href="ch09s02.html" title="OMA Requests">
+<link rel="up" href="ch10s02.html" title="OMA Requests">
 <link rel="prev" href="libqmi-glib-OMA-Get-Session-Info.html" title="OMA Get Session Info">
 <link rel="next" href="libqmi-glib-OMA-Get-Feature-Setting.html" title="OMA Get Feature Setting">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -19,7 +19,7 @@
                   <a href="#libqmi-glib-OMA-Send-Selection.object-hierarchy" class="shortcut">Object Hierarchy</a></span>
 </td>
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
-<td><a accesskey="u" href="ch09s02.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
+<td><a accesskey="u" href="ch10s02.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="libqmi-glib-OMA-Get-Session-Info.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
 <td><a accesskey="n" href="libqmi-glib-OMA-Get-Feature-Setting.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
@@ -164,6 +164,7 @@ qmi_message_oma_send_selection_input_new
 <a name="qmi-message-oma-send-selection-input-new.returns"></a><h4>Returns</h4>
 <p> the newly created <a class="link" href="libqmi-glib-OMA-Send-Selection.html#QmiMessageOmaSendSelectionInput"><span class="type">QmiMessageOmaSendSelectionInput</span></a>. The returned value should be freed with <a class="link" href="libqmi-glib-OMA-Send-Selection.html#qmi-message-oma-send-selection-input-unref" title="qmi_message_oma_send_selection_input_unref ()"><code class="function">qmi_message_oma_send_selection_input_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -193,6 +194,7 @@ qmi_message_oma_send_selection_input_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -219,6 +221,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -267,6 +270,7 @@ qmi_message_oma_send_selection_input_get_network_initiated_alert_selection
 <a name="qmi-message-oma-send-selection-input-get-network-initiated-alert-selection.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -315,6 +319,7 @@ qmi_message_oma_send_selection_input_set_network_initiated_alert_selection
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>value</code></em>
 was successfully set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -344,6 +349,7 @@ qmi_message_oma_send_selection_output_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -370,6 +376,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -406,6 +413,7 @@ qmi_message_oma_send_selection_output_get_result
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
 is set.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -464,6 +472,7 @@ qmi_client_oma_send_selection (<em class="parameter"><code><a class="link" href=
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -505,6 +514,7 @@ qmi_client_oma_send_selection_finish (<em class="parameter"><code><a class="link
 <p> a <a class="link" href="libqmi-glib-OMA-Send-Selection.html#QmiMessageOmaSendSelectionOutput"><span class="type">QmiMessageOmaSendSelectionOutput</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
 is set. The returned value should be freed with <a class="link" href="libqmi-glib-OMA-Send-Selection.html#qmi-message-oma-send-selection-output-unref" title="qmi_message_oma_send_selection_output_unref ()"><code class="function">qmi_message_oma_send_selection_output_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -514,6 +524,7 @@ is set. The returned value should be freed with <a class="link" href="libqmi-gli
 <pre class="programlisting">typedef struct _QmiMessageOmaSendSelectionInput QmiMessageOmaSendSelectionInput;</pre>
 <p>The <a class="link" href="libqmi-glib-OMA-Send-Selection.html#QmiMessageOmaSendSelectionInput"><span class="type">QmiMessageOmaSendSelectionInput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -521,10 +532,11 @@ using the provided API.</p>
 <pre class="programlisting">typedef struct _QmiMessageOmaSendSelectionOutput QmiMessageOmaSendSelectionOutput;</pre>
 <p>The <a class="link" href="libqmi-glib-OMA-Send-Selection.html#QmiMessageOmaSendSelectionOutput"><span class="type">QmiMessageOmaSendSelectionOutput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-6.html#api-index-1.6">1.6</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

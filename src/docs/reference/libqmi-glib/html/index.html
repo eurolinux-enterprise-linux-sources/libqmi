@@ -6,7 +6,7 @@
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
 <link rel="next" href="ch01.html" title="Core">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -14,9 +14,9 @@
 <div class="titlepage">
 <div>
 <div><table class="navigation" id="top" width="100%" cellpadding="2" cellspacing="0"><tr><th valign="middle"><p class="title">libqmi-glib Reference Manual</p></th></tr></table></div>
-<div><p class="releaseinfo">for libqmi-glib 1.16.0
+<div><p class="releaseinfo">for libqmi-glib 1.18.0
 </p></div>
-<div><p class="copyright">Copyright © 2012, 2013, 2014, 2015, 2016 The libqmi-glib authors</p></div>
+<div><p class="copyright">Copyright © 2012, 2013, 2014, 2015, 2016, 2017 The libqmi-glib authors</p></div>
 <div><div class="legalnotice">
 <a name="id-1.1.4"></a><p>
         Permission is granted to copy, distribute and/or modify this
@@ -49,6 +49,9 @@
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-QmiMessage.html">QmiMessage</a></span><span class="refpurpose"> — Generic QMI message handling routines</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="QmiMessageContext.html">QmiMessageContext</a></span><span class="refpurpose"> — the QMI message context</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="QmiDevice.html">QmiDevice</a></span><span class="refpurpose"> — Generic QMI device handling routines</span>
@@ -177,6 +180,9 @@
 <span class="refentrytitle"><a href="libqmi-glib-DMS-UIM-Get-ICCID.html">DMS UIM Get ICCID</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
+<span class="refentrytitle"><a href="libqmi-glib-DMS-Set-Firmware-ID.html">DMS Set Firmware ID</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
 <span class="refentrytitle"><a href="libqmi-glib-DMS-UIM-Get-CK-Status.html">DMS UIM Get CK Status</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
@@ -222,10 +228,22 @@
 <span class="refentrytitle"><a href="libqmi-glib-DMS-Set-Alt-Net-Config.html">DMS Set Alt Net Config</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
+<span class="refentrytitle"><a href="libqmi-glib-DMS-Get-Boot-Image-Download-Mode.html">DMS Get Boot Image Download Mode</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-DMS-Set-Boot-Image-Download-Mode.html">DMS Set Boot Image Download Mode</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
 <span class="refentrytitle"><a href="libqmi-glib-DMS-Get-Software-Version.html">DMS Get Software Version</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-DMS-Set-Service-Programming-Code.html">DMS Set Service Programming Code</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-DMS-HP-Change-Device-Mode.html">DMS HP Change Device Mode</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-DMS-Swi-Get-Current-Firmware.html">DMS Swi Get Current Firmware</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-DMS-Set-FCC-Authentication.html">DMS Set FCC Authentication</a></span><span class="refpurpose"></span>
@@ -259,6 +277,9 @@
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-NAS-Signal-Info.html">NAS Signal Info</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-NAS-Operator-Name.html">NAS Operator Name</a></span><span class="refpurpose"></span>
 </dt>
 </dl></dd>
 <dt><span class="section"><a href="ch03s02.html">NAS Requests</a></span></dt>
@@ -329,6 +350,9 @@
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-NAS-Get-LTE-Cphy-CA-Info.html">NAS Get LTE Cphy CA Info</a></span><span class="refpurpose"></span>
 </dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-NAS-Get-Operator-Name.html">NAS Get Operator Name</a></span><span class="refpurpose"></span>
+</dt>
 </dl></dd>
 </dl></dd>
 <dt><span class="chapter"><a href="ch04.html">Wireless Data Service (WDS)</a></span></dt>
@@ -340,13 +364,21 @@
 <span class="refentrytitle"><a href="libqmi-glib-WDS-enumerations-and-flags.html">WDS enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
 <dt><span class="section"><a href="ch04.html#id-1.5.4">WDS Indications</a></span></dt>
-<dd><dl><dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-WDS-Event-Report.html">WDS Event Report</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Packet-Service-Status.html">WDS Packet Service Status</a></span><span class="refpurpose"></span>
-</dt></dl></dd>
+</dt>
+</dl></dd>
 <dt><span class="section"><a href="ch04s02.html">WDS Requests</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Reset.html">WDS Reset</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-WDS-Set-Event-Report.html">WDS Set Event Report</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Start-Network.html">WDS Start Network</a></span><span class="refpurpose"></span>
@@ -361,6 +393,21 @@
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Packet-Statistics.html">WDS Get Packet Statistics</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
+<span class="refentrytitle"><a href="libqmi-glib-WDS-Go-Dormant.html">WDS Go Dormant</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-WDS-Go-Active.html">WDS Go Active</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-WDS-Create-Profile.html">WDS Create Profile</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-WDS-Modify-Profile.html">WDS Modify Profile</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-WDS-Delete-Profile.html">WDS Delete Profile</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Profile-List.html">WDS Get Profile List</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
@@ -371,6 +418,9 @@
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Current-Settings.html">WDS Get Current Settings</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Dormancy-Status.html">WDS Get Dormancy Status</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Autoconnect-Settings.html">WDS Get Autoconnect Settings</a></span><span class="refpurpose"></span>
@@ -392,6 +442,9 @@
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Get-PDN-Throttle-Info.html">WDS Get PDN Throttle Info</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-WDS-Bind-Mux-Data-Port.html">WDS Bind Mux Data Port</a></span><span class="refpurpose"></span>
 </dt>
 </dl></dd>
 </dl></dd>
@@ -455,7 +508,82 @@
 </dt>
 </dl></dd>
 </dl></dd>
-<dt><span class="chapter"><a href="ch06.html">Position Determination Service (PDS)</a></span></dt>
+<dt><span class="chapter"><a href="ch06.html">Persistent Device Configuration (PDC)</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="QmiClientPdc.html">QmiClientPdc</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the PDC service.</span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-enumerations-and-flags.html">PDC enumerations and flags</a></span><span class="refpurpose"></span>
+</dt>
+<dt><span class="section"><a href="ch06.html#id-1.7.4">PDC Indications</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Activate-Config.html">PDC Activate Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Deactivate-Config.html">PDC Deactivate Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Config-Info.html">PDC Get Config Info</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Selected-Config.html">PDC Get Selected Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-List-Configs.html">PDC List Configs</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Load-Config.html">PDC Load Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Set-Selected-Config.html">PDC Set Selected Config</a></span><span class="refpurpose"></span>
+</dt>
+</dl></dd>
+<dt><span class="section"><a href="ch06s02.html">PDC Requests</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Reset.html">PDC Reset</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Register.html">PDC Register</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Config-Change.html">PDC Config Change</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Selected-Config.html">PDC Get Selected Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Set-Selected-Config.html">PDC Set Selected Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-List-Configs.html">PDC List Configs</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Delete-Config.html">PDC Delete Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Load-Config.html">PDC Load Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Activate-Config.html">PDC Activate Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Config-Info.html">PDC Get Config Info</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Config-Limits.html">PDC Get Config Limits</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Default-Config-Info.html">PDC Get Default Config Info</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Deactivate-Config.html">PDC Deactivate Config</a></span><span class="refpurpose"></span>
+</dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="chapter"><a href="ch07.html">Position Determination Service (PDS)</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="QmiClientPds.html">QmiClientPds</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the PDS service.</span>
@@ -463,11 +591,11 @@
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-PDS-enumerations-and-flags.html">PDS enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
-<dt><span class="section"><a href="ch06.html#id-1.7.4">PDS Indications</a></span></dt>
+<dt><span class="section"><a href="ch07.html#id-1.8.4">PDS Indications</a></span></dt>
 <dd><dl><dt>
 <span class="refentrytitle"><a href="libqmi-glib-PDS-Event-Report.html">PDS Event Report</a></span><span class="refpurpose"></span>
 </dt></dl></dd>
-<dt><span class="section"><a href="ch06s02.html">PDS Requests</a></span></dt>
+<dt><span class="section"><a href="ch07s02.html">PDS Requests</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-PDS-Reset.html">PDS Reset</a></span><span class="refpurpose"></span>
@@ -501,7 +629,7 @@
 </dt>
 </dl></dd>
 </dl></dd>
-<dt><span class="chapter"><a href="ch07.html">Phonebook Management Service (PBM)</a></span></dt>
+<dt><span class="chapter"><a href="ch08.html">Phonebook Management Service (PBM)</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="QmiClientPbm.html">QmiClientPbm</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the PBM service.</span>
@@ -509,7 +637,7 @@
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-PBM-enumerations-and-flags.html">PBM enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
-<dt><span class="section"><a href="ch07.html#id-1.8.4">PBM Requests</a></span></dt>
+<dt><span class="section"><a href="ch08.html#id-1.9.4">PBM Requests</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-PBM-Indication-Register.html">PBM Indication Register</a></span><span class="refpurpose"></span>
@@ -522,7 +650,7 @@
 </dt>
 </dl></dd>
 </dl></dd>
-<dt><span class="chapter"><a href="ch08.html">User Identity Module (UIM) service</a></span></dt>
+<dt><span class="chapter"><a href="ch09.html">User Identity Module (UIM) service</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="QmiClientUim.html">QmiClientUim</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the UIM service.</span>
@@ -530,7 +658,7 @@
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-UIM-enumerations-and-flags.html">UIM enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
-<dt><span class="section"><a href="ch08.html#id-1.9.4">UIM Requests</a></span></dt>
+<dt><span class="section"><a href="ch09.html#id-1.10.4">UIM Requests</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-UIM-Reset.html">UIM Reset</a></span><span class="refpurpose"></span>
@@ -562,9 +690,15 @@
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-UIM-Get-Supported-Messages.html">UIM Get Supported Messages</a></span><span class="refpurpose"></span>
 </dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-UIM-Power-Off-SIM.html">UIM Power Off SIM</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-UIM-Power-On-SIM.html">UIM Power On SIM</a></span><span class="refpurpose"></span>
+</dt>
 </dl></dd>
 </dl></dd>
-<dt><span class="chapter"><a href="ch09.html">Open Mobile Alliance Service (OMA)</a></span></dt>
+<dt><span class="chapter"><a href="ch10.html">Open Mobile Alliance Service (OMA)</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="QmiClientOma.html">QmiClientOma</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the OMA service.</span>
@@ -572,11 +706,11 @@
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-OMA-enumerations-and-flags.html">OMA enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
-<dt><span class="section"><a href="ch09.html#id-1.10.4">OMA Indications</a></span></dt>
+<dt><span class="section"><a href="ch10.html#id-1.11.4">OMA Indications</a></span></dt>
 <dd><dl><dt>
 <span class="refentrytitle"><a href="libqmi-glib-OMA-Event-Report.html">OMA Event Report</a></span><span class="refpurpose"></span>
 </dt></dl></dd>
-<dt><span class="section"><a href="ch09s02.html">OMA Requests</a></span></dt>
+<dt><span class="section"><a href="ch10s02.html">OMA Requests</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-OMA-Reset.html">OMA Reset</a></span><span class="refpurpose"></span>
@@ -604,7 +738,7 @@
 </dt>
 </dl></dd>
 </dl></dd>
-<dt><span class="chapter"><a href="ch10.html">Wireless Data Administrative Service (WDA)</a></span></dt>
+<dt><span class="chapter"><a href="ch11.html">Wireless Data Administrative Service (WDA)</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="QmiClientWda.html">QmiClientWda</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the WDA service.</span>
@@ -612,7 +746,7 @@
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDA-enumerations-and-flags.html">WDA enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
-<dt><span class="section"><a href="ch10.html#id-1.11.4">WDA Requests</a></span></dt>
+<dt><span class="section"><a href="ch11.html#id-1.12.4">WDA Requests</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDA-Set-Data-Format.html">WDA Set Data Format</a></span><span class="refpurpose"></span>
@@ -625,7 +759,7 @@
 </dt>
 </dl></dd>
 </dl></dd>
-<dt><span class="chapter"><a href="ch11.html">Voice</a></span></dt>
+<dt><span class="chapter"><a href="ch12.html">Voice</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="QmiClientVoice.html">QmiClientVoice</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the VOICE service.</span>
@@ -633,11 +767,11 @@
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-VOICE-enumerations-and-flags.html">VOICE enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
-<dt><span class="section"><a href="ch11.html#id-1.12.4">Voice Indications</a></span></dt>
+<dt><span class="section"><a href="ch12.html#id-1.13.4">Voice Indications</a></span></dt>
 <dd><dl><dt>
 <span class="refentrytitle"><a href="libqmi-glib-VOICE-All-Call-Status.html">VOICE All Call Status</a></span><span class="refpurpose"></span>
 </dt></dl></dd>
-<dt><span class="section"><a href="ch11s02.html">Voice Requests</a></span></dt>
+<dt><span class="section"><a href="ch12s02.html">Voice Requests</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-VOICE-Dial-Call.html">VOICE Dial Call</a></span><span class="refpurpose"></span>
@@ -656,19 +790,27 @@
 </dt>
 </dl></dd>
 </dl></dd>
-<dt><span class="chapter"><a href="ch12.html">Compatibility with older versions</a></span></dt>
+<dt><span class="chapter"><a href="ch13.html">Compatibility with older versions</a></span></dt>
 <dd><dl><dt>
-<span class="refentrytitle"><a href="libqmi-glib-qmi-compat.html">qmi-compat</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-API-break-replacements.html">API break replacements</a></span><span class="refpurpose"></span>
 </dt></dl></dd>
 <dt><span class="chapter"><a href="object-tree.html">Object Hierarchy</a></span></dt>
 <dt><span class="index"><a href="api-index-full.html">API Index</a></span></dt>
 <dt><span class="index"><a href="deprecated-api-index.html">Index of deprecated API</a></span></dt>
+<dt><span class="index"><a href="api-index-1-0.html">Index of new core symbols in 1.0</a></span></dt>
+<dt><span class="index"><a href="api-index-1-2.html">Index of new core symbols in 1.2</a></span></dt>
+<dt><span class="index"><a href="api-index-1-4.html">Index of new core symbols in 1.4</a></span></dt>
+<dt><span class="index"><a href="api-index-1-6.html">Index of new core symbols in 1.6</a></span></dt>
+<dt><span class="index"><a href="api-index-1-8.html">Index of new core symbols in 1.8</a></span></dt>
+<dt><span class="index"><a href="api-index-1-10.html">Index of new core symbols in 1.10</a></span></dt>
 <dt><span class="index"><a href="api-index-1-12.html">Index of new core symbols in 1.12</a></span></dt>
 <dt><span class="index"><a href="api-index-1-14.html">Index of new core symbols in 1.14</a></span></dt>
+<dt><span class="index"><a href="api-index-1-16.html">Index of new core symbols in 1.16</a></span></dt>
+<dt><span class="index"><a href="api-index-1-18.html">Index of new core symbols in 1.18</a></span></dt>
 <dt><span class="glossary"><a href="annotation-glossary.html">Annotation Glossary</a></span></dt>
 </dl></div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

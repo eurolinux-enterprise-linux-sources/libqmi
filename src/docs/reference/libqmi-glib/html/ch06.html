@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Position Determination Service (PDS): libqmi-glib Reference Manual</title>
+<title>Persistent Device Configuration (PDC): libqmi-glib Reference Manual</title>
 <meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
 <link rel="up" href="index.html" title="libqmi-glib Reference Manual">
 <link rel="prev" href="libqmi-glib-WMS-Get-Supported-Messages.html" title="WMS Get Supported Messages">
-<link rel="next" href="QmiClientPds.html" title="QmiClientPds">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<link rel="next" href="QmiClientPdc.html" title="QmiClientPdc">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -17,60 +17,89 @@
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><img src="up-insensitive.png" width="16" height="16" border="0"></td>
 <td><a accesskey="p" href="libqmi-glib-WMS-Get-Supported-Messages.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="QmiClientPds.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="QmiClientPdc.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="chapter">
 <div class="titlepage"><div><div><h1 class="title">
-<a name="id-1.7"></a>Position Determination Service (PDS)</h1></div></div></div>
+<a name="id-1.7"></a>Persistent Device Configuration (PDC)</h1></div></div></div>
 <div class="toc"><dl class="toc">
 <dt>
-<span class="refentrytitle"><a href="QmiClientPds.html">QmiClientPds</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the PDS service.</span>
+<span class="refentrytitle"><a href="QmiClientPdc.html">QmiClientPdc</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the PDC service.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-enumerations-and-flags.html">PDS enumerations and flags</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-enumerations-and-flags.html">PDC enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
-<dt><span class="section"><a href="ch06.html#id-1.7.4">PDS Indications</a></span></dt>
-<dd><dl><dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Event-Report.html">PDS Event Report</a></span><span class="refpurpose"></span>
-</dt></dl></dd>
-<dt><span class="section"><a href="ch06s02.html">PDS Requests</a></span></dt>
+<dt><span class="section"><a href="ch06.html#id-1.7.4">PDC Indications</a></span></dt>
 <dd><dl>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Reset.html">PDS Reset</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Activate-Config.html">PDC Activate Config</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Set-Event-Report.html">PDS Set Event Report</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Deactivate-Config.html">PDC Deactivate Config</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Get-GPS-Service-State.html">PDS Get GPS Service State</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Config-Info.html">PDC Get Config Info</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Set-GPS-Service-State.html">PDS Set GPS Service State</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Selected-Config.html">PDC Get Selected Config</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Get-Auto-Tracking-State.html">PDS Get Auto Tracking State</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-List-Configs.html">PDC List Configs</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Set-Auto-Tracking-State.html">PDS Set Auto Tracking State</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Load-Config.html">PDC Load Config</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Get-Default-Tracking-Session.html">PDS Get Default Tracking Session</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Set-Selected-Config.html">PDC Set Selected Config</a></span><span class="refpurpose"></span>
+</dt>
+</dl></dd>
+<dt><span class="section"><a href="ch06s02.html">PDC Requests</a></span></dt>
+<dd><dl>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Reset.html">PDC Reset</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Set-Default-Tracking-Session.html">PDS Set Default Tracking Session</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Register.html">PDC Register</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Get-AGPS-Config.html">PDS Get AGPS Config</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Config-Change.html">PDC Config Change</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-PDS-Set-AGPS-Config.html">PDS Set AGPS Config</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Selected-Config.html">PDC Get Selected Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Set-Selected-Config.html">PDC Set Selected Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-List-Configs.html">PDC List Configs</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Delete-Config.html">PDC Delete Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Load-Config.html">PDC Load Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Activate-Config.html">PDC Activate Config</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Config-Info.html">PDC Get Config Info</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Config-Limits.html">PDC Get Config Limits</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Get-Default-Config-Info.html">PDC Get Default Config Info</a></span><span class="refpurpose"></span>
+</dt>
+<dt>
+<span class="refentrytitle"><a href="libqmi-glib-PDC-Deactivate-Config.html">PDC Deactivate Config</a></span><span class="refpurpose"></span>
 </dt>
 </dl></dd>
 </dl></div>
 <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="id-1.7.4"></a>PDS Indications</h2></div></div></div></div>
+<a name="id-1.7.4"></a>PDC Indications</h2></div></div></div></div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

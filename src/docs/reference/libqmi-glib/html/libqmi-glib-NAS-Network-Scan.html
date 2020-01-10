@@ -8,7 +8,7 @@
 <link rel="up" href="ch03s02.html" title="NAS Requests">
 <link rel="prev" href="libqmi-glib-NAS-Get-Signal-Strength.html" title="NAS Get Signal Strength">
 <link rel="next" href="libqmi-glib-NAS-Initiate-Network-Register.html" title="NAS Initiate Network Register">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -101,14 +101,6 @@
 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
 </td>
 <td class="function_name">
-<a class="link" href="libqmi-glib-NAS-Network-Scan.html#qmi-message-nas-network-scan-output-get-result" title="qmi_message_nas_network_scan_output_get_result ()">qmi_message_nas_network_scan_output_get_result</a> <span class="c_punctuation">()</span>
-</td>
-</tr>
-<tr>
-<td class="function_type">
-<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
-</td>
-<td class="function_name">
 <a class="link" href="libqmi-glib-NAS-Network-Scan.html#qmi-message-nas-network-scan-output-get-mnc-pcs-digit-include-status" title="qmi_message_nas_network_scan_output_get_mnc_pcs_digit_include_status ()">qmi_message_nas_network_scan_output_get_mnc_pcs_digit_include_status</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
@@ -126,6 +118,14 @@
 </td>
 <td class="function_name">
 <a class="link" href="libqmi-glib-NAS-Network-Scan.html#qmi-message-nas-network-scan-output-get-network-information" title="qmi_message_nas_network_scan_output_get_network_information ()">qmi_message_nas_network_scan_output_get_network_information</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-NAS-Network-Scan.html#qmi-message-nas-network-scan-output-get-result" title="qmi_message_nas_network_scan_output_get_result ()">qmi_message_nas_network_scan_output_get_result</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -200,6 +200,7 @@ qmi_message_nas_network_scan_input_new
 <a name="qmi-message-nas-network-scan-input-new.returns"></a><h4>Returns</h4>
 <p> the newly created <a class="link" href="libqmi-glib-NAS-Network-Scan.html#QmiMessageNasNetworkScanInput"><span class="type">QmiMessageNasNetworkScanInput</span></a>. The returned value should be freed with <a class="link" href="libqmi-glib-NAS-Network-Scan.html#qmi-message-nas-network-scan-input-unref" title="qmi_message_nas_network_scan_input_unref ()"><code class="function">qmi_message_nas_network_scan_input_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -229,6 +230,7 @@ qmi_message_nas_network_scan_input_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -255,6 +257,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -297,6 +300,7 @@ qmi_message_nas_network_scan_input_get_network_type
 <a name="qmi-message-nas-network-scan-input-get-network-type.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -339,6 +343,7 @@ qmi_message_nas_network_scan_input_set_network_type
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>value</code></em>
 was successfully set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -368,6 +373,7 @@ qmi_message_nas_network_scan_output_ref
 <p> the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -394,42 +400,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
-</div>
-<hr>
-<div class="refsect2">
-<a name="qmi-message-nas-network-scan-output-get-result"></a><h3>qmi_message_nas_network_scan_output_get_result ()</h3>
-<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
-qmi_message_nas_network_scan_output_get_result
-                               (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-Network-Scan.html#QmiMessageNasNetworkScanOutput"><span class="type">QmiMessageNasNetworkScanOutput</span></a> *self</code></em>,
-                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
-<p>Get the result of the QMI operation.</p>
-<div class="refsect3">
-<a name="qmi-message-nas-network-scan-output-get-result.parameters"></a><h4>Parameters</h4>
-<div class="informaltable"><table class="informaltable" width="100%" border="0">
-<colgroup>
-<col width="150px" class="parameters_name">
-<col class="parameters_description">
-<col width="200px" class="parameters_annotations">
-</colgroup>
-<tbody>
-<tr>
-<td class="parameter_name"><p>self</p></td>
-<td class="parameter_description"><p>a QmiMessageNasNetworkScanOutput.</p></td>
-<td class="parameter_annotations"> </td>
-</tr>
-<tr>
-<td class="parameter_name"><p>error</p></td>
-<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
-<td class="parameter_annotations"> </td>
-</tr>
-</tbody>
-</table></div>
-</div>
-<div class="refsect3">
-<a name="qmi-message-nas-network-scan-output-get-result.returns"></a><h4>Returns</h4>
-<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
-is set.</p>
-</div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -473,6 +444,7 @@ qmi_message_nas_network_scan_output_get_mnc_pcs_digit_include_status
 <a name="qmi-message-nas-network-scan-output-get-mnc-pcs-digit-include-status.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -516,6 +488,7 @@ qmi_message_nas_network_scan_output_get_radio_access_technology
 <a name="qmi-message-nas-network-scan-output-get-radio-access-technology.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -559,6 +532,44 @@ qmi_message_nas_network_scan_output_get_network_information
 <a name="qmi-message-nas-network-scan-output-get-network-information.returns"></a><h4>Returns</h4>
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the field is found, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-message-nas-network-scan-output-get-result"></a><h3>qmi_message_nas_network_scan_output_get_result ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+qmi_message_nas_network_scan_output_get_result
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-Network-Scan.html#QmiMessageNasNetworkScanOutput"><span class="type">QmiMessageNasNetworkScanOutput</span></a> *self</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Error-Reporting.html#GError"><span class="type">GError</span></a> **error</code></em>);</pre>
+<p>Get the result of the QMI operation.</p>
+<div class="refsect3">
+<a name="qmi-message-nas-network-scan-output-get-result.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a QmiMessageNasNetworkScanOutput.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>error</p></td>
+<td class="parameter_description"><p>Return location for error or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-message-nas-network-scan-output-get-result.returns"></a><h4>Returns</h4>
+<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the QMI operation succeeded, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> if <em class="parameter"><code>error</code></em>
+is set.</p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -617,6 +628,7 @@ qmi_client_nas_network_scan (<em class="parameter"><code><a class="link" href="Q
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -658,6 +670,7 @@ qmi_client_nas_network_scan_finish (<em class="parameter"><code><a class="link" 
 <p> a <a class="link" href="libqmi-glib-NAS-Network-Scan.html#QmiMessageNasNetworkScanOutput"><span class="type">QmiMessageNasNetworkScanOutput</span></a>, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if <em class="parameter"><code>error</code></em>
 is set. The returned value should be freed with <a class="link" href="libqmi-glib-NAS-Network-Scan.html#qmi-message-nas-network-scan-output-unref" title="qmi_message_nas_network_scan_output_unref ()"><code class="function">qmi_message_nas_network_scan_output_unref()</code></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
@@ -667,6 +680,7 @@ is set. The returned value should be freed with <a class="link" href="libqmi-gli
 <pre class="programlisting">typedef struct _QmiMessageNasNetworkScanInput QmiMessageNasNetworkScanInput;</pre>
 <p>The <a class="link" href="libqmi-glib-NAS-Network-Scan.html#QmiMessageNasNetworkScanInput"><span class="type">QmiMessageNasNetworkScanInput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -674,6 +688,7 @@ using the provided API.</p>
 <pre class="programlisting">typedef struct _QmiMessageNasNetworkScanOutput QmiMessageNasNetworkScanOutput;</pre>
 <p>The <a class="link" href="libqmi-glib-NAS-Network-Scan.html#QmiMessageNasNetworkScanOutput"><span class="type">QmiMessageNasNetworkScanOutput</span></a> structure contains private data and should only be accessed
 using the provided API.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -712,6 +727,7 @@ using the provided API.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -750,6 +766,7 @@ using the provided API.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -794,10 +811,11 @@ using the provided API.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

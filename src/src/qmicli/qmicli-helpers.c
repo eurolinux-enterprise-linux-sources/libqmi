@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Copyright (C) 2015 Velocloud Inc.
- * Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>
+ * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #include <stdio.h>
@@ -104,6 +104,55 @@ qmicli_get_raw_data_printable (const GArray *data,
     return new_str;
 }
 
+gchar *
+qmicli_get_firmware_image_unique_id_printable (const GArray *unique_id)
+{
+    gchar    *unique_id_str;
+    guint     i;
+    guint     n_ascii = 0;
+    gboolean  end = FALSE;
+
+#define UNIQUE_ID_LEN 16
+
+    g_warn_if_fail (unique_id->len <= UNIQUE_ID_LEN);
+    unique_id_str = g_malloc0 (UNIQUE_ID_LEN + 1);
+    memcpy (unique_id_str, unique_id->data, UNIQUE_ID_LEN);
+
+    /* We want an ASCII string that, if finished before the 16 bytes,
+     * is suffixed with NUL bytes. */
+    for (i = 0; i < UNIQUE_ID_LEN; i++) {
+        /* If a byte isn't ASCII, stop */
+        if (unique_id_str[i] & 0x80)
+            break;
+        /* If string isn't finished yet... */
+        if (!end) {
+            /* String finished now */
+            if (unique_id_str[i] == '\0')
+                end = TRUE;
+            else
+                n_ascii++;
+        } else {
+            /* String finished but we then got
+             * another ASCII byte? not possible */
+            if (unique_id_str[i] != '\0')
+                break;
+        }
+    }
+
+    if (i == UNIQUE_ID_LEN && n_ascii > 0)
+        return unique_id_str;
+
+#undef UNIQUE_ID_LEN
+
+    g_free (unique_id_str);
+
+    /* Get a raw hex string otherwise */
+    unique_id_str = qmicli_get_raw_data_printable (unique_id, 80, "");
+    unique_id_str[strlen (unique_id_str) - 1] = '\0'; /* remove EOL */
+
+    return unique_id_str;
+}
+
 gboolean
 qmicli_read_dms_uim_pin_id_from_string (const gchar *str,
                                         QmiDmsUimPinId *out)
@@ -187,6 +236,8 @@ qmicli_read_rat_mode_pref_from_string (const gchar *str,
 
     type = qmi_nas_rat_mode_preference_get_type ();
     flags_class = G_FLAGS_CLASS (g_type_class_ref (type));
+
+    *out = 0;
 
     items = g_strsplit_set (str, "|", 0);
     for (iter = items; iter && *iter && success; iter++) {
@@ -315,6 +366,60 @@ qmicli_read_firmware_id_from_string (const gchar *str,
 }
 
 gboolean
+qmicli_read_binary_array_from_string (const gchar *str,
+                                      GArray **out)
+{
+    gsize i, j, len;
+
+    g_return_val_if_fail (out != NULL, FALSE);
+    g_return_val_if_fail (str, FALSE);
+
+    /* Length must be a multiple of 2 */
+    len = strlen (str);
+    if (len & 1)
+        return FALSE;
+
+    *out = g_array_sized_new (FALSE, TRUE, sizeof (guint8), len >> 1);
+    g_array_set_size (*out, len >> 1);
+
+    for (i = 0, j = 0; i < len; i += 2, j++) {
+        gint a, b;
+
+        a = g_ascii_xdigit_value (str[i]);
+        b = g_ascii_xdigit_value (str[i + 1]);
+        if (a < 0 || b < 0) {
+            g_array_unref (*out);
+            return FALSE;
+        }
+
+        g_array_index (*out, guint8, j) = (a << 4) | b;
+    }
+
+    return TRUE;
+}
+
+gboolean
+qmicli_read_pdc_configuration_type_from_string (const gchar *str,
+                                                QmiPdcConfigurationType *out)
+{
+    GType type;
+    GEnumClass *enum_class;
+    GEnumValue *enum_value;
+
+    type = qmi_pdc_configuration_type_get_type ();
+    enum_class = G_ENUM_CLASS (g_type_class_ref (type));
+    enum_value = g_enum_get_value_by_nick (enum_class, str);
+
+    if (enum_value)
+        *out = (QmiPdcConfigurationType)enum_value->value;
+    else
+        g_printerr ("error: invalid configuration type value given: '%s'\n", str);
+
+    g_type_class_unref (enum_class);
+    return !!enum_value;
+}
+
+gboolean
 qmicli_read_radio_interface_from_string (const gchar *str,
                                          QmiNasRadioInterface *out)
 {
@@ -347,6 +452,8 @@ qmicli_read_net_open_flags_from_string (const gchar *str,
 
     type = qmi_device_open_flags_get_type ();
     flags_class = G_FLAGS_CLASS (g_type_class_ref (type));
+
+    *out = 0;
 
     items = g_strsplit_set (str, "|", 0);
     for (iter = items; iter && *iter && success; iter++) {
@@ -440,6 +547,48 @@ qmicli_read_link_layer_protocol_from_string (const gchar *str,
 }
 
 gboolean
+qmicli_read_data_aggregation_protocol_from_string (const gchar *str,
+                                                   QmiWdaDataAggregationProtocol *out)
+{
+    GType type;
+    GEnumClass *enum_class;
+    GEnumValue *enum_value;
+
+    type = qmi_wda_data_aggregation_protocol_get_type ();
+    enum_class = G_ENUM_CLASS (g_type_class_ref (type));
+    enum_value = g_enum_get_value_by_nick (enum_class, str);
+
+    if (enum_value)
+        *out = (QmiWdaDataAggregationProtocol)enum_value->value;
+    else
+        g_printerr ("error: invalid data aggregation protocol value given: '%s'\n", str);
+
+    g_type_class_unref (enum_class);
+    return !!enum_value;
+}
+
+gboolean
+qmicli_read_data_endpoint_type_from_string (const gchar *str,
+                                            QmiDataEndpointType *out)
+{
+    GType type;
+    GEnumClass *enum_class;
+    GEnumValue *enum_value;
+
+    type = qmi_data_endpoint_type_get_type ();
+    enum_class = G_ENUM_CLASS (g_type_class_ref (type));
+    enum_value = g_enum_get_value_by_nick (enum_class, str);
+
+    if (enum_value)
+        *out = (QmiDataEndpointType)enum_value->value;
+    else
+        g_printerr ("error: invalid data aggregation protocol value given: '%s'\n", str);
+
+    g_type_class_unref (enum_class);
+    return !!enum_value;
+}
+
+gboolean
 qmicli_read_autoconnect_setting_from_string (const gchar *str,
                                              QmiWdsAutoconnectSetting *out)
 {
@@ -497,6 +646,48 @@ qmicli_read_authentication_from_string (const gchar *str,
         return FALSE;
 
     return TRUE;
+}
+
+gboolean
+qmicli_read_boot_image_download_mode_from_string (const gchar *str,
+                                                  QmiDmsBootImageDownloadMode *out)
+{
+    GType type;
+    GEnumClass *enum_class;
+    GEnumValue *enum_value;
+
+    type = qmi_dms_boot_image_download_mode_get_type ();
+    enum_class = G_ENUM_CLASS (g_type_class_ref (type));
+    enum_value = g_enum_get_value_by_nick (enum_class, str);
+
+    if (enum_value)
+        *out = (QmiDmsBootImageDownloadMode)enum_value->value;
+    else
+        g_printerr ("error: invalid boot image download mode value given: '%s'\n", str);
+
+    g_type_class_unref (enum_class);
+    return !!enum_value;
+}
+
+gboolean
+qmicli_read_hp_device_mode_from_string (const gchar *str,
+                                        QmiDmsHpDeviceMode *out)
+{
+    GType type;
+    GEnumClass *enum_class;
+    GEnumValue *enum_value;
+
+    type = qmi_dms_hp_device_mode_get_type ();
+    enum_class = G_ENUM_CLASS (g_type_class_ref (type));
+    enum_value = g_enum_get_value_by_nick (enum_class, str);
+
+    if (enum_value)
+        *out = (QmiDmsHpDeviceMode)enum_value->value;
+    else
+        g_printerr ("error: invalid HP device mode value given: '%s'\n", str);
+
+    g_type_class_unref (enum_class);
+    return !!enum_value;
 }
 
 gboolean

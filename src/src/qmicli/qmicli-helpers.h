@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Copyright (C) 2015 Velocloud Inc.
- * Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>
+ * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #include <glib.h>
@@ -29,6 +29,8 @@
 gchar *qmicli_get_raw_data_printable (const GArray *data,
                                       gsize max_line_length,
                                       const gchar *new_line_prefix);
+
+gchar *qmicli_get_firmware_image_unique_id_printable (const GArray *unique_id);
 
 gboolean qmicli_read_dms_uim_pin_id_from_string              (const gchar *str,
                                                               QmiDmsUimPinId *out);
@@ -45,6 +47,10 @@ gboolean qmicli_read_enable_disable_from_string              (const gchar *str,
 gboolean qmicli_read_firmware_id_from_string                 (const gchar *str,
                                                               QmiDmsFirmwareImageType *out_type,
                                                               guint *out_index);
+gboolean qmicli_read_binary_array_from_string                (const gchar *str,
+                                                              GArray **out);
+gboolean qmicli_read_pdc_configuration_type_from_string      (const gchar *str,
+                                                              QmiPdcConfigurationType *out);
 gboolean qmicli_read_radio_interface_from_string             (const gchar *str,
                                                               QmiNasRadioInterface *out);
 gboolean qmicli_read_net_open_flags_from_string              (const gchar *str,
@@ -53,12 +59,20 @@ gboolean qmicli_read_expected_data_format_from_string        (const gchar *str,
                                                               QmiDeviceExpectedDataFormat *out);
 gboolean qmicli_read_link_layer_protocol_from_string         (const gchar *str,
                                                               QmiWdaLinkLayerProtocol *out);
+gboolean qmicli_read_data_aggregation_protocol_from_string   (const gchar *str,
+                                                              QmiWdaDataAggregationProtocol *out);
+gboolean qmicli_read_data_endpoint_type_from_string          (const gchar *str,
+                                                              QmiDataEndpointType *out);
 gboolean qmicli_read_autoconnect_setting_from_string         (const gchar *str,
                                                               QmiWdsAutoconnectSetting *out);
 gboolean qmicli_read_autoconnect_setting_roaming_from_string (const gchar *str,
                                                               QmiWdsAutoconnectSettingRoaming *out);
 gboolean qmicli_read_authentication_from_string              (const gchar *str,
                                                               QmiWdsAuthentication *out);
+gboolean qmicli_read_boot_image_download_mode_from_string    (const gchar *str,
+                                                              QmiDmsBootImageDownloadMode *out);
+gboolean qmicli_read_hp_device_mode_from_string              (const gchar *str,
+                                                              QmiDmsHpDeviceMode *out);
 
 gboolean qmicli_read_non_empty_string           (const gchar *str,
                                                  const gchar *description,

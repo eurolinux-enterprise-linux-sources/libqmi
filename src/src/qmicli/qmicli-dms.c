@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>
+ * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #include "config.h"
@@ -32,6 +32,9 @@
 
 #include "qmicli.h"
 #include "qmicli-helpers.h"
+
+#undef VALIDATE_UNKNOWN
+#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
 
 /* Context */
 typedef struct {
@@ -76,13 +79,21 @@ static gchar *write_user_data_str;
 static gboolean read_eri_file_flag;
 static gchar *restore_factory_defaults_str;
 static gchar *validate_service_programming_code_str;
+static gboolean set_firmware_id_flag;
 static gboolean get_band_capabilities_flag;
 static gboolean get_factory_sku_flag;
 static gboolean list_stored_images_flag;
 static gchar *select_stored_image_str;
 static gchar *delete_stored_image_str;
+static gboolean get_firmware_preference_flag;
+static gchar *set_firmware_preference_str;
+static gboolean get_boot_image_download_mode_flag;
+static gchar *set_boot_image_download_mode_str;
+static gboolean get_software_version_flag;
 static gboolean set_fcc_authentication_flag;
 static gboolean get_supported_messages_flag;
+static gchar *hp_change_device_mode_str;
+static gboolean swi_get_current_firmware_flag;
 static gboolean reset_flag;
 static gboolean noop_flag;
 
@@ -223,6 +234,10 @@ static GOptionEntry entries[] = {
       "Validate the Service Programming Code",
       "[(Service Programming Code)]",
     },
+    { "dms-set-firmware-id", 0, 0, G_OPTION_ARG_NONE, &set_firmware_id_flag,
+      "Set firmware id",
+      NULL
+    },
     { "dms-get-band-capabilities", 0, 0, G_OPTION_ARG_NONE, &get_band_capabilities_flag,
       "Get band capabilities",
       NULL
@@ -243,12 +258,40 @@ static GOptionEntry entries[] = {
       "Delete stored image",
       "[modem#|pri#] where # is the index"
     },
+    { "dms-get-firmware-preference", 0, 0, G_OPTION_ARG_NONE, &get_firmware_preference_flag,
+      "Get firmware preference",
+      NULL
+    },
+    { "dms-set-firmware-preference", 0, 0, G_OPTION_ARG_STRING, &set_firmware_preference_str,
+      "Set firmware preference",
+      "[(fwver),(config),(carrier)]"
+    },
+    { "dms-get-boot-image-download-mode", 0, 0, G_OPTION_ARG_NONE, &get_boot_image_download_mode_flag,
+      "Get boot image download mode",
+      NULL
+    },
+    { "dms-set-boot-image-download-mode", 0, 0, G_OPTION_ARG_STRING, &set_boot_image_download_mode_str,
+      "Set boot image download mode",
+      "[normal|boot-and-recovery]"
+    },
+    { "dms-get-software-version", 0, 0, G_OPTION_ARG_NONE, &get_software_version_flag,
+      "Get software version",
+      NULL
+    },
     { "dms-set-fcc-authentication", 0, 0, G_OPTION_ARG_NONE, &set_fcc_authentication_flag,
       "Set FCC authentication",
       NULL
     },
     { "dms-get-supported-messages", 0, 0, G_OPTION_ARG_NONE, &get_supported_messages_flag,
       "Get supported messages",
+      NULL
+    },
+    { "dms-hp-change-device-mode", 0, 0, G_OPTION_ARG_STRING, &hp_change_device_mode_str,
+      "Change device mode (HP specific)",
+      "[fastboot]"
+    },
+    { "dms-swi-get-current-firmware", 0, 0, G_OPTION_ARG_NONE, &swi_get_current_firmware_flag,
+      "Get Current Firmware (Sierra Wireless specific)",
       NULL
     },
     { "dms-reset", 0, 0, G_OPTION_ARG_NONE, &reset_flag,
@@ -320,13 +363,21 @@ qmicli_dms_options_enabled (void)
                  read_eri_file_flag +
                  !!restore_factory_defaults_str +
                  !!validate_service_programming_code_str +
+                 set_firmware_id_flag +
                  get_band_capabilities_flag +
                  get_factory_sku_flag +
                  list_stored_images_flag +
                  !!select_stored_image_str +
                  !!delete_stored_image_str +
+                 get_firmware_preference_flag +
+                 !!set_firmware_preference_str +
+                 get_boot_image_download_mode_flag +
+                 !!set_boot_image_download_mode_str +
+                 get_software_version_flag +
                  set_fcc_authentication_flag +
                  get_supported_messages_flag +
+                 !!hp_change_device_mode_str +
+                 swi_get_current_firmware_flag +
                  reset_flag +
                  noop_flag);
 
@@ -359,7 +410,17 @@ operation_shutdown (gboolean operation_status)
 {
     /* Cleanup context and finish async operation */
     context_free (ctx);
-    qmicli_async_operation_done (operation_status);
+    qmicli_async_operation_done (operation_status, FALSE);
+}
+
+static void
+operation_shutdown_skip_cid_release (gboolean operation_status)
+{
+    /* Cleanup context and finish async operation. Explicitly ask not to release
+     * the client CID. This is so that the qmicli operation doesn't fail after
+     * this step, e.g. if the device just reboots after the action. */
+    context_free (ctx);
+    qmicli_async_operation_done (operation_status, TRUE);
 }
 
 static void
@@ -387,9 +448,6 @@ get_ids_ready (QmiClientDms *client,
         operation_shutdown (FALSE);
         return;
     }
-
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
 
     qmi_message_dms_get_ids_output_get_esn  (output, &esn, NULL);
     qmi_message_dms_get_ids_output_get_imei (output, &imei, NULL);
@@ -499,9 +557,6 @@ get_manufacturer_ready (QmiClientDms *client,
         return;
     }
 
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
-
     qmi_message_dms_get_manufacturer_output_get_manufacturer (output, &str, NULL);
 
     g_print ("[%s] Device manufacturer retrieved:\n"
@@ -536,9 +591,6 @@ get_model_ready (QmiClientDms *client,
         operation_shutdown (FALSE);
         return;
     }
-
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
 
     qmi_message_dms_get_model_output_get_model (output, &str, NULL);
 
@@ -575,9 +627,6 @@ get_revision_ready (QmiClientDms *client,
         return;
     }
 
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
-
     qmi_message_dms_get_revision_output_get_revision (output, &str, NULL);
 
     g_print ("[%s] Device revision retrieved:\n"
@@ -612,9 +661,6 @@ get_msisdn_ready (QmiClientDms *client,
         operation_shutdown (FALSE);
         return;
     }
-
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
 
     qmi_message_dms_get_msisdn_output_get_msisdn (output, &str, NULL);
 
@@ -1097,9 +1143,6 @@ uim_get_iccid_ready (QmiClientDms *client,
         return;
     }
 
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
-
     qmi_message_dms_uim_get_iccid_output_get_iccid (output, &str, NULL);
 
     g_print ("[%s] UIM ICCID retrieved:\n"
@@ -1134,9 +1177,6 @@ uim_get_imsi_ready (QmiClientDms *client,
         operation_shutdown (FALSE);
         return;
     }
-
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
 
     qmi_message_dms_uim_get_imsi_output_get_imsi (output, &str, NULL);
 
@@ -1456,9 +1496,6 @@ get_hardware_revision_ready (QmiClientDms *client,
         return;
     }
 
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
-
     qmi_message_dms_get_hardware_revision_output_get_revision (output, &str, NULL);
 
     g_print ("[%s] Hardware revision retrieved:\n"
@@ -1495,9 +1532,6 @@ get_operating_mode_ready (QmiClientDms *client,
         return;
     }
 
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
-
     qmi_message_dms_get_operating_mode_output_get_mode (output, &mode, NULL);
 
     g_print ("[%s] Operating mode retrieved:\n"
@@ -1505,7 +1539,7 @@ get_operating_mode_ready (QmiClientDms *client,
              qmi_device_get_path_display (ctx->device),
              qmi_dms_operating_mode_get_string (mode));
 
-    if (mode == QMI_DMS_OPERATING_MODE_OFFLINE) {
+    if (mode == QMI_DMS_OPERATING_MODE_OFFLINE || mode == QMI_DMS_OPERATING_MODE_LOW_POWER) {
         QmiDmsOfflineReason reason;
         gchar *reason_str = NULL;
 
@@ -2280,6 +2314,36 @@ validate_service_programming_code_ready (QmiClientDms *client,
 }
 
 static void
+set_firmware_id_ready (QmiClientDms *client,
+                       GAsyncResult *res)
+{
+    QmiMessageDmsSetFirmwareIdOutput *output;
+    GError *error = NULL;
+
+    output = qmi_client_dms_set_firmware_id_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_dms_set_firmware_id_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't set firmware id: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_dms_set_firmware_id_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    g_print ("[%s] Firmware id set\n",
+             qmi_device_get_path_display (ctx->device));
+
+    qmi_message_dms_set_firmware_id_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+static void
 get_band_capabilities_ready (QmiClientDms *client,
                              GAsyncResult *res)
 {
@@ -2354,9 +2418,6 @@ get_factory_sku_ready (QmiClientDms *client,
         return;
     }
 
-#undef VALIDATE_UNKNOWN
-#define VALIDATE_UNKNOWN(str) (str ? str : "unknown")
-
     qmi_message_dms_get_factory_sku_output_get_sku (output, &str, NULL);
 
     g_print ("[%s] Device factory SKU retrieved:\n"
@@ -2413,8 +2474,7 @@ get_stored_image_info_ready (QmiClientDms *client,
                                QmiMessageDmsListStoredImagesOutputListImageSublistSublistElement,
                                operation_ctx->j);
 
-    unique_id_str = qmicli_get_raw_data_printable (subimage->unique_id, 80, "");
-    unique_id_str[strlen(unique_id_str) - 1] = '\0';
+    unique_id_str = qmicli_get_firmware_image_unique_id_printable (subimage->unique_id);
 
     g_print ("%s"
              "\t\t[%s%u]\n"
@@ -2695,8 +2755,7 @@ get_stored_image_list_stored_images_ready (QmiClientDms *client,
                                    QmiMessageDmsListStoredImagesOutputListImageSublistSublistElement,
                                    image_index);
 
-        unique_id_str = qmicli_get_raw_data_printable (subimage->unique_id, 80, "");
-        unique_id_str[strlen (unique_id_str) - 1] = '\0';
+        unique_id_str = qmicli_get_firmware_image_unique_id_printable (subimage->unique_id);
         g_debug ("Found [%s%d]: Unique ID: '%s', Build ID: '%s'",
                  qmi_dms_firmware_image_type_get_string (image->type),
                  image_index,
@@ -2752,14 +2811,14 @@ get_stored_image (QmiClientDms *client,
 
         if (type == QMI_DMS_FIRMWARE_IMAGE_TYPE_MODEM) {
             if (modem_index >= 0) {
-                g_printerr ("Couldn't two 'modem' type firwmare indexes: '%s'\n", str);
+                g_printerr ("Cannot handle two 'modem' type firmware indices: '%s'\n", str);
                 operation_shutdown (FALSE);
                 return;
             }
             modem_index = (gint)image_index;
         } else if (type == QMI_DMS_FIRMWARE_IMAGE_TYPE_PRI) {
             if (pri_index >= 0) {
-                g_printerr ("Couldn't two 'pri' type firwmare indexes: '%s'\n", str);
+                g_printerr ("Cannot handle two 'pri' type firmware indices: '%s'\n", str);
                 operation_shutdown (FALSE);
                 return;
             }
@@ -2787,12 +2846,17 @@ get_stored_image (QmiClientDms *client,
         operation_ctx);
 }
 
+/* Note:
+ *  used by both --dms-set-firmware-preference and --dms-select-stored-image
+ */
 static void
-select_stored_image_ready (QmiClientDms *client,
-                           GAsyncResult *res)
+dms_set_firmware_preference_ready (QmiClientDms *client,
+                                   GAsyncResult *res)
 {
     QmiMessageDmsSetFirmwarePreferenceOutput *output;
-    GError *error = NULL;
+    GError                                   *error = NULL;
+    GArray                                   *array;
+    GString                                  *pending_images = NULL;
 
     output = qmi_client_dms_set_firmware_preference_finish (client, res, &error);
     if (!output) {
@@ -2810,18 +2874,45 @@ select_stored_image_ready (QmiClientDms *client,
         return;
     }
 
-    g_print ("[%s] Stored image successfully selected\n"
+    g_print ("[%s] Firmware preference successfully selected\n"
              "\n"
              "\tYou may want to power-cycle the modem now, or just set it offline and reset it:\n"
              "\t\t$> sudo qmicli ... --dms-set-operating-mode=offline\n"
              "\t\t$> sudo qmicli ... --dms-set-operating-mode=reset\n"
-             "\n"
-             "\tYou should check that the modem|pri image pair is valid by checking the current operating mode:\n"
-             "\t\t$> sudo qmicli .... --dms-get-operating-mode\n"
-             "\tIf the Mode is reported as 'online', you're good to go.\n"
-             "\tIf the Mode is reported as 'offline' with a 'pri-version-incompatible' reason, you chose an incorrect pair\n"
              "\n",
              qmi_device_get_path_display (ctx->device));
+
+    /* do we need to download a new modem and/or pri image? */
+    if (qmi_message_dms_set_firmware_preference_output_get_image_download_list (output, &array, NULL) && array->len) {
+        guint                   i;
+        QmiDmsFirmwareImageType type;
+
+        pending_images = g_string_new ("");
+        for (i = 0; i < array->len; i++) {
+            type = g_array_index (array, QmiDmsFirmwareImageType, i);
+            g_string_append (pending_images, qmi_dms_firmware_image_type_get_string (type));
+            if (i < array->len -1)
+                g_string_append (pending_images, ", ");
+        }
+    }
+
+    if (pending_images) {
+        g_print ("\tAfter reset, the modem will wait in QDL mode for new firmware.\n"
+                 "\tImages to download: '%s'\n"
+                 "\n",
+                 pending_images->str);
+        g_string_free (pending_images, TRUE);
+    } else {
+        /* If we're selecting an already stored image, or if we don't need any
+         * more images to be downloaded, we're done. */
+        g_print ("\tNo new images are required to be downloaded.\n"
+                 "\n"
+                 "\tYou should check that the modem|pri image pair is valid by checking the current operating mode:\n"
+                 "\t\t$> sudo qmicli .... --dms-get-operating-mode\n"
+                 "\tIf the Mode is reported as 'online', you're good to go.\n"
+                 "\tIf the Mode is reported as 'offline' with a 'pri-version-incompatible' reason, you chose an incorrect pair\n"
+                 "\n");
+    }
 
     qmi_message_dms_set_firmware_preference_output_unref (output);
     operation_shutdown (TRUE);
@@ -2865,16 +2956,14 @@ get_stored_image_select_ready (QmiClientDms *client,
         input,
         10,
         NULL,
-        (GAsyncReadyCallback)select_stored_image_ready,
+        (GAsyncReadyCallback)dms_set_firmware_preference_ready,
         NULL);
     qmi_message_dms_set_firmware_preference_input_unref (input);
 
-    g_free (modem_image_id.build_id);
-    if (modem_image_id.unique_id)
-        g_array_unref (modem_image_id.unique_id);
-    g_free (pri_image_id.build_id);
-    if (pri_image_id.unique_id)
-        g_array_unref (pri_image_id.unique_id);
+    g_free        (modem_image_id.build_id);
+    g_array_unref (modem_image_id.unique_id);
+    g_free        (pri_image_id.build_id);
+    g_array_unref (pri_image_id.unique_id);
 }
 
 static void
@@ -2960,6 +3049,251 @@ get_stored_image_delete_ready (QmiClientDms *client,
 }
 
 static void
+dms_get_firmware_preference_ready (QmiClientDms *client,
+                                   GAsyncResult *res)
+{
+    GError                                   *error = NULL;
+    QmiMessageDmsGetFirmwarePreferenceOutput *output;
+    GArray                                   *array;
+    guint                                     i;
+
+    output = qmi_client_dms_get_firmware_preference_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_dms_get_firmware_preference_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't get firmware preference: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_dms_get_firmware_preference_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    qmi_message_dms_get_firmware_preference_output_get_list (output, &array, NULL);
+
+    g_print ("firmware preference successfully retrieved:\n");
+
+    if (array->len > 0) {
+        for (i = 0; i < array->len; i++) {
+            QmiMessageDmsGetFirmwarePreferenceOutputListImage *image;
+            gchar                                             *unique_id_str;
+
+            image = &g_array_index (array, QmiMessageDmsGetFirmwarePreferenceOutputListImage, i);
+
+            unique_id_str = qmicli_get_firmware_image_unique_id_printable (image->unique_id);
+
+            g_print ("[image %u]\n"
+                     "\tImage type: '%s'\n"
+                     "\tUnique ID:  '%s'\n"
+                     "\tBuild ID:   '%s'\n",
+                     i,
+                     qmi_dms_firmware_image_type_get_string (image->type),
+                     unique_id_str,
+                     image->build_id);
+
+            g_free (unique_id_str);
+        }
+    } else
+        g_print ("no images specified\n");
+
+    qmi_message_dms_get_firmware_preference_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+typedef struct {
+    QmiMessageDmsSetFirmwarePreferenceInputListImage modem_image_id;
+    QmiMessageDmsSetFirmwarePreferenceInputListImage pri_image_id;
+} SetFirmwarePreferenceContext;
+
+static void
+set_firmware_preference_context_clear (SetFirmwarePreferenceContext *firmware_preference_ctx)
+{
+    g_clear_pointer (&firmware_preference_ctx->modem_image_id.unique_id, (GDestroyNotify) g_array_unref);
+    g_free (firmware_preference_ctx->modem_image_id.build_id);
+
+    g_clear_pointer (&firmware_preference_ctx->pri_image_id.unique_id, (GDestroyNotify) g_array_unref);
+    g_free (firmware_preference_ctx->pri_image_id.build_id);
+}
+
+static QmiMessageDmsSetFirmwarePreferenceInput *
+set_firmware_preference_input_create (const gchar                  *str,
+                                      SetFirmwarePreferenceContext *firmware_preference_ctx)
+{
+    QmiMessageDmsSetFirmwarePreferenceInput *input;
+    GArray *array;
+    gchar **split;
+
+    /* Prepare inputs.
+     * Format of the string is:
+     *    "[(fwver),(config),(carrier)]"
+     */
+    split = g_strsplit (str, ",", -1);
+    if (g_strv_length (split) != 3) {
+        g_printerr ("error: invalid format string, expected 3 elements: [(fwver),(config),(carrier)]\n");
+        g_strfreev (split);
+        return NULL;
+    }
+
+    /* modem unique id is the fixed wildcard string '?_?' matching any pri.
+     * modem build id format is "(fwver)_?", matching any carrier */
+    firmware_preference_ctx->modem_image_id.type = QMI_DMS_FIRMWARE_IMAGE_TYPE_MODEM;
+    firmware_preference_ctx->modem_image_id.unique_id = g_array_sized_new (FALSE, TRUE, 1, 16);
+    g_array_insert_vals (firmware_preference_ctx->modem_image_id.unique_id, 0, "?_?", 3);
+    g_array_set_size (firmware_preference_ctx->modem_image_id.unique_id, 16);
+    firmware_preference_ctx->modem_image_id.build_id = g_strdup_printf ("%s_?", split[0]);
+
+    /* pri unique id is the "(config)" input */
+    firmware_preference_ctx->pri_image_id.type = QMI_DMS_FIRMWARE_IMAGE_TYPE_PRI;
+    firmware_preference_ctx->pri_image_id.unique_id = g_array_sized_new (FALSE, TRUE, 1, 16);
+    g_array_insert_vals (firmware_preference_ctx->pri_image_id.unique_id, 0, split[1], strlen (split[1]));
+    g_array_set_size (firmware_preference_ctx->pri_image_id.unique_id, 16);
+    firmware_preference_ctx->pri_image_id.build_id = g_strdup_printf ("%s_%s", split[0], split[2]);
+
+    /* Create an array with both images, the contents of each image struct,
+     * though, aren't owned by the array (i.e. need to be disposed afterwards
+     * when no longer used). */
+    array = g_array_sized_new (FALSE, FALSE, sizeof (QmiMessageDmsSetFirmwarePreferenceInputListImage), 2);
+    g_array_append_val (array, firmware_preference_ctx->modem_image_id);
+    g_array_append_val (array, firmware_preference_ctx->pri_image_id);
+
+    /* The input bundle takes a reference to the array itself */
+    input = qmi_message_dms_set_firmware_preference_input_new ();
+    qmi_message_dms_set_firmware_preference_input_set_list (input, array, NULL);
+    g_array_unref (array);
+
+    g_strfreev (split);
+
+    return input;
+}
+
+static void
+get_boot_image_download_mode_ready (QmiClientDms *client,
+                                    GAsyncResult *res)
+{
+    QmiMessageDmsGetBootImageDownloadModeOutput *output;
+    GError *error = NULL;
+    QmiDmsBootImageDownloadMode mode;
+
+    output = qmi_client_dms_get_boot_image_download_mode_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_dms_get_boot_image_download_mode_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't get boot image download mode: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_dms_get_boot_image_download_mode_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    qmi_message_dms_get_boot_image_download_mode_output_get_mode (output, &mode, NULL);
+
+    g_print ("[%s] Boot image download mode: %s\n",
+             qmi_device_get_path_display (ctx->device),
+             qmi_dms_boot_image_download_mode_get_string (mode));
+
+    qmi_message_dms_get_boot_image_download_mode_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+static QmiMessageDmsSetBootImageDownloadModeInput *
+set_boot_image_download_mode_input_create (const gchar *str)
+{
+    QmiMessageDmsSetBootImageDownloadModeInput *input = NULL;
+    QmiDmsBootImageDownloadMode mode;
+    GError *error = NULL;
+
+    /* Prepare inputs.
+     * Format of the string is:
+     *    [normal|boot-and-recovery]
+     */
+    if (!qmicli_read_boot_image_download_mode_from_string (str, &mode))
+        return NULL;
+
+    input = qmi_message_dms_set_boot_image_download_mode_input_new ();
+    if (!qmi_message_dms_set_boot_image_download_mode_input_set_mode (input, mode, &error)) {
+        g_printerr ("error: couldn't create input bundle: '%s'\n", error->message);
+        g_error_free (error);
+        qmi_message_dms_set_boot_image_download_mode_input_unref (input);
+        return NULL;
+    }
+
+    return input;
+}
+
+static void
+set_boot_image_download_mode_ready (QmiClientDms *client,
+                                    GAsyncResult *res)
+{
+    QmiMessageDmsSetBootImageDownloadModeOutput *output;
+    GError *error = NULL;
+
+    output = qmi_client_dms_set_boot_image_download_mode_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_dms_set_boot_image_download_mode_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't set boot image download mode: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_dms_set_boot_image_download_mode_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    g_print ("[%s] Boot image download mode successfully set\n",
+             qmi_device_get_path_display (ctx->device));
+
+    qmi_message_dms_set_boot_image_download_mode_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+static void
+get_software_version_ready (QmiClientDms *client,
+                            GAsyncResult *res)
+{
+    QmiMessageDmsGetSoftwareVersionOutput *output;
+    GError *error = NULL;
+    const gchar *version;
+
+    output = qmi_client_dms_get_software_version_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_dms_get_software_version_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't get boot image download mode: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_dms_get_software_version_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    qmi_message_dms_get_software_version_output_get_version (output, &version, NULL);
+
+    g_print ("[%s] Software version: %s\n",
+             qmi_device_get_path_display (ctx->device),
+             version);
+
+    qmi_message_dms_get_software_version_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+static void
 set_fcc_authentication_ready (QmiClientDms *client,
                               GAsyncResult *res)
 {
@@ -3024,6 +3358,136 @@ get_supported_messages_ready (QmiClientDms *client,
     g_free (str);
 
     qmi_message_dms_get_supported_messages_output_unref (output);
+    operation_shutdown (TRUE);
+}
+
+static QmiMessageDmsHpChangeDeviceModeInput *
+hp_change_device_mode_input_create (const gchar *str)
+{
+    QmiMessageDmsHpChangeDeviceModeInput *input = NULL;
+    QmiDmsHpDeviceMode mode;
+    GError *error = NULL;
+
+    if (!qmicli_read_hp_device_mode_from_string (str, &mode)) {
+        g_printerr ("error: couldn't parse input HP device mode : '%s'\n", str);
+        return NULL;
+    }
+
+    input = qmi_message_dms_hp_change_device_mode_input_new ();
+    if (!qmi_message_dms_hp_change_device_mode_input_set_mode (input, mode, &error)) {
+        g_printerr ("error: couldn't create input data bundle: '%s'\n",
+                    error->message);
+        g_error_free (error);
+        qmi_message_dms_hp_change_device_mode_input_unref (input);
+        return NULL;
+    }
+
+    return input;
+}
+
+static void
+hp_change_device_mode_ready (QmiClientDms *client,
+                             GAsyncResult *res)
+{
+    QmiMessageDmsHpChangeDeviceModeOutput *output;
+    GError *error = NULL;
+
+    output = qmi_client_dms_hp_change_device_mode_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_dms_hp_change_device_mode_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't change HP device mode: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_dms_hp_change_device_mode_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    g_print ("[%s] Successfully changed HP device mode\n",
+             qmi_device_get_path_display (ctx->device));
+
+    qmi_message_dms_hp_change_device_mode_output_unref (output);
+
+    /* Changing the mode will end up power cycling the device right away, so
+     * just ignore any error from now on and don't even try to release the
+     * client CID */
+    operation_shutdown_skip_cid_release (TRUE);
+}
+
+static void
+swi_get_current_firmware_ready (QmiClientDms *client,
+                                GAsyncResult *res)
+{
+    QmiMessageDmsSwiGetCurrentFirmwareOutput *output;
+    GError *error = NULL;
+    const gchar *model = NULL;
+    const gchar *boot_version = NULL;
+    const gchar *amss_version = NULL;
+    const gchar *sku_id = NULL;
+    const gchar *package_id = NULL;
+    const gchar *carrier_id = NULL;
+    const gchar *pri_version = NULL;
+    const gchar *carrier = NULL;
+    const gchar *config_version = NULL;
+
+    output = qmi_client_dms_swi_get_current_firmware_finish (client, res, &error);
+    if (!output) {
+        g_printerr ("error: operation failed: %s\n", error->message);
+        g_error_free (error);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    if (!qmi_message_dms_swi_get_current_firmware_output_get_result (output, &error)) {
+        g_printerr ("error: couldn't get current firmware: %s\n", error->message);
+        g_error_free (error);
+        qmi_message_dms_swi_get_current_firmware_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    qmi_message_dms_swi_get_current_firmware_output_get_model          (output, &model,          NULL);
+    qmi_message_dms_swi_get_current_firmware_output_get_boot_version   (output, &boot_version,   NULL);
+    qmi_message_dms_swi_get_current_firmware_output_get_amss_version   (output, &amss_version,   NULL);
+    qmi_message_dms_swi_get_current_firmware_output_get_sku_id         (output, &sku_id,         NULL);
+    qmi_message_dms_swi_get_current_firmware_output_get_package_id     (output, &package_id,     NULL);
+    qmi_message_dms_swi_get_current_firmware_output_get_carrier_id     (output, &carrier_id,     NULL);
+    qmi_message_dms_swi_get_current_firmware_output_get_pri_version    (output, &pri_version,    NULL);
+    qmi_message_dms_swi_get_current_firmware_output_get_carrier        (output, &carrier,        NULL);
+    qmi_message_dms_swi_get_current_firmware_output_get_config_version (output, &config_version, NULL);
+
+    /* We'll consider it a success if we got at least one of the expected strings */
+    if (!model          &&
+        !boot_version   &&
+        !amss_version   &&
+        !sku_id         &&
+        !package_id     &&
+        !carrier_id     &&
+        !pri_version    &&
+        !carrier        &&
+        !config_version) {
+        g_printerr ("error: couldn't get any of the current firmware fields\n");
+        qmi_message_dms_swi_get_current_firmware_output_unref (output);
+        operation_shutdown (FALSE);
+        return;
+    }
+
+    g_print ("[%s] Successfully retrieved current firmware:\n",
+             qmi_device_get_path_display (ctx->device));
+    g_print ("\tModel: %s\n",          VALIDATE_UNKNOWN (model));
+    g_print ("\tBoot version: %s\n",   VALIDATE_UNKNOWN (boot_version));
+    g_print ("\tAMSS version: %s\n",   VALIDATE_UNKNOWN (amss_version));
+    g_print ("\tSKU ID: %s\n",         VALIDATE_UNKNOWN (sku_id));
+    g_print ("\tPackage ID: %s\n",     VALIDATE_UNKNOWN (package_id));
+    g_print ("\tCarrier ID: %s\n",     VALIDATE_UNKNOWN (carrier_id));
+    g_print ("\tConfig version: %s\n", VALIDATE_UNKNOWN (config_version));
+
+    qmi_message_dms_swi_get_current_firmware_output_unref (output);
     operation_shutdown (TRUE);
 }
 
@@ -3544,6 +4008,18 @@ qmicli_dms_run (QmiDevice *device,
         return;
     }
 
+    /* Set firmware id? */
+    if (set_firmware_id_flag) {
+        g_debug ("Asynchronously setting firmware id...");
+        qmi_client_dms_set_firmware_id (ctx->client,
+                                        NULL,
+                                        10,
+                                        ctx->cancellable,
+                                        (GAsyncReadyCallback)set_firmware_id_ready,
+                                        NULL);
+        return;
+    }
+
     /* Request to get CK status? */
     if (uim_get_ck_status_str) {
         QmiMessageDmsUimGetCkStatusInput *input;
@@ -3660,6 +4136,88 @@ qmicli_dms_run (QmiDevice *device,
         return;
     }
 
+    /* Get firmware preference? */
+    if (get_firmware_preference_flag) {
+        qmi_client_dms_get_firmware_preference (
+            client,
+            NULL,
+            10,
+            NULL,
+            (GAsyncReadyCallback)dms_get_firmware_preference_ready,
+            NULL);
+        return;
+    }
+
+    /* Set firmware preference? */
+    if (set_firmware_preference_str) {
+        QmiMessageDmsSetFirmwarePreferenceInput *input;
+        SetFirmwarePreferenceContext             firmware_preference_ctx;
+
+        memset (&firmware_preference_ctx, 0, sizeof (firmware_preference_ctx));
+
+        g_debug ("Asynchronously setting firmware preference...");
+        input = set_firmware_preference_input_create (set_firmware_preference_str, &firmware_preference_ctx);
+        if (!input) {
+            operation_shutdown (FALSE);
+            return;
+        }
+
+        qmi_client_dms_set_firmware_preference (
+            client,
+            input,
+            10,
+            NULL,
+            (GAsyncReadyCallback)dms_set_firmware_preference_ready,
+            NULL);
+        set_firmware_preference_context_clear (&firmware_preference_ctx);
+        qmi_message_dms_set_firmware_preference_input_unref (input);
+        return;
+    }
+
+    /* Get boot image download mode */
+    if (get_boot_image_download_mode_flag) {
+        g_debug ("Asynchronously getting boot image download mode...");
+        qmi_client_dms_get_boot_image_download_mode (ctx->client,
+                                                     NULL,
+                                                     10,
+                                                     ctx->cancellable,
+                                                     (GAsyncReadyCallback)get_boot_image_download_mode_ready,
+                                                     NULL);
+        return;
+    }
+
+    /* Set boot image download mode */
+    if (set_boot_image_download_mode_str) {
+        QmiMessageDmsSetBootImageDownloadModeInput *input;
+
+        g_debug ("Asynchronously setting boot image download mode...");
+        input = set_boot_image_download_mode_input_create (set_boot_image_download_mode_str);
+        if (!input) {
+            operation_shutdown (FALSE);
+            return;
+        }
+        qmi_client_dms_set_boot_image_download_mode (ctx->client,
+                                                     input,
+                                                     10,
+                                                     ctx->cancellable,
+                                                     (GAsyncReadyCallback)set_boot_image_download_mode_ready,
+                                                     NULL);
+        qmi_message_dms_set_boot_image_download_mode_input_unref (input);
+        return;
+    }
+
+    /* Get software version */
+    if (get_software_version_flag) {
+        g_debug ("Asynchronously getting software version...");
+        qmi_client_dms_get_software_version (ctx->client,
+                                             NULL,
+                                             10,
+                                             ctx->cancellable,
+                                             (GAsyncReadyCallback)get_software_version_ready,
+                                             NULL);
+        return;
+    }
+
     /* Set FCC authentication */
     if (set_fcc_authentication_flag) {
         g_debug ("Asynchronously setting FCC auth...");
@@ -3681,6 +4239,40 @@ qmicli_dms_run (QmiDevice *device,
                                                ctx->cancellable,
                                                (GAsyncReadyCallback)get_supported_messages_ready,
                                                NULL);
+        return;
+    }
+
+    /* Request to change device download mode */
+    if (hp_change_device_mode_str) {
+        QmiMessageDmsHpChangeDeviceModeInput *input;
+
+        g_debug ("Asynchronously changing device mode (HP specific)...");
+
+        input = hp_change_device_mode_input_create (hp_change_device_mode_str);
+        if (!input) {
+            operation_shutdown (FALSE);
+            return;
+        }
+
+        qmi_client_dms_hp_change_device_mode (ctx->client,
+                                              input,
+                                              10,
+                                              ctx->cancellable,
+                                              (GAsyncReadyCallback)hp_change_device_mode_ready,
+                                              NULL);
+        qmi_message_dms_hp_change_device_mode_input_unref (input);
+        return;
+    }
+
+    /* Request to get current firmware */
+    if (swi_get_current_firmware_flag) {
+        g_debug ("Asynchronously getting current firmware (Sierra Wireless specific)...");
+        qmi_client_dms_swi_get_current_firmware (ctx->client,
+                                                 NULL,
+                                                 10,
+                                                 ctx->cancellable,
+                                                 (GAsyncReadyCallback)swi_get_current_firmware_ready,
+                                                 NULL);
         return;
     }
 

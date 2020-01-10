@@ -165,6 +165,8 @@ GTKDOC_DEPS_CFLAGS = @GTKDOC_DEPS_CFLAGS@
 GTKDOC_DEPS_LIBS = @GTKDOC_DEPS_LIBS@
 GTKDOC_MKPDF = @GTKDOC_MKPDF@
 GTKDOC_REBASE = @GTKDOC_REBASE@
+GUDEV_CFLAGS = @GUDEV_CFLAGS@
+GUDEV_LIBS = @GUDEV_LIBS@
 HELP2MAN = @HELP2MAN@
 HTML_DIR = @HTML_DIR@
 INSTALL = @INSTALL@
@@ -286,6 +288,7 @@ ALL_SECTIONS = \
 	$(top_builddir)/src/libqmi-glib/generated/qmi-nas.sections \
 	$(top_builddir)/src/libqmi-glib/generated/qmi-wds.sections \
 	$(top_builddir)/src/libqmi-glib/generated/qmi-wms.sections \
+	$(top_builddir)/src/libqmi-glib/generated/qmi-pdc.sections \
 	$(top_builddir)/src/libqmi-glib/generated/qmi-pds.sections \
 	$(top_builddir)/src/libqmi-glib/generated/qmi-pbm.sections \
 	$(top_builddir)/src/libqmi-glib/generated/qmi-uim.sections \

@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Copyright (C) 2012-2015 Aleksander Morgado <aleksander@aleksander.es>
+ * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #include <glib.h>
@@ -24,7 +24,8 @@
 #define __QMICLI_H__
 
 /* Common */
-void          qmicli_async_operation_done  (gboolean operation_status);
+void          qmicli_async_operation_done (gboolean reported_operation_status,
+                                           gboolean skip_cid_release);
 
 /* DMS group */
 GOptionGroup *qmicli_dms_get_option_group (void);
@@ -52,6 +53,13 @@ GOptionGroup *qmicli_pbm_get_option_group (void);
 gboolean      qmicli_pbm_options_enabled  (void);
 void          qmicli_pbm_run              (QmiDevice *device,
                                            QmiClientPbm *client,
+                                           GCancellable *cancellable);
+
+/* PDC group */
+GOptionGroup *qmicli_pdc_get_option_group (void);
+gboolean      qmicli_pdc_options_enabled  (void);
+void          qmicli_pdc_run              (QmiDevice *device,
+                                           QmiClientPdc *client,
                                            GCancellable *cancellable);
 
 /* UIM group */

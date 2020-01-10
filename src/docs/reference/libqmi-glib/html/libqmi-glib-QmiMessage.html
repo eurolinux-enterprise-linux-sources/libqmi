@@ -7,8 +7,8 @@
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
 <link rel="up" href="ch01.html" title="Core">
 <link rel="prev" href="libqmi-glib-Version-and-feature-checks.html" title="Version and feature checks">
-<link rel="next" href="QmiDevice.html" title="QmiDevice">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<link rel="next" href="QmiMessageContext.html" title="QmiMessageContext">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -20,7 +20,7 @@
 <td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
 <td><a accesskey="u" href="ch01.html"><img src="up.png" width="16" height="16" border="0" alt="Up"></a></td>
 <td><a accesskey="p" href="libqmi-glib-Version-and-feature-checks.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="QmiDevice.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<td><a accesskey="n" href="QmiMessageContext.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="refentry">
 <a name="libqmi-glib-QmiMessage"></a><div class="titlepage"></div>
@@ -156,6 +156,14 @@
 </td>
 <td class="function_name">
 <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-get-version-introduced" title="qmi_message_get_version_introduced ()">qmi_message_get_version_introduced</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-get-version-introduced-full" title="qmi_message_get_version_introduced_full ()">qmi_message_get_version_introduced_full</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
 <tr>
@@ -418,6 +426,14 @@
 <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 </td>
 <td class="function_name">
+<a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-get-printable-full" title="qmi_message_get_printable_full ()">qmi_message_get_printable_full</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
 <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-get-tlv-printable" title="qmi_message_get_tlv_printable ()">qmi_message_get_tlv_printable</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
@@ -501,6 +517,7 @@ qmi_message_new (<em class="parameter"><code><a class="link" href="libqmi-glib-C
 <p> a newly created <a class="link" href="libqmi-glib-QmiMessage.html#QmiMessage" title="QmiMessage"><span class="type">QmiMessage</span></a>. The returned value should be freed with <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-unref" title="qmi_message_unref ()"><code class="function">qmi_message_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -540,6 +557,7 @@ doesn't contain a complete QMI message <a href="https://developer.gnome.org/glib
 is set. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -576,6 +594,7 @@ qmi_message_response_new (<em class="parameter"><code><a class="link" href="libq
 <p> a newly created <a class="link" href="libqmi-glib-QmiMessage.html#QmiMessage" title="QmiMessage"><span class="type">QmiMessage</span></a>. The returned value should be freed with <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-unref" title="qmi_message_unref ()"><code class="function">qmi_message_unref()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-8.html#api-index-1.8">1.8</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -604,6 +623,7 @@ qmi_message_ref (<em class="parameter"><code><a class="link" href="libqmi-glib-Q
 <p> (transfer full) the new reference to <em class="parameter"><code>self</code></em>
 .</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -629,6 +649,7 @@ If the reference count drops to 0, <em class="parameter"><code>self</code></em>
 </tr></tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -656,6 +677,7 @@ qmi_message_is_request (<em class="parameter"><code><a class="link" href="libqmi
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>self</code></em>
 is a request message, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-8.html#api-index-1.8">1.8</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -683,6 +705,7 @@ qmi_message_is_response (<em class="parameter"><code><a class="link" href="libqm
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>self</code></em>
 is a response message, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -710,6 +733,7 @@ qmi_message_is_indication (<em class="parameter"><code><a class="link" href="lib
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>self</code></em>
 is an indication message, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -736,6 +760,7 @@ qmi_message_get_service (<em class="parameter"><code><a class="link" href="libqm
 <a name="qmi-message-get-service.returns"></a><h4>Returns</h4>
 <p> a <a class="link" href="libqmi-glib-Common-enumerations-and-flags.html#QmiService" title="enum QmiService"><span class="type">QmiService</span></a>.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -762,6 +787,7 @@ qmi_message_get_client_id (<em class="parameter"><code><a class="link" href="lib
 <a name="qmi-message-get-client-id.returns"></a><h4>Returns</h4>
 <p> the client ID.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -788,6 +814,7 @@ qmi_message_get_transaction_id (<em class="parameter"><code><a class="link" href
 <a name="qmi-message-get-transaction-id.returns"></a><h4>Returns</h4>
 <p> the transaction ID.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -814,6 +841,7 @@ qmi_message_get_message_id (<em class="parameter"><code><a class="link" href="li
 <a name="qmi-message-get-message-id.returns"></a><h4>Returns</h4>
 <p> the ID.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -840,6 +868,7 @@ qmi_message_get_length (<em class="parameter"><code><a class="link" href="libqmi
 <a name="qmi-message-get-length.returns"></a><h4>Returns</h4>
 <p> the length of the raw data.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -882,6 +911,7 @@ qmi_message_get_raw (<em class="parameter"><code><a class="link" href="libqmi-gl
 is set. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -890,7 +920,12 @@ is set. </p>
 qmi_message_get_version_introduced (<em class="parameter"><code><a class="link" href="libqmi-glib-QmiMessage.html#QmiMessage" title="QmiMessage"><span class="type">QmiMessage</span></a> *self</code></em>,
                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> *major</code></em>,
                                     <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> *minor</code></em>);</pre>
-<p>Gets, if known, the service version in which the given message was first introduced.</p>
+<div class="warning">
+<p><code class="literal">qmi_message_get_version_introduced</code> has been deprecated since version 1.18 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-get-version-introduced-full" title="qmi_message_get_version_introduced_full ()"><code class="function">qmi_message_get_version_introduced_full()</code></a> instead.</p>
+</div>
+<p>Gets, if known, the service version in which the given message was first
+introduced.</p>
 <div class="refsect3">
 <a name="qmi-message-get-version-introduced.parameters"></a><h4>Parameters</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -924,6 +959,63 @@ qmi_message_get_version_introduced (<em class="parameter"><code><a class="link" 
 and <em class="parameter"><code>minor</code></em>
 are set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-message-get-version-introduced-full"></a><h3>qmi_message_get_version_introduced_full ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gboolean"><span class="returnvalue">gboolean</span></a>
+qmi_message_get_version_introduced_full
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-QmiMessage.html#QmiMessage" title="QmiMessage"><span class="type">QmiMessage</span></a> *self</code></em>,
+                                <em class="parameter"><code><a class="link" href="QmiMessageContext.html" title="QmiMessageContext"><span class="type">QmiMessageContext</span></a> *context</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> *major</code></em>,
+                                <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint"><span class="type">guint</span></a> *minor</code></em>);</pre>
+<p>Gets, if known, the service version in which the given message was first
+introduced.</p>
+<p>The lookup of the version may be specific to the <em class="parameter"><code>context</code></em>
+ provided, e.g. for
+vendor-specific messages.</p>
+<p>If no <em class="parameter"><code>context</code></em>
+ given, the behavior is the same as <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-get-version-introduced" title="qmi_message_get_version_introduced ()"><code class="function">qmi_message_get_version_introduced()</code></a>.</p>
+<div class="refsect3">
+<a name="qmi-message-get-version-introduced-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="libqmi-glib-QmiMessage.html#QmiMessage" title="QmiMessage"><span class="type">QmiMessage</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>context</p></td>
+<td class="parameter_description"><p>a <a class="link" href="QmiMessageContext.html" title="QmiMessageContext"><span class="type">QmiMessageContext</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>major</p></td>
+<td class="parameter_description"><p>(out) return location for the major version.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>minor</p></td>
+<td class="parameter_description"><p>(out) return location for the minor version.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-message-get-version-introduced-full.returns"></a><h4>Returns</h4>
+<p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if <em class="parameter"><code>major</code></em>
+and <em class="parameter"><code>minor</code></em>
+are set, <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> otherwise.</p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2400,6 +2492,41 @@ is set.</p>
                               <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#guint8"><span class="type">guint8</span></a> *value</code></em>,
                               <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gsize"><span class="type">gsize</span></a> length</code></em>,
                               <em class="parameter"><code><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gpointer"><span class="type">gpointer</span></a> user_data</code></em>);</pre>
+<p>Callback type to use when iterating raw TLVs with
+<a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-foreach-raw-tlv" title="qmi_message_foreach_raw_tlv ()"><code class="function">qmi_message_foreach_raw_tlv()</code></a>.</p>
+<div class="refsect3">
+<a name="QmiMessageForeachRawTlvFn.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>type</p></td>
+<td class="parameter_description"><p>specific ID of the TLV.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>value</p></td>
+<td class="parameter_description"><p>value of the TLV.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>length</p></td>
+<td class="parameter_description"><p>length of the TLV, in bytes.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>user_data</p></td>
+<td class="parameter_description"><p>user data.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2436,6 +2563,7 @@ qmi_message_foreach_raw_tlv (<em class="parameter"><code><a class="link" href="l
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2477,6 +2605,7 @@ qmi_message_get_raw_tlv (<em class="parameter"><code><a class="link" href="libqm
 <p> The raw data buffer of the TLV, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><span class="type">NULL</span></a> if not found. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2532,6 +2661,7 @@ qmi_message_add_raw_tlv (<em class="parameter"><code><a class="link" href="libqm
 <p> <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#TRUE:CAPS"><code class="literal">TRUE</code></a> if the TLV is successfully added, otherwise <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#FALSE:CAPS"><code class="literal">FALSE</code></a> is returned and <em class="parameter"><code>error</code></em>
 is set.</p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2562,6 +2692,7 @@ qmi_message_set_transaction_id (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-8.html#api-index-1.8">1.8</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2569,6 +2700,10 @@ qmi_message_set_transaction_id (<em class="parameter"><code><a class="link" href
 <pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
 qmi_message_get_printable (<em class="parameter"><code><a class="link" href="libqmi-glib-QmiMessage.html#QmiMessage" title="QmiMessage"><span class="type">QmiMessage</span></a> *self</code></em>,
                            <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *line_prefix</code></em>);</pre>
+<div class="warning">
+<p><code class="literal">qmi_message_get_printable</code> has been deprecated since version 1.18 and should not be used in newly-written code.</p>
+<p>Use <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-get-printable-full" title="qmi_message_get_printable_full ()"><code class="function">qmi_message_get_printable_full()</code></a> instead.</p>
+</div>
 <p>Gets a printable string with the contents of the whole QMI message.</p>
 <p>If known, the printable string will contain translated TLV values as well as the raw
 data buffer contents.</p>
@@ -2599,6 +2734,56 @@ data buffer contents.</p>
 <p> a newly allocated string, which should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-message-get-printable-full"></a><h3>qmi_message_get_printable_full ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_message_get_printable_full (<em class="parameter"><code><a class="link" href="libqmi-glib-QmiMessage.html#QmiMessage" title="QmiMessage"><span class="type">QmiMessage</span></a> *self</code></em>,
+                                <em class="parameter"><code><a class="link" href="QmiMessageContext.html" title="QmiMessageContext"><span class="type">QmiMessageContext</span></a> *context</code></em>,
+                                <em class="parameter"><code>const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="type">gchar</span></a> *line_prefix</code></em>);</pre>
+<p>Gets a printable string with the contents of the whole QMI message.</p>
+<p>If known, the printable string will contain translated TLV values as well as
+the raw data buffer contents.</p>
+<p>The translation of the contents may be specific to the <em class="parameter"><code>context</code></em>
+ provided,
+e.g. for vendor-specific messages.</p>
+<p>If no <em class="parameter"><code>context</code></em>
+ given, the behavior is the same as <a class="link" href="libqmi-glib-QmiMessage.html#qmi-message-get-printable" title="qmi_message_get_printable ()"><code class="function">qmi_message_get_printable()</code></a>.</p>
+<div class="refsect3">
+<a name="qmi-message-get-printable-full.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="parameter_name"><p>self</p></td>
+<td class="parameter_description"><p>a <a class="link" href="libqmi-glib-QmiMessage.html#QmiMessage" title="QmiMessage"><span class="type">QmiMessage</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>context</p></td>
+<td class="parameter_description"><p>a <a class="link" href="QmiMessageContext.html" title="QmiMessageContext"><span class="type">QmiMessageContext</span></a>.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+<tr>
+<td class="parameter_name"><p>line_prefix</p></td>
+<td class="parameter_description"><p>prefix string to use in each new generated line.</p></td>
+<td class="parameter_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-message-get-printable-full.returns"></a><h4>Returns</h4>
+<p> a newly allocated string, which should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2653,14 +2838,17 @@ qmi_message_get_tlv_printable (<em class="parameter"><code><a class="link" href=
 <p> a newly allocated string, which should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 <div class="refsect1">
 <a name="libqmi-glib-QmiMessage.other_details"></a><h2>Types and Values</h2>
 <div class="refsect2">
 <a name="QMI-MESSAGE-QMUX-MARKER:CAPS"></a><h3>QMI_MESSAGE_QMUX_MARKER</h3>
-<pre class="programlisting">#define QMI_MESSAGE_QMUX_MARKER (guint8)0x01
+<pre class="programlisting">#define QMI_MESSAGE_QMUX_MARKER (guint8) 0x01
 </pre>
+<p>First byte of every QMI message.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2668,10 +2856,11 @@ qmi_message_get_tlv_printable (<em class="parameter"><code><a class="link" href=
 <pre class="programlisting">typedef GByteArray QmiMessage;
 </pre>
 <p>An opaque type representing a QMI message.</p>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

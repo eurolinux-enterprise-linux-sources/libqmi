@@ -8,7 +8,7 @@
 <link rel="up" href="ch03.html" title="Network Access Service (NAS)">
 <link rel="prev" href="QmiClientNas.html" title="QmiClientNas">
 <link rel="next" href="libqmi-glib-NAS-Event-Report.html" title="NAS Event Report">
-<meta name="generator" content="GTK-Doc V1.25 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
@@ -335,6 +335,35 @@
 <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#qmi-nas-scell-state-get-string" title="qmi_nas_scell_state_get_string ()">qmi_nas_scell_state_get_string</a> <span class="c_punctuation">()</span>
 </td>
 </tr>
+<tr>
+<td class="function_type">
+<a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#qmi-nas-network-name-display-condition-build-string-from-mask" title="qmi_nas_network_name_display_condition_build_string_from_mask ()">qmi_nas_network_name_display_condition_build_string_from_mask</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#qmi-nas-plmn-encoding-scheme-get-string" title="qmi_nas_plmn_encoding_scheme_get_string ()">qmi_nas_plmn_encoding_scheme_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#qmi-nas-plmn-name-country-initials-get-string" title="qmi_nas_plmn_name_country_initials_get_string ()">qmi_nas_plmn_name_country_initials_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
+<tr>
+<td class="function_type">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+</td>
+<td class="function_name">
+<a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#qmi-nas-plmn-name-spare-bits-get-string" title="qmi_nas_plmn_name_spare_bits_get_string ()">qmi_nas_plmn_name_spare_bits_get_string</a> <span class="c_punctuation">()</span>
+</td>
+</tr>
 </tbody>
 </table></div>
 </div>
@@ -510,6 +539,22 @@
 <td class="datatype_keyword">enum</td>
 <td class="function_name"><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasScellState" title="enum QmiNasScellState">QmiNasScellState</a></td>
 </tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasNetworkNameDisplayCondition" title="enum QmiNasNetworkNameDisplayCondition">QmiNasNetworkNameDisplayCondition</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasPlmnEncodingScheme" title="enum QmiNasPlmnEncodingScheme">QmiNasPlmnEncodingScheme</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasPlmnNameCountryInitials" title="enum QmiNasPlmnNameCountryInitials">QmiNasPlmnNameCountryInitials</a></td>
+</tr>
+<tr>
+<td class="datatype_keyword">enum</td>
+<td class="function_name"><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasPlmnNameSpareBits" title="enum QmiNasPlmnNameSpareBits">QmiNasPlmnNameSpareBits</a></td>
+</tr>
 </tbody>
 </table></div>
 </div>
@@ -537,6 +582,9 @@
     <span class="lineart">├──</span> QmiNasNetworkSelectionPreference
     <span class="lineart">├──</span> QmiNasNetworkServiceDomain
     <span class="lineart">├──</span> QmiNasNetworkType
+    <span class="lineart">├──</span> QmiNasPlmnEncodingScheme
+    <span class="lineart">├──</span> QmiNasPlmnNameCountryInitials
+    <span class="lineart">├──</span> QmiNasPlmnNameSpareBits
     <span class="lineart">├──</span> QmiNasPreferenceDuration
     <span class="lineart">├──</span> QmiNasRadioInterface
     <span class="lineart">├──</span> QmiNasRegistrationState
@@ -550,6 +598,7 @@
     <span class="lineart">├──</span> QmiNasWcdmaHsService
     <span class="lineart">╰──</span> QmiNasWcdmaRrcState
     <a href="https://developer.gnome.org/gobject/unstable/gobject-Enumeration-and-Flag-Types.html">GFlags</a>
+    <span class="lineart">├──</span> QmiNasNetworkNameDisplayCondition
     <span class="lineart">├──</span> QmiNasNetworkScanType
     <span class="lineart">├──</span> QmiNasNetworkStatus
     <span class="lineart">├──</span> QmiNasRadioTechnologyPreference
@@ -591,6 +640,7 @@ qmi_nas_radio_interface_get_string (<em class="parameter"><code><a class="link" 
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -619,6 +669,7 @@ qmi_nas_active_band_get_string (<em class="parameter"><code><a class="link" href
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -648,6 +699,7 @@ qmi_nas_network_service_domain_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -676,6 +728,7 @@ qmi_nas_evdo_sinr_level_get_string (<em class="parameter"><code><a class="link" 
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -706,6 +759,7 @@ each <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasSig
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -736,6 +790,7 @@ each <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasNet
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -766,6 +821,7 @@ each <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasNet
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -795,6 +851,7 @@ qmi_nas_network_register_type_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -823,6 +880,7 @@ qmi_nas_registration_state_get_string (<em class="parameter"><code><a class="lin
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -851,6 +909,7 @@ qmi_nas_attach_state_get_string (<em class="parameter"><code><a class="link" hre
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -879,6 +938,7 @@ qmi_nas_network_type_get_string (<em class="parameter"><code><a class="link" hre
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -908,6 +968,7 @@ qmi_nas_roaming_indicator_status_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -936,6 +997,7 @@ qmi_nas_data_capability_get_string (<em class="parameter"><code><a class="link" 
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -964,6 +1026,7 @@ qmi_nas_service_status_get_string (<em class="parameter"><code><a class="link" h
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -992,6 +1055,7 @@ qmi_nas_hdr_personality_get_string (<em class="parameter"><code><a class="link" 
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1021,6 +1085,7 @@ qmi_nas_call_barring_status_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1050,6 +1115,7 @@ qmi_nas_network_description_display_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1079,6 +1145,7 @@ qmi_nas_network_description_encoding_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1109,6 +1176,7 @@ each <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasRad
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1138,6 +1206,7 @@ qmi_nas_preference_duration_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1168,6 +1237,7 @@ each <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasRat
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1197,6 +1267,7 @@ qmi_nas_cdma_prl_preference_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1225,6 +1296,7 @@ qmi_nas_roaming_preference_get_string (<em class="parameter"><code><a class="lin
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1254,6 +1326,7 @@ qmi_nas_network_selection_preference_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1282,6 +1355,7 @@ qmi_nas_change_duration_get_string (<em class="parameter"><code><a class="link" 
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1311,6 +1385,7 @@ qmi_nas_service_domain_preference_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1340,6 +1415,7 @@ qmi_nas_gsm_wcdma_acquisition_order_preference_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1370,6 +1446,7 @@ each <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasBan
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1400,6 +1477,7 @@ each <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasLte
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1430,6 +1508,7 @@ each <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasTdS
 <p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
 <p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1458,6 +1537,7 @@ qmi_nas_roaming_status_get_string (<em class="parameter"><code><a class="link" h
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1487,6 +1567,7 @@ qmi_nas_hdr_protocol_revision_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1515,6 +1596,7 @@ qmi_nas_wcdma_hs_service_get_string (<em class="parameter"><code><a class="link"
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1544,6 +1626,7 @@ qmi_nas_cell_broadcast_capability_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1572,6 +1655,7 @@ qmi_nas_sim_reject_state_get_string (<em class="parameter"><code><a class="link"
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1600,6 +1684,7 @@ qmi_nas_cdma_pilot_type_get_string (<em class="parameter"><code><a class="link" 
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1628,6 +1713,7 @@ qmi_nas_day_of_week_get_string (<em class="parameter"><code><a class="link" href
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-4.html#api-index-1.4">1.4</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1657,6 +1743,7 @@ qmi_nas_daylight_savings_adjustment_get_string
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-4.html#api-index-1.4">1.4</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1685,6 +1772,7 @@ qmi_nas_wcdma_rrc_state_get_string (<em class="parameter"><code><a class="link" 
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-10.html#api-index-1.10">1.10</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1713,6 +1801,7 @@ qmi_nas_dl_bandwidth_get_string (<em class="parameter"><code><a class="link" hre
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -1738,6 +1827,124 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </div>
 <div class="refsect3">
 <a name="qmi-nas-scell-state-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-nas-network-name-display-condition-build-string-from-mask"></a><h3>qmi_nas_network_name_display_condition_build_string_from_mask ()</h3>
+<pre class="programlisting"><a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_nas_network_name_display_condition_build_string_from_mask
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasNetworkNameDisplayCondition" title="enum QmiNasNetworkNameDisplayCondition"><span class="type">QmiNasNetworkNameDisplayCondition</span></a> mask</code></em>);</pre>
+<p>Builds a string containing a comma-separated list of nicknames for
+each <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasNetworkNameDisplayCondition" title="enum QmiNasNetworkNameDisplayCondition"><span class="type">QmiNasNetworkNameDisplayCondition</span></a> in <em class="parameter"><code>mask</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-nas-network-name-display-condition-build-string-from-mask.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>mask</p></td>
+<td class="parameter_description"><p>bitmask of QmiNasNetworkNameDisplayCondition values.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-nas-network-name-display-condition-build-string-from-mask.returns"></a><h4>Returns</h4>
+<p> a string with the list of nicknames, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if none given. The returned value should be freed with <a href="https://developer.gnome.org/glib/unstable/glib-Memory-Allocation.html#g-free"><code class="function">g_free()</code></a>. </p>
+<p><span class="annotation">[<acronym title="Free data after the code is done."><span class="acronym">transfer full</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-nas-plmn-encoding-scheme-get-string"></a><h3>qmi_nas_plmn_encoding_scheme_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_nas_plmn_encoding_scheme_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasPlmnEncodingScheme" title="enum QmiNasPlmnEncodingScheme"><span class="type">QmiNasPlmnEncodingScheme</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasPlmnEncodingScheme" title="enum QmiNasPlmnEncodingScheme"><span class="type">QmiNasPlmnEncodingScheme</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-nas-plmn-encoding-scheme-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiNasPlmnEncodingScheme.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-nas-plmn-encoding-scheme-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-nas-plmn-name-country-initials-get-string"></a><h3>qmi_nas_plmn_name_country_initials_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_nas_plmn_name_country_initials_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasPlmnNameCountryInitials" title="enum QmiNasPlmnNameCountryInitials"><span class="type">QmiNasPlmnNameCountryInitials</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasPlmnNameCountryInitials" title="enum QmiNasPlmnNameCountryInitials"><span class="type">QmiNasPlmnNameCountryInitials</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-nas-plmn-name-country-initials-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiNasPlmnNameCountryInitials.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-nas-plmn-name-country-initials-get-string.returns"></a><h4>Returns</h4>
+<p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
+<p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
+</div>
+</div>
+<hr>
+<div class="refsect2">
+<a name="qmi-nas-plmn-name-spare-bits-get-string"></a><h3>qmi_nas_plmn_name_spare_bits_get_string ()</h3>
+<pre class="programlisting">const <a href="https://developer.gnome.org/glib/unstable/glib-Basic-Types.html#gchar"><span class="returnvalue">gchar</span></a> *
+qmi_nas_plmn_name_spare_bits_get_string
+                               (<em class="parameter"><code><a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasPlmnNameSpareBits" title="enum QmiNasPlmnNameSpareBits"><span class="type">QmiNasPlmnNameSpareBits</span></a> val</code></em>);</pre>
+<p>Gets the nickname string for the <a class="link" href="libqmi-glib-NAS-enumerations-and-flags.html#QmiNasPlmnNameSpareBits" title="enum QmiNasPlmnNameSpareBits"><span class="type">QmiNasPlmnNameSpareBits</span></a> specified at <em class="parameter"><code>val</code></em>
+.</p>
+<div class="refsect3">
+<a name="qmi-nas-plmn-name-spare-bits-get-string.parameters"></a><h4>Parameters</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="150px" class="parameters_name">
+<col class="parameters_description">
+<col width="200px" class="parameters_annotations">
+</colgroup>
+<tbody><tr>
+<td class="parameter_name"><p>val</p></td>
+<td class="parameter_description"><p>a QmiNasPlmnNameSpareBits.</p></td>
+<td class="parameter_annotations"> </td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="refsect3">
+<a name="qmi-nas-plmn-name-spare-bits-get-string.returns"></a><h4>Returns</h4>
 <p> a string with the nickname, or <a href="https://developer.gnome.org/glib/unstable/glib-Standard-Macros.html#NULL:CAPS"><code class="literal">NULL</code></a> if not found. Do not free the returned value. </p>
 <p><span class="annotation">[<acronym title="Don't free data after the code is done."><span class="acronym">transfer none</span></acronym>]</span></p>
 </div>
@@ -1823,6 +2030,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2386,6 +2594,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2438,6 +2647,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2518,6 +2728,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2598,6 +2809,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2643,6 +2855,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2716,6 +2929,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2747,6 +2961,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2799,6 +3014,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2837,6 +3053,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2875,6 +3092,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -2906,6 +3124,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3021,6 +3240,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3073,6 +3293,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3111,6 +3332,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3163,6 +3385,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3201,6 +3424,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3246,6 +3470,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3312,6 +3537,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3378,6 +3604,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3437,6 +3664,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3475,6 +3703,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3520,6 +3749,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3551,6 +3781,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3582,6 +3813,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3634,6 +3866,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3672,6 +3905,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -3955,6 +4189,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4196,6 +4431,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4255,10 +4491,12 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="QmiNasRoamingStatus"></a><h3>enum QmiNasRoamingStatus</h3>
+<p>Roaming status.</p>
 <div class="refsect3">
 <a name="QmiNasRoamingStatus.members"></a><h4>Members</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -4362,6 +4600,7 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4407,10 +4646,12 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
 <a name="QmiNasWcdmaHsService"></a><h3>enum QmiNasWcdmaHsService</h3>
+<p>Call status on high speed.</p>
 <div class="refsect3">
 <a name="QmiNasWcdmaHsService.members"></a><h4>Members</h4>
 <div class="informaltable"><table class="informaltable" width="100%" border="0">
@@ -4472,14 +4713,14 @@ qmi_nas_scell_state_get_string (<em class="parameter"><code><a class="link" href
 <tr>
 <td class="enum_member_name"><p><a name="QMI-NAS-WCDMA-HS-SERVICE-DC-HSDPA-PLUS-HSUPA-SUPPORTED:CAPS"></a>QMI_NAS_WCDMA_HS_SERVICE_DC_HSDPA_PLUS_HSUPA_SUPPORTED</p></td>
 <td class="enum_member_description">
-<p>DC-HSDPA+ and HSUPA supported.
-Call status on high speed.</p>
+<p>DC-HSDPA+ and HSUPA supported.</p>
 </td>
 <td class="enum_member_annotations"> </td>
 </tr>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4518,6 +4759,7 @@ Call status on high speed.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4570,6 +4812,7 @@ Call status on high speed.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4601,6 +4844,7 @@ Call status on high speed.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-0.html#api-index-1.0">1.0</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4667,6 +4911,7 @@ Call status on high speed.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-4.html#api-index-1.4">1.4</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4705,6 +4950,7 @@ Call status on high speed.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-4.html#api-index-1.4">1.4</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4757,6 +5003,7 @@ Call status on high speed.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-10.html#api-index-1.10">1.10</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4830,6 +5077,7 @@ Call status on high speed.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
 </div>
 <hr>
 <div class="refsect2">
@@ -4868,10 +5116,198 @@ Call status on high speed.</p>
 </tbody>
 </table></div>
 </div>
+<p class="since">Since: <a class="link" href="api-index-1-16.html#api-index-1.16">1.16</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiNasNetworkNameDisplayCondition"></a><h3>enum QmiNasNetworkNameDisplayCondition</h3>
+<p>Flags used to control display of the PLMN name and Service Provider Name. See
+3GPP TS 51.011 descripton of the EFspn SIM file for more details.</p>
+<div class="refsect3">
+<a name="QmiNasNetworkNameDisplayCondition.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-NETWORK-NAME-DISPLAY-CONDITION-DISPLAY-REGISTERED-PLMN-IF-KNOWN-NETWORK:CAPS"></a>QMI_NAS_NETWORK_NAME_DISPLAY_CONDITION_DISPLAY_REGISTERED_PLMN_IF_KNOWN_NETWORK</p></td>
+<td class="enum_member_description">
+<p>if
+set, display of the registered PLMN is required when the registered PLMN is either
+the HPLMN or a PLMN in the Service Provider PLMN List (see EFspdi). Otherwise
+display of the registered PLMN is not required in this case.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-NETWORK-NAME-DISPLAY-CONDITION-DISPLAY-SPN-NOT-REQUIRED-IF-UNKNOWN-NETWORK:CAPS"></a>QMI_NAS_NETWORK_NAME_DISPLAY_CONDITION_DISPLAY_SPN_NOT_REQUIRED_IF_UNKNOWN_NETWORK</p></td>
+<td class="enum_member_description">
+<p>if
+set, display of the Service Provider Name is not required when registered PLMN is
+neither HPLMN nor a PLMN in the service provider PLMN list (see EFspdi). If not set,
+SPN display is required in this case.</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiNasPlmnEncodingScheme"></a><h3>enum QmiNasPlmnEncodingScheme</h3>
+<p>PLMN name encoding schemes.  See 3GPP TS 24.008 section "Network Name
+information element".</p>
+<div class="refsect3">
+<a name="QmiNasPlmnEncodingScheme.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-ENCODING-SCHEME-GSM:CAPS"></a>QMI_NAS_PLMN_ENCODING_SCHEME_GSM</p></td>
+<td class="enum_member_description">
+<p>GSM default alphabet packed encoding (ETSI GSM 03.38)</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-ENCODING-SCHEME-UCS2LE:CAPS"></a>QMI_NAS_PLMN_ENCODING_SCHEME_UCS2LE</p></td>
+<td class="enum_member_description">
+<p>UCS-2 little-endian</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiNasPlmnNameCountryInitials"></a><h3>enum QmiNasPlmnNameCountryInitials</h3>
+<p>PLMN name country initials options. See 3GPP TS 24.008
+section "Network Name information element".</p>
+<div class="refsect3">
+<a name="QmiNasPlmnNameCountryInitials.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-COUNTRY-INITIALS-DO-NOT-ADD:CAPS"></a>QMI_NAS_PLMN_NAME_COUNTRY_INITIALS_DO_NOT_ADD</p></td>
+<td class="enum_member_description">
+<p>don't add country initials</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-COUNTRY-INIITALS-ADD:CAPS"></a>QMI_NAS_PLMN_NAME_COUNTRY_INIITALS_ADD</p></td>
+<td class="enum_member_description">
+<p>add country initials</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-COUNTRY-INIITALS-UNSPECIFIED:CAPS"></a>QMI_NAS_PLMN_NAME_COUNTRY_INIITALS_UNSPECIFIED</p></td>
+<td class="enum_member_description">
+<p>unspecified</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
+</div>
+<hr>
+<div class="refsect2">
+<a name="QmiNasPlmnNameSpareBits"></a><h3>enum QmiNasPlmnNameSpareBits</h3>
+<p>PLMN name spare bits in last octet of a network name.  See 3GPP TS 24.008
+section "Network Name information element".</p>
+<div class="refsect3">
+<a name="QmiNasPlmnNameSpareBits.members"></a><h4>Members</h4>
+<div class="informaltable"><table class="informaltable" width="100%" border="0">
+<colgroup>
+<col width="300px" class="enum_members_name">
+<col class="enum_members_description">
+<col width="200px" class="enum_members_annotations">
+</colgroup>
+<tbody>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-SPARE-BITS-UNKNOWN:CAPS"></a>QMI_NAS_PLMN_NAME_SPARE_BITS_UNKNOWN</p></td>
+<td class="enum_member_description">
+<p>unknown</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-SPARE-BITS-BIT-8:CAPS"></a>QMI_NAS_PLMN_NAME_SPARE_BITS_BIT_8</p></td>
+<td class="enum_member_description">
+<p>bit 8 is spare</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-SPARE-BITS-BITS-78:CAPS"></a>QMI_NAS_PLMN_NAME_SPARE_BITS_BITS_78</p></td>
+<td class="enum_member_description">
+<p>bits 7 - 8 are spare</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-SPARE-BITS-BITS-68:CAPS"></a>QMI_NAS_PLMN_NAME_SPARE_BITS_BITS_68</p></td>
+<td class="enum_member_description">
+<p>bits 6 - 8 are spare</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-SPARE-BITS-BITS-58:CAPS"></a>QMI_NAS_PLMN_NAME_SPARE_BITS_BITS_58</p></td>
+<td class="enum_member_description">
+<p>bits 5 - 8 are spare</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-SPARE-BITS-BITS-48:CAPS"></a>QMI_NAS_PLMN_NAME_SPARE_BITS_BITS_48</p></td>
+<td class="enum_member_description">
+<p>bits 4 - 8 are spare</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-SPARE-BITS-BITS-38:CAPS"></a>QMI_NAS_PLMN_NAME_SPARE_BITS_BITS_38</p></td>
+<td class="enum_member_description">
+<p>bits 3 - 8 are spare</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+<tr>
+<td class="enum_member_name"><p><a name="QMI-NAS-PLMN-NAME-SPARE-BITS-BITS-28:CAPS"></a>QMI_NAS_PLMN_NAME_SPARE_BITS_BITS_28</p></td>
+<td class="enum_member_description">
+<p>bits 2 - 8 are spare</p>
+</td>
+<td class="enum_member_annotations"> </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<p class="since">Since: <a class="link" href="api-index-1-18.html#api-index-1.18">1.18</a></p>
 </div>
 </div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25</div>
+<hr>Generated by GTK-Doc V1.25.1</div>
 </body>
 </html>

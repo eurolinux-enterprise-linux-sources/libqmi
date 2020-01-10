@@ -18,6 +18,7 @@
  * Boston, MA 02110-1301 USA.
  *
  * Copyright (C) 2012 Google Inc.
+ * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
  */
 
 #ifndef _LIBQMI_GLIB_QMI_ENUMS_PDS_H_
@@ -46,6 +47,8 @@
  * @QMI_PDS_OPERATION_MODE_MS_ASSISTED: MS assisted.
  *
  * Operation mode used to compute the position.
+ *
+ * Since: 1.0
  */
 typedef enum {
     QMI_PDS_OPERATION_MODE_UNKNOWN     = -1,
@@ -53,6 +56,12 @@ typedef enum {
     QMI_PDS_OPERATION_MODE_MS_BASED    =  1,
     QMI_PDS_OPERATION_MODE_MS_ASSISTED =  2
 } QmiPdsOperationMode;
+
+/**
+ * qmi_pds_operation_mode_get_string:
+ *
+ * Since: 1.0
+ */
 
 /**
  * QmiPdsPositionSessionStatus:
@@ -67,6 +76,8 @@ typedef enum {
  * @QMI_PDS_POSITION_SESSION_STATUS_E911_SESSION_IN_PROGRESS: Emergency call in progress.
  *
  * Status of the positioning session.
+ *
+ * Since: 1.0
  */
 typedef enum {
     QMI_PDS_POSITION_SESSION_STATUS_SUCCESS                  = 0x00,
@@ -79,6 +90,12 @@ typedef enum {
     QMI_PDS_POSITION_SESSION_STATUS_ENGINE_LOCKED            = 0x07,
     QMI_PDS_POSITION_SESSION_STATUS_E911_SESSION_IN_PROGRESS = 0x08
 } QmiPdsPositionSessionStatus;
+
+/**
+ * qmi_pds_position_session_status_get_string:
+ *
+ * Since: 1.0
+ */
 
 /**
  * QmiPdsDataValid:
@@ -107,6 +124,8 @@ typedef enum {
  * @QMI_PDS_DATA_VALID_OPERATING_MODE: Operating mode.
  *
  * Flags to indicate which position data parameters are valid.
+ *
+ * Since: 1.0
  */
 typedef enum {
     QMI_PDS_DATA_VALID_TIMESTAMP_CALENDAR      = 1 << 0,
@@ -134,6 +153,12 @@ typedef enum {
     QMI_PDS_DATA_VALID_OPERATING_MODE          = 1 << 22
 } QmiPdsDataValid;
 
+/**
+ * qmi_pds_data_valid_get_string:
+ *
+ * Since: 1.0
+ */
+
 /*****************************************************************************/
 /* Helper enums for the 'QMI PDS Get GPS Service State' request/response */
 
@@ -144,12 +169,20 @@ typedef enum {
  * @QMI_PDS_TRACKING_SESSION_STATE_ACTIVE: Session active.
  *
  * State of the tracking session.
+ *
+ * Since: 1.0
  */
 typedef enum {
     QMI_PDS_TRACKING_SESSION_STATE_UNKNOWN  = 0,
     QMI_PDS_TRACKING_SESSION_STATE_INACTIVE = 1,
     QMI_PDS_TRACKING_SESSION_STATE_ACTIVE   = 2
 } QmiPdsTrackingSessionState;
+
+/**
+ * qmi_pds_tracking_session_state_get_string:
+ *
+ * Since: 1.0
+ */
 
 /*****************************************************************************/
 /* Helper enums for the 'QMI PDS Get Default Tracking Session' request/response */
@@ -161,12 +194,20 @@ typedef enum {
  * @QMI_PDS_OPERATING_MODE_MS_ASSISTED: MS-assisted (A-GPS).
  *
  * GPS operating mode.
+ *
+ * Since: 1.12
  */
 typedef enum {
     QMI_PDS_OPERATING_MODE_STANDALONE  = 0,
     QMI_PDS_OPERATING_MODE_MS_BASED    = 1,
     QMI_PDS_OPERATING_MODE_MS_ASSISTED = 2,
 } QmiPdsOperatingMode;
+
+/**
+ * qmi_pds_operating_mode_get_string:
+ *
+ * Since: 1.12
+ */
 
 /*****************************************************************************/
 /* Helper enums for the 'QMI PDS Get AGPS Config' request/response */
@@ -177,10 +218,18 @@ typedef enum {
  * @QMI_PDS_NETWORK_MODE_CDMA: CDMA.
  *
  * Network mode used during the A-GPS setup.
+ *
+ * Since: 1.12
  */
 typedef enum {
     QMI_PDS_NETWORK_MODE_UMTS = 0,
     QMI_PDS_NETWORK_MODE_CDMA = 1,
 } QmiPdsNetworkMode;
+
+/**
+ * qmi_pds_network_mode_get_string:
+ *
+ * Since: 1.12
+ */
 
 #endif /* _LIBQMI_GLIB_QMI_ENUMS_PDS_H_ */
