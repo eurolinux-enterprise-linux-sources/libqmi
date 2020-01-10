@@ -2,49 +2,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Wireless Data Service (WDS): libqmi-glib Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<title>Wireless Data Service (WDS)</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
 <link rel="up" href="index.html" title="libqmi-glib Reference Manual">
-<link rel="prev" href="libqmi-glib-NAS-Get-Operator-Name.html" title="NAS Get Operator Name">
+<link rel="prev" href="libqmi-glib-NAS-Get-Tx-Rx-Info.html" title="NAS Get Tx Rx Info">
 <link rel="next" href="QmiClientWds.html" title="QmiClientWds">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
-<td width="100%" align="left" class="shortcuts"></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
-<td><img src="up-insensitive.png" width="16" height="16" border="0"></td>
-<td><a accesskey="p" href="libqmi-glib-NAS-Get-Operator-Name.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="QmiClientWds.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="libqmi-glib-NAS-Get-Tx-Rx-Info.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td> </td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libqmi-glib Reference Manual</th>
+<td><a accesskey="n" href="QmiClientWds.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="chapter">
 <div class="titlepage"><div><div><h1 class="title">
-<a name="id-1.5"></a>Wireless Data Service (WDS)</h1></div></div></div>
+<a name="idm225620169808"></a>Wireless Data Service (WDS)</h1></div></div></div>
 <div class="toc"><dl class="toc">
 <dt>
-<span class="refentrytitle"><a href="QmiClientWds.html">QmiClientWds</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the WDS service.</span>
+<span class="refentrytitle"><a href="QmiClientWds.html">QmiClientWds</a></span><span class="refpurpose"><span class="type">QmiClient</span> for the WDS service.</span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-enumerations-and-flags.html">WDS enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
-<dt><span class="section"><a href="ch04.html#id-1.5.4">WDS Indications</a></span></dt>
-<dd><dl>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Event-Report.html">WDS Event Report</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Packet-Service-Status.html">WDS Packet Service Status</a></span><span class="refpurpose"></span>
-</dt>
-</dl></dd>
-<dt><span class="section"><a href="ch04s02.html">WDS Requests</a></span></dt>
+<dt><span class="section"><a href="ch04.html#idm225620168064">WDS Requests</a></span></dt>
 <dd><dl>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Reset.html">WDS Reset</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Set-Event-Report.html">WDS Set Event Report</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Start-Network.html">WDS Start Network</a></span><span class="refpurpose"></span>
@@ -59,40 +47,7 @@
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Packet-Statistics.html">WDS Get Packet Statistics</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Go-Dormant.html">WDS Go Dormant</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Go-Active.html">WDS Go Active</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Create-Profile.html">WDS Create Profile</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Modify-Profile.html">WDS Modify Profile</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Delete-Profile.html">WDS Delete Profile</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Profile-List.html">WDS Get Profile List</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Profile-Settings.html">WDS Get Profile Settings</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Default-Settings.html">WDS Get Default Settings</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Current-Settings.html">WDS Get Current Settings</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Dormancy-Status.html">WDS Get Dormancy Status</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Autoconnect-Settings.html">WDS Get Autoconnect Settings</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Set-Autoconnect-Settings.html">WDS Set Autoconnect Settings</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Data-Bearer-Technology.html">WDS Get Data Bearer Technology</a></span><span class="refpurpose"></span>
@@ -103,21 +58,13 @@
 <dt>
 <span class="refentrytitle"><a href="libqmi-glib-WDS-Set-IP-Family.html">WDS Set IP Family</a></span><span class="refpurpose"></span>
 </dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Get-Supported-Messages.html">WDS Get Supported Messages</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Get-PDN-Throttle-Info.html">WDS Get PDN Throttle Info</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-WDS-Bind-Mux-Data-Port.html">WDS Bind Mux Data Port</a></span><span class="refpurpose"></span>
-</dt>
 </dl></dd>
 </dl></div>
 <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="id-1.5.4"></a>WDS Indications</h2></div></div></div></div>
+<a name="idm225620168064"></a>WDS Requests</h2></div></div></div></div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>
+          Generated by GTK-Doc V1.18.1</div>
 </body>
 </html>

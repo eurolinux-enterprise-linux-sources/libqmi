@@ -16,7 +16,6 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -84,8 +83,8 @@ class VariableArray(Variable):
     """
     Emit the type for the array element
     """
-    def emit_types(self, f, since):
-        self.array_element.emit_types(f, since)
+    def emit_types(self, f):
+        self.array_element.emit_types(f)
 
 
     """
@@ -133,14 +132,16 @@ class VariableArray(Variable):
     Reading an array from the raw byte buffer is just about providing a loop to
     read every array element one by one.
     """
-    def emit_buffer_read(self, f, line_prefix, tlv_out, error, variable_name):
+    def emit_buffer_read(self, f, line_prefix, variable_name, buffer_name, buffer_len):
         common_var_prefix = utils.build_underscore_name(self.name)
-        translations = { 'lp'                          : line_prefix,
-                         'variable_name'               : variable_name,
-                         'private_format'              : self.private_format,
+        translations = { 'lp'             : line_prefix,
+                         'private_format' : self.private_format,
                          'public_array_element_format' : self.array_element.public_format,
-                         'underscore'                  : self.clear_func_name(),
-                         'common_var_prefix'           : common_var_prefix }
+                         'underscore'     : self.clear_func_name(),
+                         'variable_name'  : variable_name,
+                         'buffer_name'    : buffer_name,
+                         'buffer_len'     : buffer_len,
+                         'common_var_prefix' : common_var_prefix }
 
         template = (
             '${lp}{\n'
@@ -168,19 +169,20 @@ class VariableArray(Variable):
                 '\n'
                 '${lp}    /* Read number of items in the array */\n')
             f.write(string.Template(template).substitute(translations))
-            self.array_size_element.emit_buffer_read(f, line_prefix + '    ', tlv_out, error, common_var_prefix + '_n_items')
+            self.array_size_element.emit_buffer_read(f, line_prefix + '    ', common_var_prefix + '_n_items', buffer_name, buffer_len)
 
             if self.array_sequence_element != '':
                 template = (
                     '\n'
                     '${lp}    /* Read sequence in the array */\n')
                 f.write(string.Template(template).substitute(translations))
-                self.array_size_element.emit_buffer_read(f, line_prefix + '    ', tlv_out, error, common_var_prefix + '_sequence')
+                self.array_size_element.emit_buffer_read(f, line_prefix + '    ', common_var_prefix + '_sequence', buffer_name, buffer_len)
 
                 template = (
                     '\n'
                     '${lp}    ${variable_name}_sequence = ${common_var_prefix}_sequence;\n')
                 f.write(string.Template(template).substitute(translations))
+
 
         template = (
             '\n'
@@ -203,7 +205,7 @@ class VariableArray(Variable):
             '\n')
         f.write(string.Template(template).substitute(translations))
 
-        self.array_element.emit_buffer_read(f, line_prefix + '        ', tlv_out, error, common_var_prefix + '_aux')
+        self.array_element.emit_buffer_read(f, line_prefix + '        ', common_var_prefix + '_aux', buffer_name, buffer_len)
 
         template = (
             '${lp}        g_array_insert_val (${variable_name}, ${common_var_prefix}_i, ${common_var_prefix}_aux);\n'
@@ -213,13 +215,86 @@ class VariableArray(Variable):
 
 
     """
+    Emits the code involved in computing the size of the variable.
+    """
+    def emit_size_read(self, f, line_prefix, variable_name, buffer_name, buffer_len):
+        common_var_prefix = utils.build_underscore_name(self.name)
+        translations = { 'lp'             : line_prefix,
+                         'variable_name'  : variable_name,
+                         'buffer_name'    : buffer_name,
+                         'buffer_len'     : buffer_len,
+                         'common_var_prefix' : common_var_prefix }
+
+        template = (
+            '${lp}{\n'
+            '${lp}    guint ${common_var_prefix}_i;\n'
+            '\n')
+        f.write(string.Template(template).substitute(translations))
+
+        if self.fixed_size:
+            translations['fixed_size'] = self.fixed_size
+
+            template = (
+                '${lp}    guint16 ${common_var_prefix}_n_items = ${fixed_size};\n')
+            f.write(string.Template(template).substitute(translations))
+        else:
+            translations['array_size_element_format'] = self.array_size_element.public_format
+            if self.array_size_element.public_format == 'guint8':
+                translations['array_size_element_size'] = '1'
+            elif self.array_size_element.public_format == 'guint16':
+                translations['array_size_element_size'] = '2'
+            elif self.array_size_element.public_format == 'guint32':
+                translations['array_size_element_size'] = '4'
+            else:
+                translations['array_size_element_size'] = '0'
+
+            template = (
+                '${lp}    ${array_size_element_format} ${common_var_prefix}_n_items;\n'
+                '${lp}    const guint8 *${common_var_prefix}_aux_buffer = &${buffer_name}[${variable_name}];\n'
+                '${lp}    guint16 ${common_var_prefix}_aux_buffer_len = ${buffer_len} - ${variable_name};\n'
+                '\n'
+                '${lp}    ${variable_name} += ${array_size_element_size};\n')
+
+            if self.array_sequence_element != '':
+                if self.array_sequence_element.public_format == 'guint8':
+                    translations['array_sequence_element_size'] = '1'
+                elif self.array_sequence_element.public_format == 'guint16':
+                    translations['array_sequence_element_size'] = '2'
+                elif self.array_sequence_element.public_format == 'guint32':
+                    translations['array_sequence_element_size'] = '4'
+                else:
+                    translations['array_sequence_element_size'] = '0'
+                template += (
+                    '\n'
+                    '${lp}    ${variable_name} += ${array_sequence_element_size};\n')
+
+            f.write(string.Template(template).substitute(translations))
+
+            self.array_size_element.emit_buffer_read(f, line_prefix + '    ', common_var_prefix + '_n_items', common_var_prefix + '_aux_buffer', common_var_prefix + '_aux_buffer_len')
+
+        template = (
+            '\n'
+            '${lp}    for (${common_var_prefix}_i = 0; ${common_var_prefix}_i < ${common_var_prefix}_n_items; ${common_var_prefix}_i++) {\n'
+            '\n')
+        f.write(string.Template(template).substitute(translations))
+
+        self.array_element.emit_size_read(f, line_prefix + '        ', variable_name, buffer_name, buffer_len)
+
+        template = (
+            '${lp}    }\n'
+            '${lp}}\n')
+        f.write(string.Template(template).substitute(translations))
+
+    """
     Writing an array to the raw byte buffer is just about providing a loop to
     write every array element one by one.
     """
-    def emit_buffer_write(self, f, line_prefix, tlv_name, variable_name):
+    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len):
         common_var_prefix = utils.build_underscore_name(self.name)
-        translations = { 'lp'                : line_prefix,
-                         'variable_name'     : variable_name,
+        translations = { 'lp'             : line_prefix,
+                         'variable_name'  : variable_name,
+                         'buffer_name'    : buffer_name,
+                         'buffer_len'     : buffer_len,
                          'common_var_prefix' : common_var_prefix }
 
         template = (
@@ -237,10 +312,10 @@ class VariableArray(Variable):
                 '${lp}    ${common_var_prefix}_n_items = (${array_size_element_format}) ${variable_name}->len;\n')
             f.write(string.Template(template).substitute(translations))
 
-            self.array_size_element.emit_buffer_write(f, line_prefix + '    ', tlv_name, common_var_prefix + '_n_items')
+            self.array_size_element.emit_buffer_write(f, line_prefix + '    ', common_var_prefix + '_n_items', buffer_name, buffer_len)
 
         if self.array_sequence_element != '':
-            self.array_sequence_element.emit_buffer_write(f, line_prefix + '    ', tlv_name, variable_name + '_sequence')
+            self.array_sequence_element.emit_buffer_write(f, line_prefix + '    ', variable_name + '_sequence', buffer_name, buffer_len)
 
 
         template = (
@@ -248,7 +323,7 @@ class VariableArray(Variable):
             '${lp}    for (${common_var_prefix}_i = 0; ${common_var_prefix}_i < ${variable_name}->len; ${common_var_prefix}_i++) {\n')
         f.write(string.Template(template).substitute(translations))
 
-        self.array_element.emit_buffer_write(f, line_prefix + '        ', tlv_name, 'g_array_index (' + variable_name + ', ' + self.array_element.public_format + ',' + common_var_prefix + '_i)')
+        self.array_element.emit_buffer_write(f, line_prefix + '        ', 'g_array_index (' + variable_name + ', ' + self.array_element.public_format + ',' + common_var_prefix + '_i)', buffer_name, buffer_len)
 
         template = (
             '${lp}    }\n'
@@ -260,9 +335,12 @@ class VariableArray(Variable):
     The array will be printed as a list of fields enclosed between curly
     brackets
     """
-    def emit_get_printable(self, f, line_prefix):
+    def emit_get_printable(self, f, line_prefix, printable, buffer_name, buffer_len):
         common_var_prefix = utils.build_underscore_name(self.name)
-        translations = { 'lp'                : line_prefix,
+        translations = { 'lp'          : line_prefix,
+                         'printable'   : printable,
+                         'buffer_name' : buffer_name,
+                         'buffer_len'  : buffer_len,
                          'common_var_prefix' : common_var_prefix }
 
         template = (
@@ -291,34 +369,34 @@ class VariableArray(Variable):
                 '\n'
                 '${lp}    /* Read number of items in the array */\n')
             f.write(string.Template(template).substitute(translations))
-            self.array_size_element.emit_buffer_read(f, line_prefix + '    ', 'out', '&error', common_var_prefix + '_n_items')
+            self.array_size_element.emit_buffer_read(f, line_prefix + '    ', common_var_prefix + '_n_items', buffer_name, buffer_len)
 
             if self.array_sequence_element != '':
                 template = (
                     '\n'
                     '${lp}    /* Read sequence */\n')
                 f.write(string.Template(template).substitute(translations))
-                self.array_sequence_element.emit_buffer_read(f, line_prefix + '    ', 'out', '&error', common_var_prefix + '_sequence')
+                self.array_sequence_element.emit_buffer_read(f, line_prefix + '    ', common_var_prefix + '_sequence', buffer_name, buffer_len)
                 template = (
                     '\n'
-                    '${lp}    g_string_append_printf (printable, "[[Seq:%u]] ", ${common_var_prefix}_sequence);\n')
+                    '${lp}    g_string_append_printf (${printable}, "[[Seq:%u]] ", ${common_var_prefix}_sequence);\n')
                 f.write(string.Template(template).substitute(translations))
 
         template = (
             '\n'
-            '${lp}    g_string_append (printable, "{");\n'
+            '${lp}    g_string_append (${printable}, "{");\n'
             '\n'
             '${lp}    for (${common_var_prefix}_i = 0; ${common_var_prefix}_i < ${common_var_prefix}_n_items; ${common_var_prefix}_i++) {\n'
-            '${lp}        g_string_append_printf (printable, " [%u] = \'", ${common_var_prefix}_i);\n')
+            '${lp}        g_string_append_printf (${printable}, " [%u] = \'", ${common_var_prefix}_i);\n')
         f.write(string.Template(template).substitute(translations))
 
-        self.array_element.emit_get_printable(f, line_prefix + '        ');
+        self.array_element.emit_get_printable(f, line_prefix + '        ', printable, buffer_name, buffer_len);
 
         template = (
-            '${lp}        g_string_append (printable, " \'");\n'
+            '${lp}        g_string_append (${printable}, " \'");\n'
             '${lp}    }\n'
             '\n'
-            '${lp}    g_string_append (printable, "}");\n'
+            '${lp}    g_string_append (${printable}, "}");\n'
             '${lp}}')
         f.write(string.Template(template).substitute(translations))
 
@@ -326,7 +404,7 @@ class VariableArray(Variable):
     """
     Variable declaration
     """
-    def build_variable_declaration(self, public, line_prefix, variable_name):
+    def build_variable_declaration(self, line_prefix, variable_name):
         translations = { 'lp'   : line_prefix,
                          'name' : variable_name }
 
@@ -345,9 +423,6 @@ class VariableArray(Variable):
     Getter for the array type
     """
     def build_getter_declaration(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'   : line_prefix,
                          'name' : variable_name }
 
@@ -366,9 +441,6 @@ class VariableArray(Variable):
     Documentation for the getter
     """
     def build_getter_documentation(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'                          : line_prefix,
                          'public_array_element_format' : self.array_element.public_format,
                          'name'                        : variable_name }
@@ -387,9 +459,6 @@ class VariableArray(Variable):
     Builds the array getter implementation
     """
     def build_getter_implementation(self, line_prefix, variable_name_from, variable_name_to, to_is_reference):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'   : line_prefix,
                          'from' : variable_name_from,
                          'to'   : variable_name_to }
@@ -415,9 +484,6 @@ class VariableArray(Variable):
     Setter for the array type
     """
     def build_setter_declaration(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'   : line_prefix,
                          'name' : variable_name }
 
@@ -436,9 +502,6 @@ class VariableArray(Variable):
     Documentation for the setter
     """
     def build_setter_documentation(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'                          : line_prefix,
                          'public_array_element_format' : self.array_element.public_format,
                          'name'                        : variable_name }
@@ -457,9 +520,6 @@ class VariableArray(Variable):
     Builds the array setter implementation
     """
     def build_setter_implementation(self, line_prefix, variable_name_from, variable_name_to):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'   : line_prefix,
                          'from' : variable_name_from,
                          'to'   : variable_name_to }

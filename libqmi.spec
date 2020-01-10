@@ -1,19 +1,27 @@
-%global _hardened_build 1
+
+%global glib2_version 2.32.0
+
+%global snapshot %{nil}
+%global realversion 1.6.0
 
 Name: libqmi
 Summary: Support library to use the Qualcomm MSM Interface (QMI) protocol
-Version: 1.18.0
-Release: 2%{?dist}
+Version: %{?realversion}
+Release: 1%{snapshot}%{?dist}
 Group: Development/Libraries
 License: LGPLv2+
-URL: http://freedesktop.org/software/libqmi
-Source: http://freedesktop.org/software/libqmi/%{name}-%{version}.tar.xz
+URL: http://www.freedesktop.org/software/libqmi
 
-BuildRequires: glib2-devel >= 2.32.0
-BuildRequires: pkgconfig(gudev-1.0) >= 147
+# If snapshot is defined, source will be a snapshot of git from the
+# master branch on the given date
+Source: %{name}-%{realversion}%{snapshot}.tar.xz
+
+BuildRequires: glib2-devel >= %{glib2_version}
+BuildRequires: pkgconfig
+BuildRequires: automake autoconf intltool libtool
 BuildRequires: python >= 2.7
-BuildRequires: gtk-doc
-BuildRequires: libmbim-devel >= 1.14.0
+
+Requires: glib2 >= %{glib2_version}
 
 %description
 This package contains the libraries that make it easier to use QMI functionality
@@ -42,42 +50,29 @@ from the command line.
 
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{realversion}
 
 %build
-%configure --disable-static --enable-gtk-doc --enable-mbim-qmux
-
-# Uses private copy of libtool:
-# http://fedoraproject.org/wiki/Packaging:Guidelines#Beware_of_Rpath
-sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
-sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
-
-LD_LIBRARY_PATH="$PWD/src/libqmi-glib/.libs" make %{?_smp_mflags} V=1
-
-# Build the library with older SONAME too
-rm src/libqmi-glib/libqmi-glib.la
-LD_LIBRARY_PATH="$PWD/src/libqmi-glib/.libs" make %{?_smp_mflags} V=1 -C src/libqmi-glib libqmi_glib_la_LDFLAGS='-version-info 1:0:0' libqmi-glib.la
-mv src/libqmi-glib/.libs/libqmi-glib.so.1.0.0 .
-rm src/libqmi-glib/libqmi-glib.la
-LD_LIBRARY_PATH="$PWD/src/libqmi-glib/.libs" make %{?_smp_mflags} V=1
+%configure \
+	--disable-static \
+	--with-tests=yes
+make %{?_smp_mflags}
 
 %install
 make install DESTDIR=$RPM_BUILD_ROOT
 %{__rm} -f $RPM_BUILD_ROOT%{_libdir}/*.la
-find %{buildroot}%{_datadir}/gtk-doc |xargs touch --reference configure.ac
-install libqmi-glib.so.1.0.0 %{buildroot}%{_libdir}/
-ln -sf libqmi-glib.so.1.0.0 %{buildroot}%{_libdir}/libqmi-glib.so.1
 
 
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
+%post   devel -p /sbin/ldconfig
+%postun	devel -p /sbin/ldconfig
+
 
 %files
-%doc NEWS AUTHORS README
-%license COPYING
+%doc COPYING NEWS AUTHORS README
 %{_libdir}/libqmi-glib.so.*
-%{_datadir}/bash-completion
 
 %files devel
 %dir %{_includedir}/libqmi-glib
@@ -90,30 +85,10 @@ ln -sf libqmi-glib.so.1.0.0 %{buildroot}%{_libdir}/libqmi-glib.so.1
 %files utils
 %{_bindir}/qmicli
 %{_bindir}/qmi-network
-%exclude %{_bindir}/qmi-firmware-update
 %{_mandir}/man1/*
-%{_libexecdir}/qmi-proxy
 
 
 %changelog
-* Tue Oct 24 2017 Lubomir Rintel <lrintel@redhat.com> - 1.18.0-2
-- Remove qmi-firmware-update
-
-* Tue Aug 29 2017 Lubomir Rintel <lrintel@redhat.com> - 1.18.0-1
-- Update to 1.18.0 (rh #1483051)
-
-* Fri Jul 08 2016 Lubomir Rintel <lkundrak@v3.sk> - 1.16.0-1
-- Update to 1.16.0
-
-* Wed Oct 22 2014 Thomas Haller <thaller@redhat.com> - 1.6.0-4
-- fix potential buffer overflows in parser code (rh #1031738)
-
-* Fri Jan 24 2014 Daniel Mach <dmach@redhat.com> - 1.6.0-3
-- Mass rebuild 2014-01-24
-
-* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 1.6.0-2
-- Mass rebuild 2013-12-27
-
 * Fri Sep  6 2013 Dan Williams <dcbw@redhat.com> - 1.6.0-1
 - Update to 1.6.0 release
 

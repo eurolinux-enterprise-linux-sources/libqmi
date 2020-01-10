@@ -16,7 +16,6 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -44,7 +43,7 @@ class VariableSequence(Variable):
         for member_dictionary in dictionary['contents']:
             member = {}
             member['name'] = utils.build_underscore_name(member_dictionary['name'])
-            member['object'] = VariableFactory.create_variable(member_dictionary, sequence_type_name + ' ' + member_dictionary['name'], self.container_type)
+            member['object'] = VariableFactory.create_variable(member_dictionary, sequence_type_name + ' ' + member['name'], self.container_type)
             self.members.append(member)
 
         # TODO: do we need this?
@@ -57,10 +56,10 @@ class VariableSequence(Variable):
     """
     Emit all types for the members of the sequence
     """
-    def emit_types(self, f, since):
+    def emit_types(self, f):
         # Emit types for each member
         for member in self.members:
-            member['object'].emit_types(f, since)
+            member['object'].emit_types(f)
 
 
     """
@@ -76,55 +75,64 @@ class VariableSequence(Variable):
     Reading the contents of a sequence is just about reading each of the sequence
     fields one by one.
     """
-    def emit_buffer_read(self, f, line_prefix, tlv_out, error, variable_name):
+    def emit_buffer_read(self, f, line_prefix, variable_name, buffer_name, buffer_len):
         for member in self.members:
-            member['object'].emit_buffer_read(f, line_prefix, tlv_out, error, variable_name + '_' +  member['name'])
+            member['object'].emit_buffer_read(f, line_prefix, variable_name + '_' +  member['name'], buffer_name, buffer_len)
+
+
+    """
+    Emits the code involved in computing the size of the variable.
+    """
+    def emit_size_read(self, f, line_prefix, variable_name, buffer_name, buffer_len):
+        for member in self.members:
+            member['object'].emit_size_read(f, line_prefix, variable_name, buffer_name, buffer_len)
 
 
     """
     Writing the contents of a sequence is just about writing each of the sequence
     fields one by one.
     """
-    def emit_buffer_write(self, f, line_prefix, tlv_name, variable_name):
+    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len):
         for member in self.members:
-            member['object'].emit_buffer_write(f, line_prefix, tlv_name, variable_name + '_' +  member['name'])
+            member['object'].emit_buffer_write(f, line_prefix, variable_name + '_' +  member['name'], buffer_name, buffer_len)
 
 
     """
     The sequence will be printed as a list of fields enclosed between square
     brackets
     """
-    def emit_get_printable(self, f, line_prefix):
-        translations = { 'lp' : line_prefix }
+    def emit_get_printable(self, f, line_prefix, printable, buffer_name, buffer_len):
+        translations = { 'lp'        : line_prefix,
+                         'printable' : printable }
 
         template = (
-            '${lp}g_string_append (printable, "[");\n')
+            '${lp}g_string_append (${printable}, "[");\n')
         f.write(string.Template(template).substitute(translations))
 
         for member in self.members:
             translations['variable_name'] = member['name']
             template = (
-                '${lp}g_string_append (printable, " ${variable_name} = \'");\n')
+                '${lp}g_string_append (${printable}, " ${variable_name} = \'");\n')
             f.write(string.Template(template).substitute(translations))
 
-            member['object'].emit_get_printable(f, line_prefix)
+            member['object'].emit_get_printable(f, line_prefix, printable, buffer_name, buffer_len)
 
             template = (
-                '${lp}g_string_append (printable, "\'");\n')
+                '${lp}g_string_append (${printable}, "\'");\n')
             f.write(string.Template(template).substitute(translations))
 
         template = (
-            '${lp}g_string_append (printable, " ]");\n')
+            '${lp}g_string_append (${printable}, " ]");\n')
         f.write(string.Template(template).substitute(translations))
 
 
     """
     Variable declaration
     """
-    def build_variable_declaration(self, public, line_prefix, variable_name):
+    def build_variable_declaration(self, line_prefix, variable_name):
         built = ''
         for member in self.members:
-            built += member['object'].build_variable_declaration(public, line_prefix, variable_name + '_' + member['name'])
+            built += member['object'].build_variable_declaration(line_prefix, variable_name + '_' + member['name'])
         return built
 
 
@@ -133,9 +141,6 @@ class VariableSequence(Variable):
     of the variables in the sequence.
     """
     def build_getter_declaration(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         built = ''
         for member in self.members:
             built += member['object'].build_getter_declaration(line_prefix, variable_name + '_' + member['name'])
@@ -146,9 +151,6 @@ class VariableSequence(Variable):
     Documentation for the getter
     """
     def build_getter_documentation(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         built = ''
         for member in self.members:
             built += member['object'].build_getter_documentation(line_prefix, variable_name + '_' + member['name'])
@@ -159,9 +161,6 @@ class VariableSequence(Variable):
     Builds the Struct getter implementation
     """
     def build_getter_implementation(self, line_prefix, variable_name_from, variable_name_to, to_is_reference):
-        if not self.visible:
-            return ""
-
         built = ''
         for member in self.members:
             built += member['object'].build_getter_implementation(line_prefix,
@@ -176,9 +175,6 @@ class VariableSequence(Variable):
     of the variables in the sequence.
     """
     def build_setter_declaration(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         built = ''
         for member in self.members:
             built += member['object'].build_setter_declaration(line_prefix, variable_name + '_' + member['name'])
@@ -189,9 +185,6 @@ class VariableSequence(Variable):
     Documentation for the setter
     """
     def build_setter_documentation(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         built = ''
         for member in self.members:
             built += member['object'].build_setter_documentation(line_prefix, variable_name + '_' + member['name'])
@@ -202,9 +195,6 @@ class VariableSequence(Variable):
     Builds the Sequence setter implementation
     """
     def build_setter_implementation(self, line_prefix, variable_name_from, variable_name_to):
-        if not self.visible:
-            return ""
-
         built = ''
         for member in self.members:
             built += member['object'].build_setter_implementation(line_prefix,

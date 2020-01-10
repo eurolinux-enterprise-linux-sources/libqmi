@@ -1,0 +1,108 @@
+<!-- ##### SECTION Title ##### -->
+qmi-enums-uim
+
+<!-- ##### SECTION Short_Description ##### -->
+
+
+<!-- ##### SECTION Long_Description ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION See_Also ##### -->
+<para>
+
+</para>
+
+
+<!-- ##### SECTION Stability_Level ##### -->
+
+
+<!-- ##### SECTION Image ##### -->
+
+
+<!-- ##### ENUM QmiUimSessionType ##### -->
+<para>
+
+</para>
+
+@QMI_UIM_SESSION_TYPE_PRIMARY_GW_PROVISIONING: 
+@QMI_UIM_SESSION_TYPE_PRIMARY_1X_PROVISIONING: 
+@QMI_UIM_SESSION_TYPE_SECONDARY_GW_PROVISIONING: 
+@QMI_UIM_SESSION_TYPE_SECONDARY_1X_PROVISIONING: 
+@QMI_UIM_SESSION_TYPE_NONPROVISIONING_SLOT_1: 
+@QMI_UIM_SESSION_TYPE_NONPROVISIONING_SLOT_2: 
+@QMI_UIM_SESSION_TYPE_CARD_SLOT_1: 
+@QMI_UIM_SESSION_TYPE_CARD_SLOT_2: 
+@QMI_UIM_SESSION_TYPE_LOGICAL_CHANNEL_SLOT_1: 
+@QMI_UIM_SESSION_TYPE_LOGICAL_CHANNEL_SLOT_2: 
+
+<!-- ##### ENUM QmiUimFileType ##### -->
+<para>
+
+</para>
+
+@QMI_UIM_FILE_TYPE_TRANSPARENT: 
+@QMI_UIM_FILE_TYPE_CYCLIC: 
+@QMI_UIM_FILE_TYPE_LINEAR_FIXED: 
+@QMI_UIM_FILE_TYPE_DEDICATED_FILE: 
+@QMI_UIM_FILE_TYPE_MASTER_FILE: 
+
+<!-- ##### ENUM QmiUimSecurityAttributeLogic ##### -->
+<para>
+
+</para>
+
+@QMI_UIM_SECURITY_ATTRIBUTE_LOGIC_ALWAYS: 
+@QMI_UIM_SECURITY_ATTRIBUTE_LOGIC_NEVER: 
+@QMI_UIM_SECURITY_ATTRIBUTE_LOGIC_AND: 
+@QMI_UIM_SECURITY_ATTRIBUTE_LOGIC_OR: 
+@QMI_UIM_SECURITY_ATTRIBUTE_LOGIC_SINGLE: 
+
+<!-- ##### ENUM QmiUimSecurityAttribute ##### -->
+<para>
+
+</para>
+
+@QMI_UIM_SECURITY_ATTRIBUTE_PIN1: 
+@QMI_UIM_SECURITY_ATTRIBUTE_PIN2: 
+@QMI_UIM_SECURITY_ATTRIBUTE_UPIN: 
+@QMI_UIM_SECURITY_ATTRIBUTE_ADM: 
+
+<!-- ##### FUNCTION qmi_uim_session_type_get_string ##### -->
+<para>
+
+</para>
+
+@val: 
+@Returns: 
+
+
+<!-- ##### FUNCTION qmi_uim_file_type_get_string ##### -->
+<para>
+
+</para>
+
+@val: 
+@Returns: 
+
+
+<!-- ##### FUNCTION qmi_uim_security_attribute_logic_get_string ##### -->
+<para>
+
+</para>
+
+@val: 
+@Returns: 
+
+
+<!-- ##### FUNCTION qmi_uim_security_attribute_build_string_from_mask ##### -->
+<para>
+
+</para>
+
+@mask: 
+@Returns: 
+
+

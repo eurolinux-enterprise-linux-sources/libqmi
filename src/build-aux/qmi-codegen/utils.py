@@ -16,7 +16,6 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -47,7 +46,6 @@ def add_copyright(f):
         " * Boston, MA 02110-1301 USA.\n"
         " *\n"
         " * Copyright (C) 2012 Lanedo GmbH\n"
-        " * Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>\n"
         " */\n"
         "\n");
 
@@ -78,8 +76,8 @@ def add_header_start(f, output_name, service):
     else:
         template += (
             "#include \"qmi-enums-private.h\"\n")
-    # DMS and NAS have flags64
-    if service == 'DMS' or service == 'NAS':
+    # CTL, WDS, WMS, PDS, PBM, UIM and OMA don't have flags64
+    if service != 'CTL' and service != 'WDS' and service != 'WMS' and service != 'PDS' and service != 'PBM' and service != 'UIM' and service != 'OMA':
         template += (
             "#include \"qmi-flags64-${service}.h\"\n")
     template += (
@@ -163,8 +161,7 @@ e.g.: "ThisIsAMessage" --> "this_is_a_message"
 """
 def build_underscore_name_from_camelcase(camelcase):
     s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', camelcase)
-    s2 = re.sub('(.)([0-9][a-z]+)', r'\1_\2', s1)
-    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s2).lower()
+    return re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1).lower()
 
 
 """
@@ -231,15 +228,6 @@ def format_is_signed_integer(fmt):
        fmt == 'gint16'  or \
        fmt == 'gint32'  or \
        fmt == 'gint64':
-        return True
-    else:
-        return False
-
-"""
-Returns True if the given format corresponds to a basic floating point type
-"""
-def format_is_float(fmt):
-    if fmt == 'gfloat':
         return True
     else:
         return False

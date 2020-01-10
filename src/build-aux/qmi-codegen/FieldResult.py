@@ -16,7 +16,6 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -38,7 +37,7 @@ class FieldResult(Field):
     def emit_types(self, hfile, cfile):
         if TypeFactory.is_type_emitted(self.fullname) is False:
             TypeFactory.set_type_emitted(self.fullname)
-            self.variable.emit_types(cfile, self.since)
+            self.variable.emit_types(cfile)
 
 
     """
@@ -49,10 +48,17 @@ class FieldResult(Field):
     def emit_getter(self, hfile, cfile):
         translations = { 'variable_name'     : self.variable_name,
                          'prefix_camelcase'  : utils.build_camelcase_name(self.prefix),
-                         'prefix_underscore' : utils.build_underscore_name(self.prefix),
-                         'since'             : self.since }
+                         'prefix_underscore' : utils.build_underscore_name(self.prefix) }
 
         # Emit the getter header
+        template = (
+            '\n'
+            'gboolean ${prefix_underscore}_get_result (\n'
+            '    ${prefix_camelcase} *self,\n'
+            '    GError **error);\n')
+        hfile.write(string.Template(template).substitute(translations))
+
+        # Emit the getter source
         template = (
             '\n'
             '/**\n'
@@ -63,17 +69,7 @@ class FieldResult(Field):
             ' * Get the result of the QMI operation.\n'
             ' *\n'
             ' * Returns: %TRUE if the QMI operation succeeded, %FALSE if @error is set.\n'
-            ' *\n'
-            ' * Since: ${since}\n'
             ' */\n'
-            'gboolean ${prefix_underscore}_get_result (\n'
-            '    ${prefix_camelcase} *self,\n'
-            '    GError **error);\n')
-        hfile.write(string.Template(template).substitute(translations))
-
-        # Emit the getter source
-        template = (
-            '\n'
             'gboolean\n'
             '${prefix_underscore}_get_result (\n'
             '    ${prefix_camelcase} *self,\n'

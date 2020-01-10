@@ -16,7 +16,6 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import utils
@@ -33,8 +32,6 @@ in the given dictionary
 """
 def create_variable(dictionary, new_type_name, container_type):
     if utils.format_is_integer(dictionary['format']):
-        return VariableInteger(dictionary)
-    elif utils.format_is_float(dictionary['format']):
         return VariableInteger(dictionary)
     elif dictionary['format'] == 'string':
         return VariableString(dictionary)

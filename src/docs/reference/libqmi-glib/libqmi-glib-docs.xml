@@ -12,11 +12,6 @@
 
     <copyright>
       <year>2012</year>
-      <year>2013</year>
-      <year>2014</year>
-      <year>2015</year>
-      <year>2016</year>
-      <year>2017</year>
       <holder>The libqmi-glib authors</holder>
     </copyright>
 
@@ -46,10 +41,8 @@
     <title>Core</title>
     <xi:include href="xml/qmi-version.xml"/>
     <xi:include href="xml/qmi-message.xml"/>
-    <xi:include href="xml/qmi-message-context.xml"/>
     <xi:include href="xml/qmi-device.xml"/>
     <xi:include href="xml/qmi-client.xml"/>
-    <xi:include href="xml/qmi-proxy.xml"/>
     <xi:include href="xml/qmi-enums.xml"/>
     <xi:include href="xml/qmi-errors.xml"/>
     <xi:include href="xml/qmi-utils.xml"/>
@@ -96,7 +89,6 @@
       <xi:include href="xml/qmi-message-dms-restore-factory-defaults.xml"/>
       <xi:include href="xml/qmi-message-dms-validate-service-programming-code.xml"/>
       <xi:include href="xml/qmi-message-dms-uim-get-iccid.xml"/>
-      <xi:include href="xml/qmi-message-dms-set-firmware-id.xml"/>
       <xi:include href="xml/qmi-message-dms-uim-get-ck-status.xml"/>
       <xi:include href="xml/qmi-message-dms-uim-set-ck-protection.xml"/>
       <xi:include href="xml/qmi-message-dms-uim-unblock-ck.xml"/>
@@ -112,14 +104,8 @@
       <xi:include href="xml/qmi-message-dms-get-stored-image-info.xml"/>
       <xi:include href="xml/qmi-message-dms-get-alt-net-config.xml"/>
       <xi:include href="xml/qmi-message-dms-set-alt-net-config.xml"/>
-      <xi:include href="xml/qmi-message-dms-get-boot-image-download-mode.xml"/>
-      <xi:include href="xml/qmi-message-dms-set-boot-image-download-mode.xml"/>
       <xi:include href="xml/qmi-message-dms-get-software-version.xml"/>
       <xi:include href="xml/qmi-message-dms-set-service-programming-code.xml"/>
-      <xi:include href="xml/qmi-message-dms-hp-change-device-mode.xml"/>
-      <xi:include href="xml/qmi-message-dms-swi-get-current-firmware.xml"/>
-      <xi:include href="xml/qmi-message-dms-set-fcc-authentication.xml"/>
-      <xi:include href="xml/qmi-message-dms-get-supported-messages.xml"/>
     </section>
   </chapter>
 
@@ -134,7 +120,6 @@
       <xi:include href="xml/qmi-indication-nas-serving-system.xml"/>
       <xi:include href="xml/qmi-indication-nas-system-info.xml"/>
       <xi:include href="xml/qmi-indication-nas-signal-info.xml"/>
-      <xi:include href="xml/qmi-indication-nas-operator-name.xml"/>
     </section>
     <section>
       <title>NAS Requests</title>
@@ -154,13 +139,8 @@
       <xi:include href="xml/qmi-message-nas-get-system-info.xml"/>
       <xi:include href="xml/qmi-message-nas-get-signal-info.xml"/>
       <xi:include href="xml/qmi-message-nas-config-signal-info.xml"/>
-      <xi:include href="xml/qmi-message-nas-force-network-search.xml"/>
       <xi:include href="xml/qmi-message-nas-get-cdma-position-info.xml"/>
       <xi:include href="xml/qmi-message-nas-get-tx-rx-info.xml"/>
-      <xi:include href="xml/qmi-message-nas-get-cell-location-info.xml"/>
-      <xi:include href="xml/qmi-message-nas-get-supported-messages.xml"/>
-      <xi:include href="xml/qmi-message-nas-get-lte-cphy-ca-info.xml"/>
-      <xi:include href="xml/qmi-message-nas-get-operator-name.xml"/>
     </section>
   </chapter>
 
@@ -169,36 +149,16 @@
     <xi:include href="xml/qmi-client-wds.xml"/>
     <xi:include href="xml/qmi-enums-wds.xml"/>
     <section>
-      <title>WDS Indications</title>
-      <xi:include href="xml/qmi-indication-wds-event-report.xml"/>
-      <xi:include href="xml/qmi-indication-wds-packet-service-status.xml"/>
-    </section>
-    <section>
       <title>WDS Requests</title>
       <xi:include href="xml/qmi-message-wds-reset.xml"/>
-      <xi:include href="xml/qmi-message-wds-set-event-report.xml"/>
       <xi:include href="xml/qmi-message-wds-start-network.xml"/>
       <xi:include href="xml/qmi-message-wds-stop-network.xml"/>
       <xi:include href="xml/qmi-message-wds-get-packet-service-status.xml"/>
       <xi:include href="xml/qmi-message-wds-get-packet-statistics.xml"/>
-      <xi:include href="xml/qmi-message-wds-go-dormant.xml"/>
-      <xi:include href="xml/qmi-message-wds-go-active.xml"/>
-      <xi:include href="xml/qmi-message-wds-create-profile.xml"/>
-      <xi:include href="xml/qmi-message-wds-modify-profile.xml"/>
-      <xi:include href="xml/qmi-message-wds-delete-profile.xml"/>
-      <xi:include href="xml/qmi-message-wds-get-profile-list.xml"/>
-      <xi:include href="xml/qmi-message-wds-get-profile-settings.xml"/>
-      <xi:include href="xml/qmi-message-wds-get-default-settings.xml"/>
       <xi:include href="xml/qmi-message-wds-get-current-settings.xml"/>
-      <xi:include href="xml/qmi-message-wds-get-dormancy-status.xml"/>
-      <xi:include href="xml/qmi-message-wds-get-autoconnect-settings.xml"/>
-      <xi:include href="xml/qmi-message-wds-set-autoconnect-settings.xml"/>
       <xi:include href="xml/qmi-message-wds-get-data-bearer-technology.xml"/>
       <xi:include href="xml/qmi-message-wds-get-current-data-bearer-technology.xml"/>
       <xi:include href="xml/qmi-message-wds-set-ip-family.xml"/>
-      <xi:include href="xml/qmi-message-wds-get-supported-messages.xml"/>
-      <xi:include href="xml/qmi-message-wds-get-pdn-throttle-info.xml"/>
-      <xi:include href="xml/qmi-message-wds-bind-mux-data-port.xml"/>
     </section>
   </chapter>
 
@@ -209,7 +169,6 @@
     <section>
       <title>WMS Indications</title>
       <xi:include href="xml/qmi-indication-wms-event-report.xml"/>
-      <xi:include href="xml/qmi-indication-wms-smsc-address.xml"/>
     </section>
     <section>
       <title>WMS Requests</title>
@@ -225,39 +184,6 @@
       <xi:include href="xml/qmi-message-wms-set-routes.xml"/>
       <xi:include href="xml/qmi-message-wms-get-routes.xml"/>
       <xi:include href="xml/qmi-message-wms-send-from-memory-storage.xml"/>
-      <xi:include href="xml/qmi-message-wms-get-supported-messages.xml"/>
-    </section>
-  </chapter>
-
-  <chapter>
-    <title>Persistent Device Configuration (PDC)</title>
-    <xi:include href="xml/qmi-client-pdc.xml"/>
-    <xi:include href="xml/qmi-enums-pdc.xml"/>
-    <section>
-      <title>PDC Indications</title>
-      <xi:include href="xml/qmi-indication-pdc-activate-config.xml"/>
-      <xi:include href="xml/qmi-indication-pdc-deactivate-config.xml"/>
-      <xi:include href="xml/qmi-indication-pdc-get-config-info.xml"/>
-      <xi:include href="xml/qmi-indication-pdc-get-selected-config.xml"/>
-      <xi:include href="xml/qmi-indication-pdc-list-configs.xml"/>
-      <xi:include href="xml/qmi-indication-pdc-load-config.xml"/>
-      <xi:include href="xml/qmi-indication-pdc-set-selected-config.xml"/>
-    </section>
-    <section>
-      <title>PDC Requests</title>
-      <xi:include href="xml/qmi-message-pdc-reset.xml"/>
-      <xi:include href="xml/qmi-message-pdc-register.xml"/>
-      <xi:include href="xml/qmi-message-pdc-config-change.xml"/>
-      <xi:include href="xml/qmi-message-pdc-get-selected-config.xml"/>
-      <xi:include href="xml/qmi-message-pdc-set-selected-config.xml"/>
-      <xi:include href="xml/qmi-message-pdc-list-configs.xml"/>
-      <xi:include href="xml/qmi-message-pdc-delete-config.xml"/>
-      <xi:include href="xml/qmi-message-pdc-load-config.xml"/>
-      <xi:include href="xml/qmi-message-pdc-activate-config.xml"/>
-      <xi:include href="xml/qmi-message-pdc-get-config-info.xml"/>
-      <xi:include href="xml/qmi-message-pdc-get-config-limits.xml"/>
-      <xi:include href="xml/qmi-message-pdc-get-default-config-info.xml"/>
-      <xi:include href="xml/qmi-message-pdc-deactivate-config.xml"/>
     </section>
   </chapter>
 
@@ -277,10 +203,6 @@
       <xi:include href="xml/qmi-message-pds-set-gps-service-state.xml"/>
       <xi:include href="xml/qmi-message-pds-get-auto-tracking-state.xml"/>
       <xi:include href="xml/qmi-message-pds-set-auto-tracking-state.xml"/>
-      <xi:include href="xml/qmi-message-pds-get-default-tracking-session.xml"/>
-      <xi:include href="xml/qmi-message-pds-set-default-tracking-session.xml"/>
-      <xi:include href="xml/qmi-message-pds-get-agps-config.xml"/>
-      <xi:include href="xml/qmi-message-pds-set-agps-config.xml"/>
     </section>
   </chapter>
 
@@ -303,17 +225,9 @@
     <section>
       <title>UIM Requests</title>
       <xi:include href="xml/qmi-message-uim-reset.xml"/>
-      <xi:include href="xml/qmi-message-uim-set-pin-protection.xml"/>
-      <xi:include href="xml/qmi-message-uim-verify-pin.xml"/>
-      <xi:include href="xml/qmi-message-uim-unblock-pin.xml"/>
-      <xi:include href="xml/qmi-message-uim-change-pin.xml"/>
       <xi:include href="xml/qmi-message-uim-read-transparent.xml"/>
       <xi:include href="xml/qmi-message-uim-read-record.xml"/>
       <xi:include href="xml/qmi-message-uim-get-file-attributes.xml"/>
-      <xi:include href="xml/qmi-message-uim-get-card-status.xml"/>
-      <xi:include href="xml/qmi-message-uim-get-supported-messages.xml"/>
-      <xi:include href="xml/qmi-message-uim-power-off-sim.xml"/>
-      <xi:include href="xml/qmi-message-uim-power-on-sim.xml"/>
     </section>
   </chapter>
 
@@ -338,41 +252,6 @@
     </section>
   </chapter>
 
-  <chapter>
-    <title>Wireless Data Administrative Service (WDA)</title>
-    <xi:include href="xml/qmi-client-wda.xml"/>
-    <xi:include href="xml/qmi-enums-wda.xml"/>
-    <section>
-      <title>WDA Requests</title>
-      <xi:include href="xml/qmi-message-wda-set-data-format.xml"/>
-      <xi:include href="xml/qmi-message-wda-get-data-format.xml"/>
-      <xi:include href="xml/qmi-message-wda-get-supported-messages.xml"/>
-    </section>
-  </chapter>
-
-  <chapter>
-    <title>Voice</title>
-    <xi:include href="xml/qmi-client-voice.xml"/>
-    <xi:include href="xml/qmi-enums-voice.xml"/>
-    <section>
-      <title>Voice Indications</title>
-      <xi:include href="xml/qmi-indication-voice-all-call-status.xml"/>
-    </section>
-    <section>
-      <title>Voice Requests</title>
-      <xi:include href="xml/qmi-message-voice-dial-call.xml"/>
-      <xi:include href="xml/qmi-message-voice-end-call.xml"/>
-      <xi:include href="xml/qmi-message-voice-answer-call.xml"/>
-      <xi:include href="xml/qmi-message-voice-get-config.xml"/>
-      <xi:include href="xml/qmi-message-voice-get-supported-messages.xml"/>
-    </section>
-  </chapter>
-
-  <chapter>
-    <title>Compatibility with older versions</title>
-    <xi:include href="xml/qmi-compat.xml"/>
-  </chapter>
-
   <chapter id="object-tree">
     <title>Object Hierarchy</title>
      <xi:include href="xml/tree_index.sgml"/>
@@ -384,46 +263,6 @@
   <index id="deprecated-api-index" role="deprecated">
     <title>Index of deprecated API</title>
     <xi:include href="xml/api-index-deprecated.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-0" role="1.0">
-    <title>Index of new core symbols in 1.0</title>
-    <xi:include href="xml/api-index-1.0.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-2" role="1.2">
-    <title>Index of new core symbols in 1.2</title>
-    <xi:include href="xml/api-index-1.2.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-4" role="1.4">
-    <title>Index of new core symbols in 1.4</title>
-    <xi:include href="xml/api-index-1.4.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-6" role="1.6">
-    <title>Index of new core symbols in 1.6</title>
-    <xi:include href="xml/api-index-1.6.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-8" role="1.8">
-    <title>Index of new core symbols in 1.8</title>
-    <xi:include href="xml/api-index-1.8.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-10" role="1.10">
-    <title>Index of new core symbols in 1.10</title>
-    <xi:include href="xml/api-index-1.10.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-12" role="1.12">
-    <title>Index of new core symbols in 1.12</title>
-    <xi:include href="xml/api-index-1.12.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-14" role="1.14">
-    <title>Index of new core symbols in 1.14</title>
-    <xi:include href="xml/api-index-1.14.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-16" role="1.16">
-    <title>Index of new core symbols in 1.16</title>
-    <xi:include href="xml/api-index-1.16.xml"><xi:fallback /></xi:include>
-  </index>
-  <index id="api-index-1-18" role="1.18">
-    <title>Index of new core symbols in 1.18</title>
-    <xi:include href="xml/api-index-1.18.xml"><xi:fallback /></xi:include>
   </index>
 
   <xi:include href="xml/annotation-glossary.xml"><xi:fallback /></xi:include>

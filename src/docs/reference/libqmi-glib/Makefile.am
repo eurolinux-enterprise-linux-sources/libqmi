@@ -8,17 +8,14 @@ DOC_MAIN_SGML_FILE = $(DOC_MODULE)-docs.xml
 # Sections file building
 ALL_SECTIONS = \
 	$(srcdir)/libqmi-glib-common.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-dms.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-nas.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-wds.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-wms.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-pdc.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-pds.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-pbm.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-uim.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-oma.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-wda.sections \
-	$(top_builddir)/src/libqmi-glib/generated/qmi-voice.sections
+	$(top_builddir)/libqmi-glib/generated/qmi-dms.sections \
+	$(top_builddir)/libqmi-glib/generated/qmi-nas.sections \
+	$(top_builddir)/libqmi-glib/generated/qmi-wds.sections \
+	$(top_builddir)/libqmi-glib/generated/qmi-wms.sections \
+	$(top_builddir)/libqmi-glib/generated/qmi-pds.sections \
+	$(top_builddir)/libqmi-glib/generated/qmi-pbm.sections \
+	$(top_builddir)/libqmi-glib/generated/qmi-uim.sections \
+	$(top_builddir)/libqmi-glib/generated/qmi-oma.sections
 
 $(DOC_MODULE)-sections.mstamp: $(ALL_SECTIONS)
 	$(AM_V_GEN) \
@@ -33,25 +30,23 @@ SCAN_OPTIONS = --rebuild-types
 
 # The directory containing the source code.
 DOC_SOURCE_DIR = \
-	$(top_srcdir)/src/libqmi-glib \
-	$(top_builddir)/src/libqmi-glib/generated
+	$(top_srcdir)/libqmi-glib \
+	$(top_builddir)/libqmi-glib/generated
 
 # Used for dependencies
 HFILE_GLOB = \
-	$(top_srcdir)/src/libqmi-glib/*.h \
-	$(top_builddir)/src/libqmi-glib/*.h \
-	$(top_builddir)/src/libqmi-glib/generated/*.h
+	$(top_srcdir)/libqmi-glib/*.h \
+	$(top_builddir)/libqmi-glib/*.h \
+	$(top_builddir)/libqmi-glib/generated/*.h
 CFILE_GLOB = \
-	$(top_srcdir)/src/libqmi-glib/*.c \
-	$(top_builddir)/src/libqmi-glib/generated/*.c
+	$(top_srcdir)/libqmi-glib/*.c \
+	$(top_builddir)/libqmi-glib/generated/*.c
 
 # Headers to ignore
 IGNORE_HFILES = \
 	qmi-enums-private.h \
 	qmi-enum-types-private.h \
-	qmi-ctl.h \
-	test-port-context.h \
-	test-fixture.h
+	qmi-ctl.h
 
 # CFLAGS and LDFLAGS for compiling scan program. Only needed
 # if $(DOC_MODULE).types is non-empty.
@@ -59,11 +54,11 @@ AM_CPPFLAGS = \
 	-I$(srcdir) \
 	-I$(top_srcdir) \
 	-I$(top_builddir) \
-	$(GLIB_CFLAGS)
+	$(LIBQMI_GLIB_CFLAGS)
 
 GTKDOC_LIBS = \
-	$(GLIB_LIBS) \
-	$(top_builddir)/src/libqmi-glib/libqmi-glib.la
+	$(LIBQMI_GLIB_LIBS) \
+	$(top_builddir)/libqmi-glib/libqmi-glib.la
 
 # Extra options to supply to gtkdoc-mkdb
 MKDB_OPTIONS = --output-format=xml --sgml-mode --name-space=qmi

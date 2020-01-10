@@ -1,14 +1,8 @@
 
-SUBDIRS = . data build-aux src utils docs
+SUBDIRS = . data build-aux libqmi-glib cli utils docs
 
 ACLOCAL_AMFLAGS = -I m4
 
-DISTCHECK_CONFIGURE_FLAGS = \
-	--with-udev-base-dir="$$dc_install_base" \
-	--enable-gtk-doc \
-	--enable-mbim-qmux \
-	$(NULL)
+DISTCHECK_CONFIGURE_FLAGS = --enable-gtk-doc
 
-EXTRA_DIST = \
-	gtester.make \
-	COPYING.LIB
+EXTRA_DIST = gtester.make

@@ -16,7 +16,6 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -34,7 +33,7 @@ class Container:
     """
     Constructor
     """
-    def __init__(self, prefix, container_type, dictionary, common_objects_dictionary, static, since):
+    def __init__(self, prefix, container_type, dictionary, common_objects_dictionary, static):
         # The field container prefix usually contains the name of the Message,
         # e.g. "Qmi Message Ctl Something"
         self.prefix = prefix
@@ -50,7 +49,6 @@ class Container:
         self.name = container_type
 
         self.static = static
-        self.since = since
 
         # Create the composed full name (prefix + name),
         #  e.g. "Qmi Message Ctl Something Output"
@@ -60,7 +58,6 @@ class Container:
         if dictionary is not None:
             self.fields = []
 
-            new_dict = []
             # First, look for references to common types
             for field_dictionary in dictionary:
                 if 'common-ref' in field_dictionary:
@@ -72,18 +69,12 @@ class Container:
                            copy = dict(common)
                            if 'prerequisites' in field_dictionary:
                                copy['prerequisites'] = field_dictionary['prerequisites']
-                           # Fix 'since' in the copy
-                           if 'since' in field_dictionary:
-                               copy['since'] = field_dictionary['since']
-                           else:
-                               copy['since'] = self.since
-                           new_dict.append(copy)
+                           dictionary.remove(field_dictionary)
+                           dictionary.append(copy)
                            break
                     else:
                         raise RuntimeError('Common type \'%s\' not found' % field_dictionary['name'])
-                else:
-                    new_dict.append(field_dictionary)
-            dictionary = new_dict
+
             # We need to sort the fields, so that the ones with prerequisites are
             # include after the prerequisites themselves. Note: we don't currently
             # support complex setups yet.
@@ -133,8 +124,6 @@ class Container:
             ' *\n'
             ' * The #${camelcase} structure contains private data and should only be accessed\n'
             ' * using the provided API.\n'
-            ' *\n'
-            ' * Since: ${since}\n'
             ' */\n'
             'typedef struct _${camelcase} ${camelcase};\n'
             '${static}GType ${underscore}_get_type (void) G_GNUC_CONST;\n'
@@ -151,7 +140,7 @@ class Container:
         if self.fields is not None:
             for field in self.fields:
                 if field.variable is not None:
-                    variable_declaration = field.variable.build_variable_declaration(False, '    ', field.variable_name)
+                    variable_declaration = field.variable.build_variable_declaration('    ', field.variable_name)
                     translations['field_variable_name'] = field.variable_name
                     translations['field_name'] = field.name
                     template = (
@@ -172,40 +161,10 @@ class Container:
         # Emit container core header
         template = (
             '\n'
-            '/**\n'
-            ' * ${underscore}_ref:\n'
-            ' * @self: a #${camelcase}.\n'
-            ' *\n'
-            ' * Atomically increments the reference count of @self by one.\n'
-            ' *\n'
-            ' * Returns: the new reference to @self.\n'
-            ' *\n'
-            ' * Since: ${since}\n'
-            ' */\n'
             '${static}${camelcase} *${underscore}_ref (${camelcase} *self);\n'
-            '\n'
-            '/**\n'
-            ' * ${underscore}_unref:\n'
-            ' * @self: a #${camelcase}.\n'
-            ' *\n'
-            ' * Atomically decrements the reference count of @self by one.\n'
-            ' * If the reference count drops to 0, @self is completely disposed.\n'
-            ' *\n'
-            ' * Since: ${since}\n'
-            ' */\n'
             '${static}void ${underscore}_unref (${camelcase} *self);\n')
         if self.readonly == False:
             template += (
-                '\n'
-                '/**\n'
-                ' * ${underscore}_new:\n'
-                ' *\n'
-                ' * Allocates a new #${camelcase}.\n'
-                ' *\n'
-                ' * Returns: the newly created #${camelcase}. The returned value should be freed with ${underscore}_unref().\n'
-                ' *\n'
-                ' * Since: ${since}\n'
-                ' */\n'
                 '${static}${camelcase} *${underscore}_new (void);\n')
 
         if self.static:
@@ -233,6 +192,14 @@ class Container:
             '    return g_define_type_id__volatile;\n'
             '}\n'
             '\n'
+            '/**\n'
+            ' * ${underscore}_ref:\n'
+            ' * @self: a #${camelcase}.\n'
+            ' *\n'
+            ' * Atomically increments the reference count of @self by one.\n'
+            ' *\n'
+            ' * Returns: the new reference to @self.\n'
+            ' */\n'
             '${static}${camelcase} *\n'
             '${underscore}_ref (${camelcase} *self)\n'
             '{\n'
@@ -242,6 +209,13 @@ class Container:
             '    return self;\n'
             '}\n'
             '\n'
+            '/**\n'
+            ' * ${underscore}_unref:\n'
+            ' * @self: a #${camelcase}.\n'
+            ' *\n'
+            ' * Atomically decrements the reference count of @self by one.\n'
+            ' * If the reference count drops to 0, @self is completely disposed.\n'
+            ' */\n'
             '${static}void\n'
             '${underscore}_unref (${camelcase} *self)\n'
             '{\n'
@@ -266,6 +240,13 @@ class Container:
 
         template = (
             '\n'
+            '/**\n'
+            ' * ${underscore}_new:\n'
+            ' *\n'
+            ' * Allocates a new #${camelcase}.\n'
+            ' *\n'
+            ' * Returns: the newly created #${camelcase}. The returned value should be freed with ${underscore}_unref().\n'
+            ' */\n'
             '${static}${camelcase} *\n'
             '${underscore}_new (void)\n'
             '{\n'
@@ -285,7 +266,6 @@ class Container:
         translations = { 'name'       : self.name,
                          'camelcase'  : utils.build_camelcase_name (self.fullname),
                          'underscore' : utils.build_underscore_name (self.fullname),
-                         'since'      : self.since,
                          'static'     : 'static ' if self.static else '' }
 
         auxfile = cfile if self.static else hfile

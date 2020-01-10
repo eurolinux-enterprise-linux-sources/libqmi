@@ -16,7 +16,6 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -49,8 +48,6 @@ class VariableStruct(Variable):
             member = {}
             member['name'] = utils.build_underscore_name(member_dictionary['name'])
             member['object'] = VariableFactory.create_variable(member_dictionary, struct_type_name + ' ' + member['name'], self.container_type)
-            # Specify that the variable will be defined in the public header
-            member['object'].flag_public()
             self.members.append(member)
 
         # We'll need to dispose if at least one of the members needs it
@@ -62,13 +59,12 @@ class VariableStruct(Variable):
     """
     Emit all types for the members of the struct plus the new struct type itself
     """
-    def emit_types(self, f, since):
+    def emit_types(self, f):
         # Emit types for each member
         for member in self.members:
-            member['object'].emit_types(f, since)
+            member['object'].emit_types(f)
 
-        translations = { 'format' : self.public_format,
-                         'since'  : since }
+        translations = { 'format' : self.public_format }
         template = (
             '\n'
             '/**\n'
@@ -80,14 +76,16 @@ class VariableStruct(Variable):
         template = (
             ' *\n'
             ' * A ${format} struct.\n'
-            ' *\n'
-            ' * Since: ${since}\n'
             ' */\n'
             'typedef struct _${format} {\n')
         f.write(string.Template(template).substitute(translations))
 
         for member in self.members:
-            f.write(member['object'].build_variable_declaration(True, '    ', member['name']))
+            translations['variable_format'] = member['object'].public_format
+            translations['variable_name'] = member['name']
+            template = (
+                '    ${variable_format} ${variable_name};\n')
+            f.write(string.Template(template).substitute(translations))
 
         template = ('} ${format};\n')
         f.write(string.Template(template).substitute(translations))
@@ -106,52 +104,61 @@ class VariableStruct(Variable):
     Reading the contents of a struct is just about reading each of the struct
     fields one by one.
     """
-    def emit_buffer_read(self, f, line_prefix, tlv_out, error, variable_name):
+    def emit_buffer_read(self, f, line_prefix, variable_name, buffer_name, buffer_len):
         for member in self.members:
-            member['object'].emit_buffer_read(f, line_prefix, tlv_out, error, variable_name + '.' +  member['name'])
+            member['object'].emit_buffer_read(f, line_prefix, variable_name + '.' +  member['name'], buffer_name, buffer_len)
+
+
+    """
+    Emits the code involved in computing the size of the variable.
+    """
+    def emit_size_read(self, f, line_prefix, variable_name, buffer_name, buffer_len):
+        for member in self.members:
+            member['object'].emit_size_read(f, line_prefix, variable_name, buffer_name, buffer_len)
 
 
     """
     Writing the contents of a struct is just about writing each of the struct
     fields one by one.
     """
-    def emit_buffer_write(self, f, line_prefix, tlv_name, variable_name):
+    def emit_buffer_write(self, f, line_prefix, variable_name, buffer_name, buffer_len):
         for member in self.members:
-            member['object'].emit_buffer_write(f, line_prefix, tlv_name, variable_name + '.' +  member['name'])
+            member['object'].emit_buffer_write(f, line_prefix, variable_name + '.' +  member['name'], buffer_name, buffer_len)
 
 
     """
     The struct will be printed as a list of fields enclosed between square
     brackets
     """
-    def emit_get_printable(self, f, line_prefix):
-        translations = { 'lp' : line_prefix }
+    def emit_get_printable(self, f, line_prefix, printable, buffer_name, buffer_len):
+        translations = { 'lp'        : line_prefix,
+                         'printable' : printable }
 
         template = (
-            '${lp}g_string_append (printable, "[");\n')
+            '${lp}g_string_append (${printable}, "[");\n')
         f.write(string.Template(template).substitute(translations))
 
         for member in self.members:
             translations['variable_name'] = member['name']
             template = (
-                '${lp}g_string_append (printable, " ${variable_name} = \'");\n')
+                '${lp}g_string_append (${printable}, " ${variable_name} = \'");\n')
             f.write(string.Template(template).substitute(translations))
 
-            member['object'].emit_get_printable(f, line_prefix)
+            member['object'].emit_get_printable(f, line_prefix, printable, buffer_name, buffer_len)
 
             template = (
-                '${lp}g_string_append (printable, "\'");\n')
+                '${lp}g_string_append (${printable}, "\'");\n')
             f.write(string.Template(template).substitute(translations))
 
         template = (
-            '${lp}g_string_append (printable, " ]");\n')
+            '${lp}g_string_append (${printable}, " ]");\n')
         f.write(string.Template(template).substitute(translations))
 
 
     """
     Variable declaration
     """
-    def build_variable_declaration(self, public, line_prefix, variable_name):
+    def build_variable_declaration(self, line_prefix, variable_name):
         translations = { 'lp'     : line_prefix,
                          'format' : self.public_format,
                          'name'   : variable_name }
@@ -166,9 +173,6 @@ class VariableStruct(Variable):
     of the variables in the struct.
     """
     def build_getter_declaration(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'     : line_prefix,
                          'format' : self.public_format,
                          'name'   : variable_name }
@@ -182,9 +186,6 @@ class VariableStruct(Variable):
     Documentation for the getter
     """
     def build_getter_documentation(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'     : line_prefix,
                          'format' : self.public_format,
                          'name'   : variable_name }
@@ -198,9 +199,6 @@ class VariableStruct(Variable):
     Builds the Struct getter implementation
     """
     def build_getter_implementation(self, line_prefix, variable_name_from, variable_name_to, to_is_reference):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'   : line_prefix,
                          'from' : variable_name_from,
                          'to'   : variable_name_to }
@@ -221,9 +219,6 @@ class VariableStruct(Variable):
     of the variables in the struct.
     """
     def build_setter_declaration(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'     : line_prefix,
                          'format' : self.public_format,
                          'name'   : variable_name }
@@ -237,9 +232,6 @@ class VariableStruct(Variable):
     Documentation for the setter
     """
     def build_setter_documentation(self, line_prefix, variable_name):
-        if not self.visible:
-            return ""
-
         translations = { 'lp'     : line_prefix,
                          'format' : self.public_format,
                          'name'   : variable_name }
@@ -252,9 +244,6 @@ class VariableStruct(Variable):
     Builds the Struct setter implementation
     """
     def build_setter_implementation(self, line_prefix, variable_name_from, variable_name_to):
-        if not self.visible:
-            return ""
-
         built = ''
         for member in self.members:
             built += member['object'].build_setter_implementation(line_prefix,

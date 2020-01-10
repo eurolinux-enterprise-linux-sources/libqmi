@@ -16,7 +16,6 @@
 # Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 # Copyright (C) 2012 Lanedo GmbH
-# Copyright (C) 2012-2017 Aleksander Morgado <aleksander@aleksander.es>
 #
 
 import string
@@ -39,23 +38,12 @@ class Message:
         self.name = dictionary['name']
         # The specific message ID
         self.id = dictionary['id']
-
         # The type, which must always be 'Message' or 'Indication'
         self.type = dictionary['type']
         # The version info, optional
         self.version_info = dictionary['version'].split('.') if 'version' in dictionary else []
         self.static = True if 'scope' in dictionary and dictionary['scope'] == 'library-only' else False
         self.abort = True if 'abort' in dictionary and dictionary['abort'] == 'yes' else False
-
-        # libqmi version where the message was introduced
-        self.since = dictionary['since'] if 'since' in dictionary else None
-        if self.since is None:
-            raise ValueError('Message ' + self.name + ' requires a "since" tag specifying the major version where it was introduced')
-
-        # The vendor id if this command is vendor specific
-        self.vendor = dictionary['vendor'] if 'vendor' in dictionary else None
-        if self.type == 'Indication' and self.vendor is not None:
-            raise ValueError('Vendor-specific indications unsupported')
 
         # The message prefix
         self.prefix = 'Qmi ' + self.type
@@ -76,8 +64,7 @@ class Message:
                                 'Output',
                                 dictionary['output'] if 'output' in dictionary else None,
                                 common_objects_dictionary,
-                                self.static,
-                                self.since)
+                                self.static)
 
         self.input = None
         if self.type == 'Message':
@@ -89,8 +76,7 @@ class Message:
                                    'Input',
                                    dictionary['input'] if 'input' in dictionary else None,
                                    common_objects_dictionary,
-                                   self.static,
-                                   self.since)
+                                   self.static)
 
 
     """
@@ -108,7 +94,7 @@ class Message:
             '\n'
             'static QmiMessage *\n'
             '__${underscore}_request_create (\n'
-            '    guint16 transaction_id,\n'
+            '    guint8 transaction_id,\n'
             '    guint8 cid,\n'
             '    %s,\n'
             '    GError **error)\n'
@@ -147,7 +133,8 @@ class Message:
                     '                     QMI_CORE_ERROR,\n'
                     '                     QMI_CORE_ERROR_INVALID_ARGS,\n'
                     '                     "Message \'${name}\' has mandatory TLVs");\n'
-                    '        goto error_out;\n'
+                    '        qmi_message_unref (self);\n'
+                    '        return NULL;\n'
                     '    }\n')
                 cfile.write(string.Template(template).substitute(translations))
 
@@ -171,21 +158,15 @@ class Message:
                         '                     QMI_CORE_ERROR,\n'
                         '                     QMI_CORE_ERROR_INVALID_ARGS,\n'
                         '                     "Missing mandatory TLV \'${tlv_name}\' in message \'${name}\'");\n'
-                        '        goto error_out;\n')
+                        '        qmi_message_unref (self);\n'
+                        '        return NULL;\n')
                     cfile.write(string.Template(template).substitute(translations))
 
                 cfile.write(
                     '    }\n')
         cfile.write(
             '\n'
-            '    return self;\n')
-        if self.input.fields is not None:
-            cfile.write(
-                '\n'
-                'error_out:\n'
-                '    qmi_message_unref (self);\n'
-                '    return NULL;\n')
-        cfile.write(
+            '    return self;\n'
             '}\n')
 
 

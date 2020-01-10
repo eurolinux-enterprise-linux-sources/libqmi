@@ -2,77 +2,70 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User Identity Module (UIM) service: libqmi-glib Reference Manual</title>
-<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<title>Open Mobile Alliance Service (OMA)</title>
+<meta name="generator" content="DocBook XSL Stylesheets V1.78.1">
 <link rel="home" href="index.html" title="libqmi-glib Reference Manual">
 <link rel="up" href="index.html" title="libqmi-glib Reference Manual">
-<link rel="prev" href="libqmi-glib-PBM-Get-All-Capabilities.html" title="PBM Get All Capabilities">
-<link rel="next" href="QmiClientUim.html" title="QmiClientUim">
-<meta name="generator" content="GTK-Doc V1.25.1 (XML mode)">
+<link rel="prev" href="libqmi-glib-UIM-Get-File-Attributes.html" title="UIM Get File Attributes">
+<link rel="next" href="QmiClientOma.html" title="QmiClientOma">
+<meta name="generator" content="GTK-Doc V1.18.1 (XML mode)">
 <link rel="stylesheet" href="style.css" type="text/css">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
-<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="5"><tr valign="middle">
-<td width="100%" align="left" class="shortcuts"></td>
-<td><a accesskey="h" href="index.html"><img src="home.png" width="16" height="16" border="0" alt="Home"></a></td>
-<td><img src="up-insensitive.png" width="16" height="16" border="0"></td>
-<td><a accesskey="p" href="libqmi-glib-PBM-Get-All-Capabilities.html"><img src="left.png" width="16" height="16" border="0" alt="Prev"></a></td>
-<td><a accesskey="n" href="QmiClientUim.html"><img src="right.png" width="16" height="16" border="0" alt="Next"></a></td>
+<table class="navigation" id="top" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2"><tr valign="middle">
+<td><a accesskey="p" href="libqmi-glib-UIM-Get-File-Attributes.html"><img src="left.png" width="24" height="24" border="0" alt="Prev"></a></td>
+<td> </td>
+<td><a accesskey="h" href="index.html"><img src="home.png" width="24" height="24" border="0" alt="Home"></a></td>
+<th width="100%" align="center">libqmi-glib Reference Manual</th>
+<td><a accesskey="n" href="QmiClientOma.html"><img src="right.png" width="24" height="24" border="0" alt="Next"></a></td>
 </tr></table>
 <div class="chapter">
 <div class="titlepage"><div><div><h1 class="title">
-<a name="id-1.10"></a>User Identity Module (UIM) service</h1></div></div></div>
+<a name="idm225614815312"></a>Open Mobile Alliance Service (OMA)</h1></div></div></div>
 <div class="toc"><dl class="toc">
 <dt>
-<span class="refentrytitle"><a href="QmiClientUim.html">QmiClientUim</a></span><span class="refpurpose"> — <span class="type">QmiClient</span> for the UIM service.</span>
+<span class="refentrytitle"><a href="QmiClientOma.html">QmiClientOma</a></span><span class="refpurpose"><span class="type">QmiClient</span> for the OMA service.</span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-enumerations-and-flags.html">UIM enumerations and flags</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-enumerations-and-flags.html">OMA enumerations and flags</a></span><span class="refpurpose"></span>
 </dt>
-<dt><span class="section"><a href="ch09.html#id-1.10.4">UIM Requests</a></span></dt>
+<dt><span class="section"><a href="ch09.html#idm225614813680">OMA Indications</a></span></dt>
+<dd><dl><dt>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-Event-Report.html">OMA Event Report</a></span><span class="refpurpose"></span>
+</dt></dl></dd>
+<dt><span class="section"><a href="ch09s02.html">OMA Requests</a></span></dt>
 <dd><dl>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Reset.html">UIM Reset</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-Reset.html">OMA Reset</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Set-PIN-Protection.html">UIM Set PIN Protection</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-Set-Event-Report.html">OMA Set Event Report</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Verify-PIN.html">UIM Verify PIN</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-Start-Session.html">OMA Start Session</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Unblock-PIN.html">UIM Unblock PIN</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-Cancel-Session.html">OMA Cancel Session</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Change-PIN.html">UIM Change PIN</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-Get-Session-Info.html">OMA Get Session Info</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Read-Transparent.html">UIM Read Transparent</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-Send-Selection.html">OMA Send Selection</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Read-Record.html">UIM Read Record</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-Get-Feature-Setting.html">OMA Get Feature Setting</a></span><span class="refpurpose"></span>
 </dt>
 <dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Get-File-Attributes.html">UIM Get File Attributes</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Get-Card-Status.html">UIM Get Card Status</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Get-Supported-Messages.html">UIM Get Supported Messages</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Power-Off-SIM.html">UIM Power Off SIM</a></span><span class="refpurpose"></span>
-</dt>
-<dt>
-<span class="refentrytitle"><a href="libqmi-glib-UIM-Power-On-SIM.html">UIM Power On SIM</a></span><span class="refpurpose"></span>
+<span class="refentrytitle"><a href="libqmi-glib-OMA-Set-Feature-Setting.html">OMA Set Feature Setting</a></span><span class="refpurpose"></span>
 </dt>
 </dl></dd>
 </dl></div>
 <div class="section"><div class="titlepage"><div><div><h2 class="title" style="clear: both">
-<a name="id-1.10.4"></a>UIM Requests</h2></div></div></div></div>
+<a name="idm225614813680"></a>OMA Indications</h2></div></div></div></div>
 </div>
 <div class="footer">
-<hr>Generated by GTK-Doc V1.25.1</div>
+<hr>
+          Generated by GTK-Doc V1.18.1</div>
 </body>
 </html>
